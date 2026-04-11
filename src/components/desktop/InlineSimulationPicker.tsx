@@ -5,7 +5,8 @@ import { useSimulationStore } from '../../store/simulation-store'
 import { usePlaybackStore } from '../../store/playback-store'
 import { useEditorStore } from '../../store/editor-store'
 import { sampleClaudeCodeSimulation, sampleClaudeChatSimulation, sampleCoworkSimulation } from '../../utils/sample-data'
-import { sampleLandingPageSimulation, sampleTodoAppSimulation, sampleApiSimulation, sampleDashboardSimulation, sampleCoworkBuildSimulation } from '../../utils/sample-data-advanced'
+import { sampleLandingPageSimulation, sampleTodoAppSimulation, sampleApiSimulation, sampleDashboardSimulation, sampleCoworkBuildSimulation, sampleFinanceTrackerSimulation } from '../../utils/sample-data-advanced'
+import { sampleSltDashboardSimulation } from '../../utils/sample-slt-dashboard'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
 import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
@@ -19,6 +20,8 @@ const demos = [
   { label: 'Build a REST API', sim: sampleApiSimulation, view: 'claude-code' as const },
   { label: 'Analytics Dashboard', sim: sampleDashboardSimulation, view: 'claude-chat' as const },
   { label: 'Cowork: Full-Stack App', sim: sampleCoworkBuildSimulation, view: 'claude-cowork' as const },
+  { label: 'Cowork: SLT Dashboard', sim: sampleSltDashboardSimulation, view: 'claude-cowork' as const },
+  { label: 'Finance Tracker', sim: sampleFinanceTrackerSimulation, view: 'claude-chat' as const },
 ]
 
 export function InlineSimulationPicker() {

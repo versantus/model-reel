@@ -11,7 +11,7 @@ export function DesktopShell() {
   return (
     <div className="h-full macos-desktop flex flex-col items-center justify-center p-6 pb-20 relative">
       {/* Claude Desktop Window */}
-      <div className="w-full flex-1 max-w-[1200px] max-h-[820px] relative z-20">
+      <div className="w-full flex-1 max-w-[1200px] max-h-[820px] relative z-20 overflow-hidden rounded-xl">
         <ClaudeWindow />
       </div>
 

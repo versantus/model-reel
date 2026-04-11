@@ -1,5 +1,5 @@
 import { useChromeStore } from '../../store/chrome-store'
-import { X, Minus, Square, ChevronLeft, ChevronRight, RotateCw, Lock, Star } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, RotateCw, Lock, Star } from 'lucide-react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 

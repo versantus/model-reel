@@ -85,7 +85,7 @@ function CodeSessionView() {
   const scrollRef = useAutoScroll([renderedEvents.length, renderedEvents[renderedEvents.length - 1]?.progress])
 
   return (
-    <div className="h-full flex flex-col bg-terminal-bg font-mono text-sm">
+    <div className="h-full flex flex-col min-h-0 bg-terminal-bg font-mono text-sm">
       {/* Terminal content */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto terminal-scrollbar px-4 py-3">
         <div className="space-y-2">

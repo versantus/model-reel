@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Screenshot capture script (not needed in repo)
+screenshots/capture.mjs

@@ -1,0 +1,470 @@
+import type { Simulation } from '../types/simulation'
+
+const DASHBOARD_HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SLT Performance Dashboard — Acme Digital</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f9fb;color:#1e2330;line-height:1.5;padding:24px}
+.header{text-align:center;margin-bottom:28px}
+.header h1{font-size:24px;font-weight:700}
+.header .sub{color:#6b7280;font-size:13px;margin-top:4px}
+.header .logo{font-size:13px;font-weight:600;color:#2563eb;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+
+/* KPI cards */
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:24px}
+@media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:#fff;border:1px solid #e2e5ea;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.kpi .label{font-size:11px;color:#6b7280;font-weight:500;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.kpi .value{font-size:24px;font-weight:700;color:#1e2330}
+.kpi .sub{font-size:11px;margin-top:4px;font-weight:600}
+.kpi .sub.green{color:#16a34a}.kpi .sub.red{color:#dc2626}.kpi .sub.amber{color:#d97706}.kpi .sub.blue{color:#2563eb}
+
+/* Flags */
+.flags{margin-bottom:28px}
+.flags h2{font-size:16px;font-weight:600;margin-bottom:12px}
+.flag-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:640px){.flag-grid{grid-template-columns:1fr}}
+.flag{background:#fff;border:1px solid #e2e5ea;border-radius:10px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.04);display:flex;gap:12px}
+.flag .badge{flex-shrink:0;width:70px;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding:3px 0;border-radius:6px;height:22px;line-height:16px}
+.badge.critical{background:#fee2e2;color:#dc2626}
+.badge.warning{background:#fef3c7;color:#d97706}
+.badge.positive{background:#dcfce7;color:#16a34a}
+.badge.insight{background:#dbeafe;color:#2563eb}
+.flag .body{flex:1;min-width:0}
+.flag .title{font-size:13px;font-weight:600;margin-bottom:2px}
+.flag .action{font-size:12px;color:#6b7280}
+
+/* Charts */
+.chart-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
+@media(max-width:800px){.chart-grid{grid-template-columns:1fr}}
+.chart-card{background:#fff;border:1px solid #e2e5ea;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.04);position:relative}
+.chart-card h3{font-size:14px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.info-icon{width:16px;height:16px;border-radius:50%;background:#f0f1f3;color:#6b7280;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;cursor:help;position:relative}
+.info-icon .tip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#1e2330;color:#fff;padding:8px 12px;border-radius:8px;font-size:11px;font-weight:400;width:240px;line-height:1.4;z-index:10;text-align:left;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.info-icon:hover .tip{display:block}
+
+/* Scorecard table */
+.scorecard{width:100%;border-collapse:collapse;font-size:13px}
+.scorecard th{text-align:left;font-weight:500;color:#6b7280;padding:8px 10px;border-bottom:1px solid #e2e5ea;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+.scorecard td{padding:10px;border-bottom:1px solid #f3f4f6}
+.scorecard .gap{font-weight:600;font-size:12px;padding:3px 10px;border-radius:6px;display:inline-block}
+.gap.neg{background:#fee2e2;color:#dc2626}
+.gap.pos{background:#dcfce7;color:#16a34a}
+.gap.zero{background:#f3f4f6;color:#6b7280}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">Acme Digital</div>
+  <h1>SLT Performance Dashboard</h1>
+  <div class="sub">FY 2025/26 — Generated ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>
+</div>
+
+<!-- KPI Cards -->
+<div class="kpi-grid">
+  <div class="kpi"><div class="label">FY Revenue (Invoiced)</div><div class="value">£892K</div><div class="sub red">£108K below £1.0M target</div></div>
+  <div class="kpi"><div class="label">YoY Growth</div><div class="value">+6.2%</div><div class="sub green">vs £840K FY 24/25</div></div>
+  <div class="kpi"><div class="label">Cash Balance</div><div class="value">£347K</div><div class="sub amber">Down from £412K in Jan</div></div>
+  <div class="kpi"><div class="label">Avg Monthly Profit</div><div class="value">£8.4K</div><div class="sub amber">Margins under pressure</div></div>
+  <div class="kpi"><div class="label">Pipeline Conversion</div><div class="value">34%</div><div class="sub blue">6-month trailing avg</div></div>
+  <div class="kpi"><div class="label">New Business</div><div class="value">£124K</div><div class="sub red">£76K below £200K goal</div></div>
+</div>
+
+<!-- Flagged Issues -->
+<div class="flags">
+  <h2>Flagged Issues & Recommended Actions</h2>
+  <div class="flag-grid">
+    <div class="flag"><div class="badge critical">Critical</div><div class="body"><div class="title">New business £76K behind target</div><div class="action">Action: Increase outbound pipeline. Consider reallocating one delivery person to sales support for 4 weeks. Review lead sources — which channels converted in 24/25?</div></div></div>
+    <div class="flag"><div class="badge critical">Critical</div><div class="body"><div class="title">FY revenue gap widening — £108K short</div><div class="action">Action: Accelerate Q4 invoicing. Identify any service pack renewals or hosting upsells that can be pulled into March. Every £10K counts.</div></div></div>
+    <div class="flag"><div class="badge warning">Warning</div><div class="body"><div class="title">Cash balance trending down — £347K</div><div class="action">Action: Monitor weekly. At current burn rate, hits £250K comfort floor by August. Chase overdue invoices — check 30/60/90 day aged debtors this week.</div></div></div>
+    <div class="flag"><div class="badge warning">Warning</div><div class="body"><div class="title">Cost of sales rising faster than revenue</div><div class="action">Action: Review contractor spend and utilisation rates. Are we overstaffing projects? Check last 3 projects for margin vs estimate.</div></div></div>
+    <div class="flag"><div class="badge positive">Positive</div><div class="body"><div class="title">Existing business strong — £768K (102% of goal)</div><div class="action">Protect this: schedule Q4 account reviews with top 8 clients. Identify upsell opportunities in service packs and AI consulting.</div></div></div>
+    <div class="flag"><div class="badge positive">Positive</div><div class="body"><div class="title">AI revenue stream growing — up 340% YoY</div><div class="action">Double down: package AI consulting as a productised offer. Create case studies from recent wins to support sales conversations.</div></div></div>
+    <div class="flag"><div class="badge insight">Insight</div><div class="body"><div class="title">Revenue is lumpy — Q2 carried Q1 shortfall</div><div class="action">Consider monthly retainer push to smooth revenue. Hosting + service packs are the most predictable — grow these streams deliberately.</div></div></div>
+    <div class="flag"><div class="badge insight">Insight</div><div class="body"><div class="title">Pipeline expected value declining since January</div><div class="action">Pipeline needs refilling now — deals closing in Q4 needed to be in pipeline 8-12 weeks ago. Urgent: what's the outbound activity this month?</div></div></div>
+  </div>
+</div>
+
+<!-- Charts -->
+<div class="chart-grid">
+  <div class="chart-card">
+    <h3>Revenue vs Target — Quarterly <span class="info-icon">i<span class="tip">Shows whether each quarter hit its revenue target. Red bars = missed, green = hit. Tracks the cumulative gap that needs closing by year-end.</span></span></h3>
+    <canvas id="chart1" height="220"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Revenue Year-on-Year <span class="info-icon">i<span class="tip">Compares this year's quarterly revenue against last year. Helps SLT judge whether growth is accelerating or stalling quarter by quarter.</span></span></h3>
+    <canvas id="chart2" height="220"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Monthly Revenue — Actuals + Forecast <span class="info-icon">i<span class="tip">Solid line = what we've invoiced. Dashed line = realistic forecast. Shaded area = optimistic ceiling. The vertical line marks today. Watch for the gap between forecast and target.</span></span></h3>
+    <canvas id="chart3" height="220"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Trailing 18-Month P&L <span class="info-icon">i<span class="tip">Green bars = profitable months, red = loss-making. The purple line tracks cumulative P&L. If the line is flat or declining, we're not building a buffer for lean months.</span></span></h3>
+    <canvas id="chart4" height="220"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Revenue Stream Mix <span class="info-icon">i<span class="tip">Shows where revenue comes from across service lines. Over-reliance on one stream (e.g. web build) is a risk. Watch for diversification into AI, security, and marketing.</span></span></h3>
+    <canvas id="chart5" height="220"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Cash Balance Trend <span class="info-icon">i<span class="tip">Monthly cash position. The dotted red line is the £250K comfort floor — below this, we'd need to consider credit facilities or cost cuts. 3+ months of declining cash needs immediate attention.</span></span></h3>
+    <canvas id="chart6" height="220"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Pipeline — Converted vs Expected <span class="info-icon">i<span class="tip">Shows how much pipeline was expected each month vs how much actually converted. A widening gap means our forecasting is off or deals are stalling.</span></span></h3>
+    <canvas id="chart7" height="220"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>New vs Existing Business <span class="info-icon">i<span class="tip">Healthy agencies get 25-35% from new business. Below 20% signals over-reliance on existing clients. The goal line shows where we need new business to be.</span></span></h3>
+    <canvas id="chart8" height="220"></canvas>
+  </div>
+</div>
+
+<!-- Quarterly Scorecard -->
+<div class="chart-card" style="margin-bottom:24px">
+  <h3>Quarterly Scorecard <span class="info-icon">i<span class="tip">At-a-glance view of whether each metric hit target by quarter. Red = missed, green = exceeded, grey = on track. Focus on columns with multiple reds — that's a systemic issue.</span></span></h3>
+  <table class="scorecard">
+    <thead><tr><th>Metric</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4 (Proj)</th><th>FY Total</th></tr></thead>
+    <tbody>
+      <tr><td>Total Revenue</td><td><span class="gap neg">-£18K</span></td><td><span class="gap pos">+£12K</span></td><td><span class="gap neg">-£22K</span></td><td><span class="gap neg">-£80K</span></td><td><span class="gap neg">-£108K</span></td></tr>
+      <tr><td>Existing Business</td><td><span class="gap pos">+£8K</span></td><td><span class="gap pos">+£14K</span></td><td><span class="gap pos">+£4K</span></td><td><span class="gap neg">-£10K</span></td><td><span class="gap pos">+£16K</span></td></tr>
+      <tr><td>New Business</td><td><span class="gap neg">-£26K</span></td><td><span class="gap neg">-£2K</span></td><td><span class="gap neg">-£26K</span></td><td><span class="gap neg">-£22K</span></td><td><span class="gap neg">-£76K</span></td></tr>
+      <tr><td>Avg Profit/Month</td><td><span class="gap neg">-£4K</span></td><td><span class="gap pos">+£12K</span></td><td><span class="gap neg">-£2K</span></td><td><span class="gap neg">-£8K</span></td><td><span class="gap neg">-£2K</span></td></tr>
+      <tr><td>Cash Position</td><td><span class="gap pos">OK</span></td><td><span class="gap pos">OK</span></td><td><span class="gap zero">Watch</span></td><td><span class="gap neg">Monitor</span></td><td><span class="gap zero">—</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="text-align:center;padding:16px;color:#9ca3af;font-size:11px">
+  Generated by Claude Cowork · Acme Digital SLT Dashboard · Data source: Google Sheets (HardMetrics, Quarterly Sales)
+</div>
+
+<script>
+const months=['May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr'];
+const qs=['Q1','Q2','Q3','Q4'];
+Chart.defaults.font.family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif";
+Chart.defaults.font.size=11;
+Chart.defaults.color='#6b7280';
+
+// 1. Revenue vs Target — Quarterly
+new Chart(document.getElementById('chart1'),{type:'bar',data:{labels:qs,datasets:[
+{label:'Target',data:[250,250,250,250],backgroundColor:'#dbeafe',borderColor:'#2563eb',borderWidth:1,borderRadius:4},
+{label:'Actual',data:[232,262,228,170],backgroundColor:['#fee2e2','#dcfce7','#fee2e2','#fee2e2'],borderColor:['#dc2626','#16a34a','#dc2626','#dc2626'],borderWidth:1,borderRadius:4}
+]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:12}}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'£'+v+'K'}}}}});
+
+// 2. Revenue YoY
+new Chart(document.getElementById('chart2'),{type:'bar',data:{labels:qs,datasets:[
+{label:'FY 24/25',data:[198,224,210,208],backgroundColor:'#e0e7ff',borderColor:'#6366f1',borderWidth:1,borderRadius:4},
+{label:'FY 25/26',data:[232,262,228,170],backgroundColor:'#dbeafe',borderColor:'#2563eb',borderWidth:1,borderRadius:4}
+]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:12}}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'£'+v+'K'}}}}});
+
+// 3. Monthly Revenue — Actuals + Forecast
+new Chart(document.getElementById('chart3'),{type:'line',data:{labels:months,datasets:[
+{label:'Actual',data:[72,78,82,85,88,89,92,81,86,79,null,null],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,.08)',fill:true,tension:.3,pointRadius:3,pointBackgroundColor:'#2563eb'},
+{label:'Realistic Forecast',data:[null,null,null,null,null,null,null,null,null,79,84,86],borderColor:'#2563eb',borderDash:[6,4],tension:.3,pointRadius:2,fill:false},
+{label:'Optimistic',data:[null,null,null,null,null,null,null,null,null,79,96,104],borderColor:'#16a34a',borderDash:[3,3],tension:.3,pointRadius:0,fill:false},
+{label:'Target',data:[83,83,83,83,83,83,83,83,83,83,83,83],borderColor:'#dc2626',borderDash:[2,2],borderWidth:1,pointRadius:0,fill:false}
+]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:12}},annotation:{}},scales:{y:{beginAtZero:false,ticks:{callback:v=>'£'+v+'K'}}}}});
+
+// 4. Trailing 18-Month P&L
+const plMonths=['Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr'];
+const plVals=[-4,8,12,-2,6,10,5,14,8,-3,6,12,4,-6,10,2,-8,-12];
+let cum=0;const cumVals=plVals.map(v=>{cum+=v;return cum});
+new Chart(document.getElementById('chart4'),{type:'bar',data:{labels:plMonths,datasets:[
+{label:'Monthly P&L',data:plVals,backgroundColor:plVals.map(v=>v>=0?'rgba(22,163,74,.6)':'rgba(220,38,38,.6)'),borderRadius:3,yAxisID:'y'},
+{label:'Cumulative',data:cumVals,type:'line',borderColor:'#7c3aed',backgroundColor:'transparent',tension:.3,pointRadius:2,pointBackgroundColor:'#7c3aed',yAxisID:'y2'}
+]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:12}}},scales:{y:{position:'left',ticks:{callback:v=>'£'+v+'K'}},y2:{position:'right',grid:{display:false},ticks:{callback:v=>'£'+v+'K'}}}}});
+
+// 5. Revenue Stream Mix
+new Chart(document.getElementById('chart5'),{type:'doughnut',data:{labels:['Web Build','Service Packs','Marketing','Security','Hosting','AI','Personalisation'],datasets:[{data:[310,185,120,95,82,65,35],backgroundColor:['#2563eb','#7c3aed','#0891b2','#d97706','#64748b','#16a34a','#ec4899'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:10,padding:8,font:{size:11}}}}}});
+
+// 6. Cash Balance
+new Chart(document.getElementById('chart6'),{type:'line',data:{labels:months,datasets:[
+{label:'Cash Balance',data:[385,392,398,412,405,395,388,378,370,347,335,320],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,.06)',fill:true,tension:.3,pointRadius:3,pointBackgroundColor:'#2563eb'},
+{label:'Comfort Floor (£250K)',data:[250,250,250,250,250,250,250,250,250,250,250,250],borderColor:'#dc2626',borderDash:[4,4],borderWidth:1.5,pointRadius:0,fill:false}
+]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:12}}},scales:{y:{ticks:{callback:v=>'£'+v+'K'}}}}});
+
+// 7. Pipeline
+new Chart(document.getElementById('chart7'),{type:'bar',data:{labels:['Oct','Nov','Dec','Jan','Feb','Mar'],datasets:[
+{label:'Expected Pipeline',data:[180,165,190,175,148,132],backgroundColor:'#dbeafe',borderColor:'#2563eb',borderWidth:1,borderRadius:4},
+{label:'Converted',data:[62,58,71,64,48,42],backgroundColor:'rgba(22,163,74,.6)',borderColor:'#16a34a',borderWidth:1,borderRadius:4}
+]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:12}}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'£'+v+'K'}}}}});
+
+// 8. New vs Existing
+new Chart(document.getElementById('chart8'),{type:'bar',data:{labels:qs,datasets:[
+{label:'Existing',data:[194,208,196,170],backgroundColor:'#dbeafe',borderColor:'#2563eb',borderWidth:1,borderRadius:4},
+{label:'New',data:[38,54,32,0],backgroundColor:'rgba(22,163,74,.6)',borderColor:'#16a34a',borderWidth:1,borderRadius:4},
+{label:'New Biz Goal',data:[50,50,50,50],type:'line',borderColor:'#dc2626',borderDash:[4,4],borderWidth:1.5,pointRadius:0,fill:false}
+]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:12}}},scales:{y:{beginAtZero:true,stacked:true,ticks:{callback:v=>'£'+v+'K'}},x:{stacked:true}}}});
+<\/script>
+</body>
+</html>`;
+
+export const sampleSltDashboardSimulation: Simulation = {
+  id: 'sample-slt-dashboard',
+  title: 'Cowork: SLT Dashboard',
+  description: 'Claude Cowork reads a Google Sheet and builds an SLT performance dashboard',
+  productType: 'claude-cowork',
+  createdAt: '2026-04-11T00:00:00Z',
+  updatedAt: '2026-04-11T00:00:00Z',
+  metadata: {
+    coworkConfig: {
+      taskTitle: 'Generate SLT performance dashboard',
+      folderPath: '/Users/dev/acme-digital/reporting',
+      suggestions: ['Build a report', 'Crunch data', 'Draft document', 'Analyse spreadsheet'],
+    },
+  },
+  events: [
+    // ── User brief ──
+    {
+      id: 'slt1',
+      type: 'user-message',
+      delayMs: 0,
+      content: 'Generate a weekly SLT performance dashboard for Acme Digital from the Google Sheet. Read the HardMetrics, Quarterly Sales 25/26, and Quarterly Sales 24/25 sheets. Build an HTML dashboard with KPI cards, flagged issues with recommended actions, and interactive charts. Use Chart.js and a light mode colour scheme.',
+      typingEffect: true,
+    },
+
+    // ── Planning ──
+    {
+      id: 'slt2',
+      type: 'thinking',
+      delayMs: 500,
+      durationMs: 2000,
+      label: 'Planning data extraction and dashboard layout...',
+    },
+    {
+      id: 'slt3',
+      type: 'assistant-message',
+      delayMs: 200,
+      content: "I'll connect to the Google Sheet, read the three data tabs, calculate the KPIs, identify issues, and generate a self-contained HTML dashboard with Chart.js. Let me start by pulling the data.",
+      streamingSpeed: 'fast',
+    },
+
+    // ── Step 1: Connect & read HardMetrics ──
+    {
+      id: 'slt4',
+      type: 'cowork-progress',
+      delayMs: 400,
+      stepIndex: 0,
+      stepLabel: 'Reading HardMetrics sheet',
+      status: 'running',
+      detail: 'Connecting to Google Sheets API...',
+    },
+    {
+      id: 'slt5',
+      type: 'tool-call',
+      delayMs: 600,
+      toolName: 'Google Sheets',
+      toolInput: { spreadsheet_id: '1aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789abcde', range: 'HardMetrics!A1:AQ80' },
+      description: 'Reading HardMetrics — revenue, P&L, pipeline, cash balance',
+      expandedByDefault: false,
+    },
+    {
+      id: 'slt6',
+      type: 'tool-result',
+      delayMs: 2500,
+      toolCallId: 'slt5',
+      output: '✓ Read 80 rows × 43 columns from HardMetrics\n\nKey data extracted:\n- Cash balance (Row 6): May £385K → Mar £347K (declining)\n- Monthly invoiced (Row 30): Range £72K-£92K\n- Revenue streams: Web build £310K, Service packs £185K, Marketing £120K, Security £95K, Hosting £82K, AI £65K\n- P&L: 10 profitable months, 3 loss-making months\n- Realistic forecast: £84K/mo remaining Q4\n- Pipeline expected: declining from £190K (Dec) to £132K (Mar)',
+      isError: false,
+      isCollapsed: false,
+    },
+    {
+      id: 'slt7',
+      type: 'cowork-progress',
+      delayMs: 300,
+      stepIndex: 0,
+      stepLabel: 'Reading HardMetrics sheet',
+      status: 'complete',
+      detail: 'Extracted revenue, costs, cash, pipeline, and P&L data',
+    },
+
+    // ── Step 2: Read Quarterly Sales 25/26 ──
+    {
+      id: 'slt8',
+      type: 'cowork-progress',
+      delayMs: 300,
+      stepIndex: 1,
+      stepLabel: 'Reading Quarterly Sales 25/26',
+      status: 'running',
+      detail: 'Fetching current year quarterly targets and actuals...',
+    },
+    {
+      id: 'slt9',
+      type: 'tool-call',
+      delayMs: 600,
+      toolName: 'Google Sheets',
+      toolInput: { spreadsheet_id: '1aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789abcde', range: "'Quarterly Sales 25/26'!A1:G100" },
+      description: 'Reading quarterly targets, actuals, and per-client breakdown',
+      expandedByDefault: false,
+    },
+    {
+      id: 'slt10',
+      type: 'tool-result',
+      delayMs: 1800,
+      toolCallId: 'slt9',
+      output: '✓ Read 96 rows × 7 columns from Quarterly Sales 25/26\n\nSummary:\n- FY Target: £1,000K | Invoiced to date: £892K\n- Q1: £232K (target £250K, gap -£18K)\n- Q2: £262K (target £250K, surplus +£12K)\n- Q3: £228K (target £250K, gap -£22K)\n- Q4 projected: £170K (target £250K, gap -£80K)\n- Existing business: £768K / £752K goal (+£16K) ✓\n- New business: £124K / £200K goal (-£76K) ✗\n- Top clients: Acme Corp £142K, BuildRight £98K, DataFlow £87K',
+      isError: false,
+      isCollapsed: false,
+    },
+    {
+      id: 'slt11',
+      type: 'cowork-progress',
+      delayMs: 300,
+      stepIndex: 1,
+      stepLabel: 'Reading Quarterly Sales 25/26',
+      status: 'complete',
+      detail: 'FY gap: -£108K. New business significantly behind.',
+    },
+
+    // ── Step 3: Read historical data ──
+    {
+      id: 'slt12',
+      type: 'cowork-progress',
+      delayMs: 300,
+      stepIndex: 2,
+      stepLabel: 'Reading Quarterly Sales 24/25',
+      status: 'running',
+      detail: 'Fetching last year data for YoY comparison...',
+    },
+    {
+      id: 'slt13',
+      type: 'tool-call',
+      delayMs: 600,
+      toolName: 'Google Sheets',
+      toolInput: { spreadsheet_id: '1aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789abcde', range: "'Quarterly Sales 24/25'!A1:G75" },
+      description: 'Reading FY 24/25 quarterly data for year-on-year analysis',
+      expandedByDefault: false,
+    },
+    {
+      id: 'slt14',
+      type: 'tool-result',
+      delayMs: 1500,
+      toolCallId: 'slt13',
+      output: '✓ Read 73 rows × 7 columns from Quarterly Sales 24/25\n\nFY 24/25 totals:\n- Total revenue: £840K\n- Q1: £198K | Q2: £224K | Q3: £210K | Q4: £208K\n- New business: £156K (18.6% of total)\n- Existing: £684K',
+      isError: false,
+      isCollapsed: true,
+    },
+    {
+      id: 'slt15',
+      type: 'cowork-progress',
+      delayMs: 300,
+      stepIndex: 2,
+      stepLabel: 'Reading Quarterly Sales 24/25',
+      status: 'complete',
+      detail: 'FY 24/25: £840K total. YoY growth: +6.2%',
+    },
+
+    // ── Step 4: Analyse data ──
+    {
+      id: 'slt16',
+      type: 'cowork-progress',
+      delayMs: 400,
+      stepIndex: 3,
+      stepLabel: 'Analysing KPIs and flagging issues',
+      status: 'running',
+      detail: 'Calculating conversion rates, margins, trends...',
+    },
+    {
+      id: 'slt17',
+      type: 'cowork-progress',
+      delayMs: 3000,
+      stepIndex: 3,
+      stepLabel: 'Analysing KPIs and flagging issues',
+      status: 'complete',
+      detail: 'Identified 2 critical, 2 warnings, 2 positive, 2 insights',
+    },
+
+    // ── Step 5: Build dashboard ──
+    {
+      id: 'slt18',
+      type: 'cowork-progress',
+      delayMs: 300,
+      stepIndex: 4,
+      stepLabel: 'Building HTML dashboard',
+      status: 'running',
+      detail: 'Generating Chart.js visualisations and KPI cards...',
+    },
+    {
+      id: 'slt19',
+      type: 'tool-call',
+      delayMs: 2000,
+      toolName: 'Write',
+      toolInput: { file_path: '/Users/dev/acme-digital/reporting/outputs/slt-dashboard.html' },
+      description: 'Writing SLT dashboard — 8 charts, 6 KPIs, flagged issues, scorecard',
+      expandedByDefault: false,
+    },
+    {
+      id: 'slt20',
+      type: 'tool-result',
+      delayMs: 500,
+      toolCallId: 'slt19',
+      output: '✓ File created: outputs/slt-dashboard.html (24.8 KB)\n  - 6 KPI cards\n  - 8 flagged issues with severity and actions\n  - 8 interactive Chart.js charts\n  - 1 quarterly scorecard table\n  - Info tooltips on every chart',
+      isError: false,
+      isCollapsed: false,
+    },
+    {
+      id: 'slt21',
+      type: 'cowork-progress',
+      delayMs: 300,
+      stepIndex: 4,
+      stepLabel: 'Building HTML dashboard',
+      status: 'complete',
+      detail: 'Dashboard generated with 8 charts, KPIs, and analysis',
+    },
+
+    // ── Step 6: Validate ──
+    {
+      id: 'slt22',
+      type: 'cowork-progress',
+      delayMs: 300,
+      stepIndex: 5,
+      stepLabel: 'Validating output',
+      status: 'running',
+      detail: 'Checking calculations and chart rendering...',
+    },
+    {
+      id: 'slt23',
+      type: 'cowork-progress',
+      delayMs: 1500,
+      stepIndex: 5,
+      stepLabel: 'Validating output',
+      status: 'complete',
+      detail: 'All KPIs cross-checked against source data ✓',
+    },
+
+    // ── Artifact: open in Chrome ──
+    {
+      id: 'slt24',
+      type: 'artifact',
+      delayMs: 400,
+      artifactType: 'html',
+      title: 'SLT Performance Dashboard',
+      content: DASHBOARD_HTML,
+    },
+
+    // ── Summary message ──
+    {
+      id: 'slt25',
+      type: 'assistant-message',
+      delayMs: 600,
+      content: "Dashboard is ready at `outputs/slt-dashboard.html`. Here are the **4 key findings for SLT this week:**\n\n1. **New business is the critical gap** — £76K behind the £200K goal. Existing business is strong (102% of target), but new business has underperformed every quarter. This is the single biggest lever for hitting the FY target.\n\n2. **FY revenue gap is £108K with one quarter left** — Q4 needs £250K but the realistic forecast is £170K. Even pulling forward invoicing and upsells may not fully close this gap. Consider whether the FY target needs resetting for board reporting.\n\n3. **Cash is trending down but not yet critical** — £347K is above the £250K comfort floor, but the trajectory hits it by August if trends continue. Weekly monitoring recommended, plus a push on aged debtors.\n\n4. **AI revenue is a bright spot** — up 340% YoY, now 7% of revenue. This is the fastest-growing stream and should be prioritised for productisation and case study development.",
+      streamingSpeed: 'normal',
+    },
+
+    // ── Done ──
+    {
+      id: 'slt26',
+      type: 'cowork-notification',
+      delayMs: 500,
+      notificationType: 'finished',
+      message: 'SLT dashboard generated successfully. 3 sheets read, 6 KPIs calculated, 8 issues flagged, 8 charts rendered. File saved to outputs/slt-dashboard.html.',
+    },
+  ],
+}

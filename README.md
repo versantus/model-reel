@@ -4,6 +4,21 @@ A pixel-perfect, interactive simulator for creating and playing back realistic d
 
 ![Claude Desktop Simulator](https://img.shields.io/badge/React-19-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-6-blue) ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-blue) ![License](https://img.shields.io/badge/License-MIT-green)
 
+### Claude Chat
+![Claude Chat view](screenshots/chat-view.png)
+
+### Claude Code
+![Claude Code view](screenshots/code-view.png)
+
+### Claude Cowork
+![Claude Cowork view](screenshots/cowork-dashboard.png)
+
+### Artifact Preview in Simulated Chrome
+![Artifact preview](screenshots/chat-artifact.png)
+
+### Simulation Editor
+![Editor view](screenshots/editor.png)
+
 ## What is this?
 
 This app lets you **author scripted simulations** of Claude Desktop interactions and **play them back** with realistic streaming text, tool calls, artifacts, and UI interactions. Think of it as a "demo builder" for Claude products.

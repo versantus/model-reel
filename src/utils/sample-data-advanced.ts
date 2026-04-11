@@ -1419,5 +1419,614 @@ $ vitest run
       notificationType: 'finished',
       message: 'Full-stack notes app is ready! Created 24 files across client and server. All tests pass. Run `docker compose up` to start.',
     },
+    {
+      id: 'cwb29',
+      type: 'assistant-message',
+      delayMs: 600,
+      content: "Here's a preview of the notes app running locally. It has a sidebar with search, a markdown editor with live preview, and tag support. The UI is clean and responsive.",
+      streamingSpeed: 'normal',
+    },
+    {
+      id: 'cwb30',
+      type: 'artifact',
+      delayMs: 800,
+      artifactType: 'html',
+      title: 'Notes App Preview',
+      content: `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Notes</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#1a1a2e;display:flex;height:100vh;overflow:hidden}
+/* Sidebar */
+.sidebar{width:280px;background:#fff;border-right:1px solid #e5e7eb;display:flex;flex-direction:column;flex-shrink:0}
+.sidebar-header{padding:16px 16px 12px;border-bottom:1px solid #e5e7eb}
+.sidebar-header h2{font-size:15px;font-weight:700;color:#111;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sidebar-header h2 svg{width:18px;height:18px}
+.search-box{width:100%;padding:7px 10px 7px 32px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;outline:none;background:#f9fafb url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") 10px center no-repeat}
+.search-box:focus{border-color:#6366f1;box-shadow:0 0 0 2px rgba(99,102,241,.12)}
+.note-list{flex:1;overflow-y:auto;padding:6px 8px}
+.note-item{padding:10px 12px;border-radius:8px;cursor:pointer;margin-bottom:2px;transition:background .15s}
+.note-item:hover{background:#f3f4f6}
+.note-item.active{background:#eef2ff;border:1px solid #c7d2fe}
+.note-item h3{font-size:13px;font-weight:600;color:#111;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.note-item p{font-size:11px;color:#6b7280;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.note-item .meta{display:flex;align-items:center;gap:6px;margin-top:4px}
+.note-item .meta time{font-size:10px;color:#9ca3af}
+.tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:500}
+.tag-blue{background:#dbeafe;color:#2563eb}
+.tag-green{background:#dcfce7;color:#16a34a}
+.tag-purple{background:#ede9fe;color:#7c3aed}
+.tag-amber{background:#fef3c7;color:#d97706}
+.new-btn{margin:8px;padding:8px;border:1px dashed #d1d5db;border-radius:8px;background:none;cursor:pointer;font-size:12px;color:#6b7280;transition:all .15s}
+.new-btn:hover{border-color:#6366f1;color:#6366f1;background:#eef2ff}
+/* Main */
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.toolbar{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:1px solid #e5e7eb;background:#fff}
+.toolbar-left{display:flex;align-items:center;gap:8px}
+.toolbar input{font-size:16px;font-weight:600;border:none;outline:none;background:transparent;color:#111}
+.toolbar-right{display:flex;align-items:center;gap:6px}
+.toolbar-right button{padding:5px 10px;border:1px solid #e5e7eb;border-radius:6px;background:#fff;font-size:12px;cursor:pointer;color:#374151;transition:all .15s}
+.toolbar-right button:hover{background:#f3f4f6}
+.toolbar-right button.active{background:#eef2ff;border-color:#c7d2fe;color:#4f46e5}
+.editor-area{flex:1;display:flex;overflow:hidden}
+.editor-pane{flex:1;padding:20px 24px;overflow-y:auto;font-family:'SF Mono',Menlo,monospace;font-size:13px;line-height:1.7;color:#374151;border:none;outline:none;resize:none;background:#fff}
+.preview-pane{flex:1;padding:20px 24px;overflow-y:auto;border-left:1px solid #e5e7eb;background:#fafafa}
+.preview-pane h1{font-size:22px;font-weight:700;margin:0 0 12px;color:#111}
+.preview-pane h2{font-size:17px;font-weight:600;margin:16px 0 8px;color:#1a1a2e}
+.preview-pane p{font-size:14px;line-height:1.7;color:#374151;margin-bottom:10px}
+.preview-pane code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px;color:#6366f1;font-family:'SF Mono',Menlo,monospace}
+.preview-pane pre{background:#1e293b;color:#e2e8f0;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:12px 0;font-size:12px;line-height:1.6}
+.preview-pane ul,.preview-pane ol{padding-left:20px;margin-bottom:10px}
+.preview-pane li{font-size:14px;line-height:1.7;color:#374151}
+.preview-pane blockquote{border-left:3px solid #c7d2fe;padding:8px 16px;margin:12px 0;background:#f5f3ff;border-radius:0 6px 6px 0;color:#4338ca;font-style:italic}
+.status-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 20px;border-top:1px solid #e5e7eb;background:#fff;font-size:11px;color:#9ca3af}
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.855z"/></svg> Notes</h2>
+    <input class="search-box" placeholder="Search notes..." id="search"/>
+  </div>
+  <div class="note-list" id="noteList"></div>
+  <button class="new-btn" onclick="addNote()">+ New note</button>
+</div>
+<div class="main">
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <input id="titleInput" value="Getting Started" spellcheck="false"/>
+    </div>
+    <div class="toolbar-right">
+      <button id="btnWrite" class="active" onclick="setMode('write')">Write</button>
+      <button id="btnPreview" onclick="setMode('preview')">Preview</button>
+      <button id="btnSplit" onclick="setMode('split')">Split</button>
+    </div>
+  </div>
+  <div class="editor-area">
+    <textarea class="editor-pane" id="editor" spellcheck="false"></textarea>
+    <div class="preview-pane" id="preview" style="display:none"></div>
+  </div>
+  <div class="status-bar">
+    <span id="wordCount">0 words</span>
+    <span id="savedAt">Saved just now</span>
+  </div>
+</div>
+<script>
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+const NOTES=[
+  {id:1,title:'Getting Started',content:'# Getting Started\\n\\nWelcome to **Notes** — a clean, fast note-taking app with markdown support.\\n\\n## Features\\n\\n- **Markdown editor** with live preview\\n- **Search** across all your notes instantly\\n- **Tags** to organise by topic\\n- **Auto-save** so you never lose work\\n\\n## Keyboard Shortcuts\\n\\n- \`Cmd+N\` — New note\\n- \`Cmd+S\` — Save\\n- \`Cmd+P\` — Toggle preview\\n\\n> Start writing — your ideas deserve a good home.',tags:['guide'],updated:'2026-04-11T10:30:00Z'},
+  {id:2,title:'API Design Notes',content:'# API Design\\n\\n## REST Endpoints\\n\\n\`\`\`\\nGET    /api/notes          List all notes\\nPOST   /api/notes          Create note\\nGET    /api/notes/:id       Get note\\nPUT    /api/notes/:id       Update note\\nDELETE /api/notes/:id       Delete note\\n\`\`\`\\n\\n## Schema\\n\\nEach note has:\\n- \`id\` — UUID primary key\\n- \`title\` — string, max 200 chars\\n- \`content\` — markdown text\\n- \`tags\` — array of strings\\n- \`createdAt\` / \`updatedAt\` — ISO timestamps\\n\\n## Auth\\n\\nUsing JWT tokens with refresh rotation. Tokens expire after 15 minutes.',tags:['api','backend'],updated:'2026-04-11T09:15:00Z'},
+  {id:3,title:'Sprint Planning',content:'# Sprint 12 Planning\\n\\n## Goals\\n\\n1. Ship notes search (full-text with SQLite FTS5)\\n2. Add tag filtering in sidebar\\n3. Dark mode toggle\\n4. Fix mobile layout issues\\n\\n## Estimates\\n\\n| Task | Points |\\n|------|--------|\\n| Search | 5 |\\n| Tags | 3 |\\n| Dark mode | 2 |\\n| Mobile fix | 3 |\\n\\n**Total: 13 points** — fits in the sprint.',tags:['planning'],updated:'2026-04-10T16:45:00Z'},
+  {id:4,title:'Docker Setup',content:'# Docker Configuration\\n\\n## Development\\n\\n\`\`\`bash\\ndocker compose up --build\\n\`\`\`\\n\\nThis starts:\\n- **Frontend** on port 5173 (Vite dev server)\\n- **Backend** on port 3001 (Express + SQLite)\\n- **Nginx** reverse proxy on port 80\\n\\n## Production\\n\\n\`\`\`bash\\ndocker compose -f docker-compose.prod.yml up -d\\n\`\`\`\\n\\nUses multi-stage build for smaller images (~45MB final).',tags:['devops'],updated:'2026-04-10T14:20:00Z'},
+  {id:5,title:'Meeting Notes — Design Review',content:'# Design Review — Apr 10\\n\\n## Attendees\\nAlice, Bob, Charlie\\n\\n## Decisions\\n\\n- Sidebar width: 280px (not 320 — too wide on laptops)\\n- Editor font: SF Mono 13px\\n- Keep the split view, users love it\\n- Add markdown toolbar for mobile users\\n\\n## Action Items\\n\\n- [ ] Alice: Update Figma with new sidebar width\\n- [ ] Bob: Implement markdown toolbar\\n- [ ] Charlie: User test the split view on iPad',tags:['meeting','design'],updated:'2026-04-10T11:00:00Z'}
+];
+const TAG_COLORS={guide:'blue',api:'purple',backend:'purple',planning:'amber',devops:'green',meeting:'blue',design:'green'};
+let notes=[...NOTES],activeId=1,mode='write';
+
+function render(){
+  const q=document.getElementById('search').value.toLowerCase();
+  const filtered=notes.filter(n=>n.title.toLowerCase().includes(q)||n.content.toLowerCase().includes(q));
+  document.getElementById('noteList').innerHTML=filtered.map(n=>{
+    const preview=n.content.replace(/^#+ /gm,'').replace(/[*_\`\\[\\]]/g,'').slice(0,60);
+    const tags=n.tags.map(t=>'<span class="tag tag-'+(TAG_COLORS[t]||'blue')+'">'+esc(t)+'</span>').join(' ');
+    const time=new Date(n.updated).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+    return '<div class="note-item'+(n.id===activeId?' active':'')+'" onclick="selectNote('+n.id+')"><h3>'+esc(n.title)+'</h3><p>'+esc(preview)+'</p><div class="meta">'+tags+' <time>'+time+'</time></div></div>'
+  }).join('');
+  const note=notes.find(n=>n.id===activeId);
+  if(note){
+    document.getElementById('titleInput').value=note.title;
+    document.getElementById('editor').value=note.content.replace(/\\\\n/g,'\\n');
+    renderPreview();
+    const words=note.content.split(/\\s+/).filter(Boolean).length;
+    document.getElementById('wordCount').textContent=words+' words';
+  }
+}
+
+function renderPreview(){
+  const note=notes.find(n=>n.id===activeId);
+  if(!note)return;
+  let md=note.content.replace(/\\\\n/g,'\\n');
+  let html=md
+    .replace(/\`\`\`([\\s\\S]*?)\`\`\`/g,(m,c)=>'<pre>'+esc(c.trim())+'</pre>')
+    .replace(/\`([^\`]+)\`/g,(m,c)=>'<code>'+esc(c)+'</code>')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/\\*\\*(.+?)\\*\\*/g,'<strong>$1</strong>')
+    .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>')
+    .replace(/^- \\[x\\] (.+)$/gm,'<li>&#9745; $1</li>')
+    .replace(/^- \\[ \\] (.+)$/gm,'<li>&#9744; $1</li>')
+    .replace(/^- (.+)$/gm,'<li>$1</li>')
+    .replace(/^\\d+\\. (.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\\/li>)/s,function(m){return '<ul>'+m+'</ul>'})
+    .replace(/\\n{2,}/g,'</p><p>')
+    .replace(/\\n/g,'<br>');
+  html='<p>'+html+'</p>';
+  document.getElementById('preview').innerHTML=html;
+}
+
+function selectNote(id){activeId=id;render()}
+function addNote(){const n={id:Date.now(),title:'Untitled',content:'',tags:[],updated:new Date().toISOString()};notes.unshift(n);activeId=n.id;render();document.getElementById('titleInput').focus()}
+
+function setMode(m){
+  mode=m;
+  const ed=document.getElementById('editor'),pv=document.getElementById('preview');
+  document.querySelectorAll('.toolbar-right button').forEach(b=>b.classList.remove('active'));
+  if(m==='write'){ed.style.display='block';pv.style.display='none';document.getElementById('btnWrite').classList.add('active')}
+  else if(m==='preview'){ed.style.display='none';pv.style.display='block';document.getElementById('btnPreview').classList.add('active');renderPreview()}
+  else{ed.style.display='block';pv.style.display='block';document.getElementById('btnSplit').classList.add('active');renderPreview()}
+}
+
+document.getElementById('editor').addEventListener('input',function(){
+  const note=notes.find(n=>n.id===activeId);
+  if(note){note.content=this.value;note.updated=new Date().toISOString();document.getElementById('savedAt').textContent='Saved just now';if(mode!=='write')renderPreview();const words=this.value.split(/\\s+/).filter(Boolean).length;document.getElementById('wordCount').textContent=words+' words'}
+});
+document.getElementById('titleInput').addEventListener('input',function(){
+  const note=notes.find(n=>n.id===activeId);
+  if(note){note.title=this.value;render()}
+});
+document.getElementById('search').addEventListener('input',render);
+render();setMode('split');
+</script>
+</body>
+</html>`,
+    },
+  ],
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+ *  6. Chat: Personal Finance Tracker with Share Portfolio
+ * ──────────────────────────────────────────────────────────────────────────── */
+
+export const sampleFinanceTrackerSimulation: Simulation = {
+  id: 'sample-finance-tracker',
+  title: 'Personal Finance Tracker',
+  description: 'Claude builds an interactive personal finance dashboard with share portfolio tracking',
+  productType: 'claude-chat',
+  createdAt: '2026-04-11T00:00:00Z',
+  updatedAt: '2026-04-11T00:00:00Z',
+  metadata: {
+    chatConfig: {
+      modelName: 'Claude Opus 4',
+      theme: 'light',
+      conversationTitle: 'Personal finance tracker',
+      sidebarConversations: [
+        { id: 'c1', title: 'Personal finance tracker', timestamp: 'Just now', isActive: true },
+        { id: 'c2', title: 'Tax return questions', timestamp: '2h ago', isActive: false },
+        { id: 'c3', title: 'ISA allowance 26/27', timestamp: 'Yesterday', isActive: false },
+        { id: 'c4', title: 'Mortgage calculator', timestamp: 'Apr 8', isActive: false },
+      ],
+      projects: [],
+    },
+  },
+  events: [
+    // ── Turn 1: User brief ──
+    {
+      id: 'ft1',
+      type: 'user-message',
+      delayMs: 0,
+      content: 'Build me a personal finance dashboard. I want to see my bank accounts, monthly spending breakdown, savings goals, and a share portfolio tracker with live-ish price data and gain/loss. Make it a single interactive HTML page — dark mode, really slick.',
+      typingEffect: false,
+    },
+    {
+      id: 'ft2',
+      type: 'thinking',
+      delayMs: 800,
+      durationMs: 4500,
+    },
+    {
+      id: 'ft3',
+      type: 'assistant-message',
+      delayMs: 600,
+      content: "I'll build you a comprehensive personal finance dashboard with a dark theme. It'll include account balances, a spending breakdown with an interactive doughnut chart, savings goal progress bars, and a full share portfolio table with simulated prices, daily change, and total gain/loss. Everything self-contained in one HTML file.",
+      streamingSpeed: 'normal',
+    },
+    {
+      id: 'ft4',
+      type: 'artifact',
+      delayMs: 1500,
+      artifactType: 'html',
+      title: 'Personal Finance Dashboard',
+      content: `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Finance Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f1117;color:#e4e5e7;min-height:100vh}
+.dash{max-width:1200px;margin:0 auto;padding:24px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.header h1{font-size:22px;font-weight:700}
+.header .date{color:#6b7280;font-size:13px}
+.header .refresh{background:#1e2235;border:1px solid #2a2f45;color:#8b8fa3;padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .15s}
+.header .refresh:hover{border-color:#4f46e5;color:#a5b4fc}
+
+/* Accounts */
+.accounts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+@media(max-width:800px){.accounts{grid-template-columns:repeat(2,1fr)}}
+.account{background:#1a1d2e;border:1px solid #252942;border-radius:14px;padding:18px;transition:border-color .2s}
+.account:hover{border-color:#4f46e5}
+.account .bank{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.account .bank .dot{width:8px;height:8px;border-radius:50%}
+.account .bal{font-size:26px;font-weight:700}
+.account .label{font-size:12px;color:#6b7280;margin-top:2px}
+
+/* Grid layout */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.card{background:#1a1d2e;border:1px solid #252942;border-radius:14px;padding:20px}
+.card h2{font-size:15px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.card h2 .badge{font-size:11px;font-weight:500;color:#6b7280;background:#252942;padding:3px 10px;border-radius:6px}
+
+/* Savings goals */
+.goal{margin-bottom:14px}
+.goal:last-child{margin-bottom:0}
+.goal .top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.goal .top .name{font-weight:500}
+.goal .top .amt{color:#6b7280}
+.goal .bar{height:8px;background:#252942;border-radius:99px;overflow:hidden}
+.goal .bar .fill{height:100%;border-radius:99px;transition:width .6s ease}
+
+/* Portfolio */
+.portfolio{background:#1a1d2e;border:1px solid #252942;border-radius:14px;padding:20px;margin-bottom:24px}
+.portfolio h2{font-size:15px;font-weight:600;margin-bottom:4px}
+.portfolio .summary{display:flex;gap:24px;margin-bottom:16px;font-size:13px;color:#6b7280}
+.portfolio .summary .val{font-size:20px;font-weight:700;color:#e4e5e7}
+.portfolio .summary .change{font-weight:600}
+.portfolio .summary .up{color:#22c55e}
+.portfolio .summary .down{color:#ef4444}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:#6b7280;font-weight:500;padding:8px 0;border-bottom:1px solid #252942;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+td{padding:10px 0;border-bottom:1px solid #1e2235}
+.ticker{font-weight:600;color:#a5b4fc}
+.up{color:#22c55e}
+.down{color:#ef4444}
+.spark{display:inline-block;width:60px;height:20px;vertical-align:middle}
+
+/* Transactions */
+.txn{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #1e2235}
+.txn:last-child{border-bottom:none}
+.txn .icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.txn .details{flex:1;min-width:0}
+.txn .name{font-size:13px;font-weight:500}
+.txn .cat{font-size:11px;color:#6b7280}
+.txn .amount{font-size:13px;font-weight:600;text-align:right}
+</style>
+</head>
+<body>
+<div class="dash">
+  <div class="header">
+    <div>
+      <h1>Finances</h1>
+      <div class="date" id="dateEl"></div>
+    </div>
+    <button class="refresh" onclick="refreshPrices()">↻ Refresh Prices</button>
+  </div>
+
+  <!-- Accounts -->
+  <div class="accounts">
+    <div class="account"><div class="bank"><span class="dot" style="background:#1e40af"></span>Barclays Current</div><div class="bal">£4,238.62</div><div class="label">Current account</div></div>
+    <div class="account"><div class="bank"><span class="dot" style="background:#7c3aed"></span>Monzo</div><div class="bal">£1,892.44</div><div class="label">Spending account</div></div>
+    <div class="account"><div class="bank"><span class="dot" style="background:#0891b2"></span>Marcus Savings</div><div class="bal">£12,450.00</div><div class="label">Easy access · 4.5% AER</div></div>
+    <div class="account"><div class="bank"><span class="dot" style="background:#16a34a"></span>Vanguard ISA</div><div class="bal" id="isaTotal">£34,612.80</div><div class="label">Stocks & Shares ISA</div></div>
+  </div>
+
+  <div class="grid">
+    <!-- Spending breakdown -->
+    <div class="card">
+      <h2>Monthly Spending <span class="badge">April 2026</span></h2>
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="width:160px;height:160px;flex-shrink:0"><canvas id="spendChart"></canvas></div>
+        <div id="spendLegend" style="font-size:12px;line-height:2.2"></div>
+      </div>
+    </div>
+
+    <!-- Savings goals -->
+    <div class="card">
+      <h2>Savings Goals</h2>
+      <div class="goal"><div class="top"><span class="name">🏠 House deposit</span><span class="amt">£28,450 / £40,000</span></div><div class="bar"><div class="fill" style="width:71%;background:linear-gradient(90deg,#4f46e5,#7c3aed)"></div></div></div>
+      <div class="goal"><div class="top"><span class="name">🏖️ Holiday fund</span><span class="amt">£1,840 / £3,000</span></div><div class="bar"><div class="fill" style="width:61%;background:linear-gradient(90deg,#0891b2,#06b6d4)"></div></div></div>
+      <div class="goal"><div class="top"><span class="name">🚗 Car replacement</span><span class="amt">£5,200 / £15,000</span></div><div class="bar"><div class="fill" style="width:35%;background:linear-gradient(90deg,#d97706,#f59e0b)"></div></div></div>
+      <div class="goal"><div class="top"><span class="name">🛡️ Emergency fund</span><span class="amt">£8,400 / £9,000</span></div><div class="bar"><div class="fill" style="width:93%;background:linear-gradient(90deg,#16a34a,#22c55e)"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Share Portfolio -->
+  <div class="portfolio">
+    <h2>Share Portfolio</h2>
+    <div class="summary">
+      <div><div style="color:#6b7280;font-size:11px;margin-bottom:2px">TOTAL VALUE</div><div class="val" id="totalVal">£34,612.80</div></div>
+      <div><div style="color:#6b7280;font-size:11px;margin-bottom:2px">TOTAL COST</div><div class="val" style="font-size:16px;padding-top:4px">£29,840.00</div></div>
+      <div><div style="color:#6b7280;font-size:11px;margin-bottom:2px">TOTAL GAIN</div><div class="val change up" id="totalGain" style="font-size:16px;padding-top:4px">+£4,772.80 (+16.0%)</div></div>
+      <div><div style="color:#6b7280;font-size:11px;margin-bottom:2px">TODAY</div><div class="val change" id="todayChange" style="font-size:16px;padding-top:4px">+£142.30</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Holding</th><th>Shares</th><th>Avg Cost</th><th>Price</th><th>Day Change</th><th>Value</th><th>Gain/Loss</th><th>7d</th></tr></thead>
+      <tbody id="ptable"></tbody>
+    </table>
+  </div>
+
+  <!-- Recent transactions -->
+  <div class="card">
+    <h2>Recent Transactions</h2>
+    <div class="txn"><div class="icon" style="background:#1e293b">🛒</div><div class="details"><div class="name">Tesco Superstore</div><div class="cat">Groceries · Barclays</div></div><div class="amount">-£67.43</div></div>
+    <div class="txn"><div class="icon" style="background:#1e293b">🏠</div><div class="details"><div class="name">Mortgage Payment</div><div class="cat">Housing · Barclays DD</div></div><div class="amount">-£1,248.00</div></div>
+    <div class="txn"><div class="icon" style="background:#1e293b">💰</div><div class="details"><div class="name">Salary — Acme Corp</div><div class="cat">Income · Barclays</div></div><div class="amount up">+£3,420.00</div></div>
+    <div class="txn"><div class="icon" style="background:#1e293b">⚡</div><div class="details"><div class="name">Octopus Energy</div><div class="cat">Bills · Barclays DD</div></div><div class="amount">-£124.50</div></div>
+    <div class="txn"><div class="icon" style="background:#1e293b">☕</div><div class="details"><div class="name">Pret A Manger</div><div class="cat">Eating Out · Monzo</div></div><div class="amount">-£4.85</div></div>
+    <div class="txn"><div class="icon" style="background:#1e293b">📱</div><div class="details"><div class="name">Netflix</div><div class="cat">Subscriptions · Monzo</div></div><div class="amount">-£10.99</div></div>
+    <div class="txn"><div class="icon" style="background:#1e293b">🚂</div><div class="details"><div class="name">Trainline</div><div class="cat">Transport · Monzo</div></div><div class="amount">-£38.20</div></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('dateEl').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+// Spending chart
+const spendData=[
+  {label:'Housing',val:1248,color:'#4f46e5'},
+  {label:'Groceries',val:420,color:'#7c3aed'},
+  {label:'Transport',val:185,color:'#0891b2'},
+  {label:'Bills',val:310,color:'#d97706'},
+  {label:'Eating Out',val:142,color:'#ec4899'},
+  {label:'Subscriptions',val:78,color:'#6366f1'},
+  {label:'Other',val:96,color:'#475569'},
+];
+new Chart(document.getElementById('spendChart'),{type:'doughnut',data:{labels:spendData.map(d=>d.label),datasets:[{data:spendData.map(d=>d.val),backgroundColor:spendData.map(d=>d.color),borderWidth:0,borderRadius:3}]},options:{cutout:'68%',plugins:{legend:{display:false}},responsive:true,maintainAspectRatio:true}});
+document.getElementById('spendLegend').innerHTML=spendData.map(d=>'<div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:'+d.color+';flex-shrink:0"></span><span style="color:#9ca3af;flex:1">'+d.label+'</span><span style="font-weight:600">£'+d.val+'</span></div>').join('');
+
+// Portfolio data
+const holdings=[
+  {ticker:'VWRL',name:'Vanguard FTSE All-World',shares:120,avgCost:82.40,price:89.65,dayPct:0.42},
+  {ticker:'VUAG',name:'Vanguard S&P 500',shares:85,avgCost:68.20,price:78.92,dayPct:0.68},
+  {ticker:'SMT',name:'Scottish Mortgage',shares:200,avgCost:8.45,price:9.18,dayPct:-0.34},
+  {ticker:'LSEG',name:'London Stock Exchange',shares:15,avgCost:92.30,price:108.40,dayPct:0.21},
+  {ticker:'GSK',name:'GSK plc',shares:150,avgCost:15.80,price:16.24,dayPct:-0.52},
+  {ticker:'BP.',name:'BP plc',shares:300,avgCost:4.95,price:4.48,dayPct:-1.20},
+  {ticker:'SHEL',name:'Shell plc',shares:80,avgCost:25.60,price:27.85,dayPct:0.35},
+  {ticker:'AZN',name:'AstraZeneca',shares:10,avgCost:104.50,price:118.30,dayPct:0.15},
+];
+
+function miniSpark(positive){
+  const pts=[];let y=10;
+  for(let i=0;i<12;i++){y+=((Math.random()-.45)*(positive?3:3.5));y=Math.max(2,Math.min(18,y));pts.push(y)}
+  const path=pts.map((p,i)=>(i===0?'M':'L')+(i*5.5)+','+p).join(' ');
+  const col=positive?'%2322c55e':'%23ef4444';
+  return '<svg class="spark" viewBox="0 0 60 20"><path d="'+path+'" fill="none" stroke="'+col+'" stroke-width="1.5"/></svg>';
+}
+
+function renderPortfolio(){
+  let totalVal=0,totalCost=0,todayPL=0;
+  const rows=holdings.map(h=>{
+    const val=h.shares*h.price;
+    const cost=h.shares*h.avgCost;
+    const gain=val-cost;
+    const gainPct=((gain/cost)*100);
+    const dayVal=val*(h.dayPct/100);
+    totalVal+=val;totalCost+=cost;todayPL+=dayVal;
+    const gc=gain>=0?'up':'down';
+    const dc=h.dayPct>=0?'up':'down';
+    return '<tr><td><span class="ticker">'+h.ticker+'</span><br><span style="color:#6b7280;font-size:11px">'+h.name+'</span></td><td>'+h.shares+'</td><td>£'+h.avgCost.toFixed(2)+'</td><td>£'+h.price.toFixed(2)+'</td><td class="'+dc+'">'+(h.dayPct>=0?'+':'')+h.dayPct.toFixed(2)+'%</td><td>£'+val.toLocaleString('en',{minimumFractionDigits:2})+'</td><td class="'+gc+'">'+(gain>=0?'+':'')+' £'+Math.abs(gain).toFixed(0)+' ('+(gain>=0?'+':'')+gainPct.toFixed(1)+'%)</td><td>'+miniSpark(gain>=0)+'</td></tr>';
+  });
+  document.getElementById('ptable').innerHTML=rows.join('');
+  document.getElementById('totalVal').textContent='£'+totalVal.toLocaleString('en',{minimumFractionDigits:2});
+  document.getElementById('isaTotal').textContent='£'+totalVal.toLocaleString('en',{minimumFractionDigits:2});
+  const totalGain=totalVal-totalCost;
+  const tgEl=document.getElementById('totalGain');
+  tgEl.textContent=(totalGain>=0?'+':'-')+' £'+Math.abs(totalGain).toFixed(2)+' ('+(totalGain>=0?'+':'')+((totalGain/totalCost)*100).toFixed(1)+'%)';
+  tgEl.className='val change '+(totalGain>=0?'up':'down');
+  const tdEl=document.getElementById('todayChange');
+  tdEl.textContent=(todayPL>=0?'+':'-')+'£'+Math.abs(todayPL).toFixed(2);
+  tdEl.className='val change '+(todayPL>=0?'up':'down');
+}
+
+function refreshPrices(){
+  holdings.forEach(h=>{
+    const swing=(Math.random()-.48)*1.5;
+    h.price=Math.max(0.5,h.price*(1+swing/100));
+    h.dayPct=swing;
+  });
+  renderPortfolio();
+}
+
+renderPortfolio();
+<\/script>
+</body>
+</html>`,
+    },
+    {
+      id: 'ft5',
+      type: 'assistant-message',
+      delayMs: 800,
+      content: "Here's your personal finance dashboard! It's fully interactive — try clicking **Refresh Prices** to simulate market movements. Here's what's included:\n\n**Accounts overview** — Barclays current (£4,238), Monzo spending (£1,892), Marcus savings at 4.5% AER (£12,450), and your Vanguard Stocks & Shares ISA\n\n**Share portfolio** — 8 holdings including VWRL, VUAG, Scottish Mortgage, LSEG, GSK, BP, Shell, and AstraZeneca. Each shows shares held, average cost, current price, daily change, total gain/loss, and a mini sparkline chart. Your portfolio is up about 16% overall (£4,773 gain on £29,840 invested).\n\n**Spending breakdown** — Doughnut chart for April showing housing (£1,248), groceries (£420), bills (£310), transport (£185), eating out (£142), subscriptions (£78), and other (£96).\n\n**Savings goals** — Four progress bars: house deposit at 71%, holiday fund at 61%, car replacement at 35%, and emergency fund almost complete at 93%.\n\n**Recent transactions** — Latest activity across your accounts.\n\nWant me to add budget alerts, a net worth over time chart, or dividend tracking?",
+      streamingSpeed: 'normal',
+    },
+
+    // ── Turn 2: User wants net worth chart ──
+    {
+      id: 'ft6',
+      type: 'user-message',
+      delayMs: 2000,
+      content: 'Love it! Yes add a net worth over time chart and also a monthly income vs expenses chart.',
+      typingEffect: false,
+    },
+    {
+      id: 'ft7',
+      type: 'thinking',
+      delayMs: 800,
+      durationMs: 3500,
+    },
+    {
+      id: 'ft8',
+      type: 'assistant-message',
+      delayMs: 600,
+      content: "I've added two new charts — a 12-month net worth trend showing your total assets growing over time, and a monthly income vs expenses bar chart so you can see your savings rate each month. The net worth line includes your accounts, savings, and portfolio value.",
+      streamingSpeed: 'normal',
+    },
+    {
+      id: 'ft9',
+      type: 'artifact',
+      delayMs: 1500,
+      artifactType: 'html',
+      title: 'Finance Dashboard (v2)',
+      content: `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Finance Dashboard v2</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f1117;color:#e4e5e7;min-height:100vh}
+.dash{max-width:1200px;margin:0 auto;padding:24px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.header h1{font-size:22px;font-weight:700}
+.header .date{color:#6b7280;font-size:13px}
+.accounts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+@media(max-width:800px){.accounts{grid-template-columns:repeat(2,1fr)}}
+.account{background:#1a1d2e;border:1px solid #252942;border-radius:14px;padding:18px}
+.account .bank{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.account .bank .dot{width:8px;height:8px;border-radius:50%}
+.account .bal{font-size:26px;font-weight:700}
+.account .label{font-size:12px;color:#6b7280;margin-top:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.card{background:#1a1d2e;border:1px solid #252942;border-radius:14px;padding:20px}
+.card h2{font-size:15px;font-weight:600;margin-bottom:16px}
+.portfolio{background:#1a1d2e;border:1px solid #252942;border-radius:14px;padding:20px;margin-bottom:24px}
+.portfolio h2{font-size:15px;font-weight:600;margin-bottom:4px}
+.portfolio .summary{display:flex;gap:24px;margin-bottom:16px;font-size:13px;color:#6b7280}
+.portfolio .summary .val{font-size:20px;font-weight:700;color:#e4e5e7}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:#6b7280;font-weight:500;padding:8px 0;border-bottom:1px solid #252942;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+td{padding:10px 0;border-bottom:1px solid #1e2235}
+.ticker{font-weight:600;color:#a5b4fc}
+.up{color:#22c55e}.down{color:#ef4444}
+.goal{margin-bottom:14px}
+.goal .top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.goal .top .name{font-weight:500}
+.goal .top .amt{color:#6b7280}
+.goal .bar{height:8px;background:#252942;border-radius:99px;overflow:hidden}
+.goal .bar .fill{height:100%;border-radius:99px}
+svg text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+</style>
+</head>
+<body>
+<div class="dash">
+  <div class="header"><div><h1>Finances</h1><div class="date" id="dateEl"></div></div></div>
+
+  <div class="accounts">
+    <div class="account"><div class="bank"><span class="dot" style="background:#1e40af"></span>Barclays Current</div><div class="bal">£4,238.62</div><div class="label">Current account</div></div>
+    <div class="account"><div class="bank"><span class="dot" style="background:#7c3aed"></span>Monzo</div><div class="bal">£1,892.44</div><div class="label">Spending account</div></div>
+    <div class="account"><div class="bank"><span class="dot" style="background:#0891b2"></span>Marcus Savings</div><div class="bal">£12,450.00</div><div class="label">Easy access · 4.5% AER</div></div>
+    <div class="account"><div class="bank"><span class="dot" style="background:#16a34a"></span>Vanguard ISA</div><div class="bal">£34,612.80</div><div class="label">Stocks & Shares ISA</div></div>
+  </div>
+
+  <!-- Net Worth + Income vs Expenses -->
+  <div class="grid">
+    <div class="card">
+      <h2>Net Worth — Last 12 Months</h2>
+      <canvas id="nwChart" height="200"></canvas>
+    </div>
+    <div class="card">
+      <h2>Income vs Expenses</h2>
+      <canvas id="ieChart" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- Spending + Savings -->
+  <div class="grid">
+    <div class="card">
+      <h2>Monthly Spending — April 2026</h2>
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="width:150px;height:150px;flex-shrink:0"><canvas id="spendChart"></canvas></div>
+        <div id="spendLegend" style="font-size:12px;line-height:2.2"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Savings Goals</h2>
+      <div class="goal"><div class="top"><span class="name">🏠 House deposit</span><span class="amt">£28,450 / £40,000</span></div><div class="bar"><div class="fill" style="width:71%;background:linear-gradient(90deg,#4f46e5,#7c3aed)"></div></div></div>
+      <div class="goal"><div class="top"><span class="name">🏖️ Holiday fund</span><span class="amt">£1,840 / £3,000</span></div><div class="bar"><div class="fill" style="width:61%;background:linear-gradient(90deg,#0891b2,#06b6d4)"></div></div></div>
+      <div class="goal"><div class="top"><span class="name">🚗 Car replacement</span><span class="amt">£5,200 / £15,000</span></div><div class="bar"><div class="fill" style="width:35%;background:linear-gradient(90deg,#d97706,#f59e0b)"></div></div></div>
+      <div class="goal"><div class="top"><span class="name">🛡️ Emergency fund</span><span class="amt">£8,400 / £9,000</span></div><div class="bar"><div class="fill" style="width:93%;background:linear-gradient(90deg,#16a34a,#22c55e)"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Portfolio table -->
+  <div class="portfolio">
+    <h2>Share Portfolio</h2>
+    <div class="summary">
+      <div><div style="color:#6b7280;font-size:11px;margin-bottom:2px">TOTAL VALUE</div><div class="val">£34,612.80</div></div>
+      <div><div style="color:#6b7280;font-size:11px;margin-bottom:2px">TOTAL COST</div><div class="val" style="font-size:16px;padding-top:4px">£29,840.00</div></div>
+      <div><div style="color:#6b7280;font-size:11px;margin-bottom:2px">TOTAL GAIN</div><div class="val up" style="font-size:16px;padding-top:4px">+£4,772.80 (+16.0%)</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Holding</th><th>Shares</th><th>Avg Cost</th><th>Price</th><th>Day</th><th>Value</th><th>Gain/Loss</th></tr></thead>
+      <tbody id="ptable"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+document.getElementById('dateEl').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+Chart.defaults.font.family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif";
+Chart.defaults.font.size=11;
+Chart.defaults.color='#6b7280';
+
+const months=['May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr'];
+
+// Net worth chart
+new Chart(document.getElementById('nwChart'),{type:'line',data:{labels:months,datasets:[{label:'Net Worth',data:[42800,43200,44100,44800,45600,46200,47100,48400,49200,50800,51900,53193],borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,.1)',fill:true,tension:.35,pointRadius:3,pointBackgroundColor:'#7c3aed'},{label:'Savings',data:[18200,18800,19400,20000,20800,21400,22000,22600,23200,24100,24800,25550],borderColor:'#0891b2',borderDash:[4,3],tension:.35,pointRadius:2,fill:false},{label:'Investments',data:[28400,28600,29200,29800,30100,30600,31200,32400,33000,33800,34200,34612],borderColor:'#22c55e',borderDash:[4,3],tension:.35,pointRadius:2,fill:false}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:10,padding:10}}},scales:{y:{ticks:{callback:v=>'£'+Math.round(v/1000)+'K'},grid:{color:'#1e2235'}},x:{grid:{display:false}}}}});
+
+// Income vs Expenses
+new Chart(document.getElementById('ieChart'),{type:'bar',data:{labels:months,datasets:[{label:'Income',data:[3420,3420,3620,3420,3420,3720,3420,3420,3620,3420,3420,3420],backgroundColor:'rgba(34,197,94,.6)',borderRadius:4},{label:'Expenses',data:[2680,2450,2890,2580,2720,2950,2640,3100,2780,2510,2680,2479],backgroundColor:'rgba(239,68,68,.4)',borderRadius:4},{label:'Saved',data:[740,970,730,840,700,770,780,320,840,910,740,941],type:'line',borderColor:'#a5b4fc',tension:.3,pointRadius:3,pointBackgroundColor:'#a5b4fc',fill:false}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:10,padding:10}}},scales:{y:{ticks:{callback:v=>'£'+v},grid:{color:'#1e2235'}},x:{grid:{display:false}}}}});
+
+// Spending doughnut
+const sd=[{l:'Housing',v:1248,c:'#4f46e5'},{l:'Groceries',v:420,c:'#7c3aed'},{l:'Transport',v:185,c:'#0891b2'},{l:'Bills',v:310,c:'#d97706'},{l:'Eating Out',v:142,c:'#ec4899'},{l:'Subs',v:78,c:'#6366f1'},{l:'Other',v:96,c:'#475569'}];
+new Chart(document.getElementById('spendChart'),{type:'doughnut',data:{labels:sd.map(d=>d.l),datasets:[{data:sd.map(d=>d.v),backgroundColor:sd.map(d=>d.c),borderWidth:0,borderRadius:3}]},options:{cutout:'68%',plugins:{legend:{display:false}},responsive:true}});
+document.getElementById('spendLegend').innerHTML=sd.map(d=>'<div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:3px;background:'+d.c+';flex-shrink:0"></span><span style="color:#9ca3af;flex:1">'+d.l+'</span><span style="font-weight:600">£'+d.v+'</span></div>').join('');
+
+// Portfolio table
+const H=[{t:'VWRL',n:'Vanguard FTSE All-World',s:120,c:82.40,p:89.65,d:0.42},{t:'VUAG',n:'Vanguard S&P 500',s:85,c:68.20,p:78.92,d:0.68},{t:'SMT',n:'Scottish Mortgage',s:200,c:8.45,p:9.18,d:-0.34},{t:'LSEG',n:'London Stock Exchange',s:15,c:92.30,p:108.40,d:0.21},{t:'GSK',n:'GSK plc',s:150,c:15.80,p:16.24,d:-0.52},{t:'BP.',n:'BP plc',s:300,c:4.95,p:4.48,d:-1.20},{t:'SHEL',n:'Shell plc',s:80,c:25.60,p:27.85,d:0.35},{t:'AZN',n:'AstraZeneca',s:10,c:104.50,p:118.30,d:0.15}];
+document.getElementById('ptable').innerHTML=H.map(h=>{const v=h.s*h.p;const co=h.s*h.c;const g=v-co;const gp=(g/co*100);const gc=g>=0?'up':'down';const dc=h.d>=0?'up':'down';return'<tr><td><span class="ticker">'+h.t+'</span><br><span style="color:#6b7280;font-size:11px">'+h.n+'</span></td><td>'+h.s+'</td><td>£'+h.c.toFixed(2)+'</td><td>£'+h.p.toFixed(2)+'</td><td class="'+dc+'">'+(h.d>=0?'+':'')+h.d.toFixed(2)+'%</td><td>£'+v.toLocaleString('en',{minimumFractionDigits:2})+'</td><td class="'+gc+'">'+(g>=0?'+':'-')+' £'+Math.abs(g).toFixed(0)+' ('+(g>=0?'+':'')+gp.toFixed(1)+'%)</td></tr>'}).join('');
+<\/script>
+</body>
+</html>`,
+    },
+    {
+      id: 'ft10',
+      type: 'assistant-message',
+      delayMs: 800,
+      content: "Version 2 is ready with two new charts:\n\n- **Net worth trend** — purple line showing total net worth growing from £42.8K to £53.2K over 12 months, with dashed lines for savings and investments separately\n- **Income vs expenses** — green/red bars showing monthly income and spending, with a purple line tracking how much you saved each month (averaging ~£770/mo, with a dip to £320 in December — holiday spending!)\n\nYour savings rate is running at about 22% which is solid. The net worth line shows steady growth, mainly driven by your ISA performance and consistent saving into Marcus.\n\nWant me to add dividend tracking, a tax summary, or currency exposure from your international funds?",
+      streamingSpeed: 'normal',
+    },
   ],
 }

@@ -8,9 +8,21 @@ export type PlaybackCallback = {
 }
 
 const STREAMING_SPEEDS: Record<string, number> = {
-  slow: 15,
-  normal: 40,
-  fast: 80,
+  slow: 8,
+  normal: 20,
+  fast: 45,
+}
+
+// Minimum delay between events (ms) by type to feel realistic at 1x.
+// Authored delayMs is added on top of this.
+const MIN_DELAY: Partial<Record<string, number>> = {
+  'thinking': 800,
+  'assistant-message': 600,
+  'tool-call': 500,
+  'tool-result': 400,
+  'artifact': 1500,
+  'cowork-progress': 400,
+  'cowork-notification': 600,
 }
 
 export class PlaybackEngine {
@@ -99,7 +111,8 @@ export class PlaybackEngine {
     }
 
     const event = this.events[nextIndex]
-    const delay = event.delayMs / this.speed
+    const baseDelay = Math.max(event.delayMs, MIN_DELAY[event.type] ?? 0)
+    const delay = baseDelay / this.speed
 
     this.timeoutId = setTimeout(() => {
       this.currentIndex = nextIndex
@@ -120,14 +133,16 @@ export class PlaybackEngine {
       return
     }
 
-    const startTime = performance.now()
-    const adjustedDuration = duration / this.speed
+    let lastFrameTime = performance.now()
+    let simulatedElapsed = 0
 
     const animate = (now: number) => {
       if (!this.isRunning || this.isPaused) return
 
-      const elapsed = now - startTime
-      const progress = Math.min(elapsed / adjustedDuration, 1)
+      const dt = now - lastFrameTime
+      lastFrameTime = now
+      simulatedElapsed += dt * this.speed
+      const progress = Math.min(simulatedElapsed / duration, 1)
 
       this.callbacks.onEventProgress(event, progress)
 
@@ -153,17 +168,19 @@ export class PlaybackEngine {
       case 'user-message':
         return event.typingEffect ? (event.content.length / 30) * 1000 : 0
       case 'tool-call':
-        return 300
+        return 600
       case 'tool-result':
-        return 200
+        return 400
       case 'thinking':
-        return event.durationMs ?? 1500
+        return event.durationMs ?? 3500
       case 'permission-prompt':
         return 0 // waits for response
       case 'permission-response':
         return 200
       case 'artifact':
-        return (event.content.length / 60) * 1000
+        // Artifact card appears instantly — keep duration short since there's
+        // no visible streaming. Chrome opens when it completes.
+        return 2500
       case 'cowork-progress':
         return 500
       case 'cowork-notification':
