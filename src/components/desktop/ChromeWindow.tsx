@@ -76,7 +76,8 @@ export function ChromeWindow() {
               srcDoc={artifact.content}
               className="w-full h-full border-0"
               title={artifact.title}
-              sandbox="allow-scripts"
+              sandbox="allow-scripts allow-forms"
+              referrerPolicy="no-referrer"
             />
           ) : (
             <div className="p-4">

@@ -71,7 +71,8 @@ export function ArtifactPanel({ artifact, onClose }: ArtifactPanelProps) {
             srcDoc={artifact.content}
             className="w-full h-full border-0"
             title="Artifact preview"
-            sandbox="allow-scripts"
+            sandbox="allow-scripts allow-forms"
+            referrerPolicy="no-referrer"
           />
         )}
       </div>

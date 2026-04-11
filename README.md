@@ -214,6 +214,46 @@ src/
 └── utils/                       # Sample data, helpers
 ```
 
+## Roadmap
+
+Ideas for future simulated windows and features — contributions welcome!
+
+### Simulated App Windows
+
+- **VS Code / Cursor** — When Claude Code edits a file, show it opening in a simulated editor with syntax highlighting, line numbers, and diff gutter
+- **Terminal** — A standalone terminal window (separate from Claude Code) showing command output for `npm test`, `git push`, build logs, etc.
+- **Finder / File Explorer** — macOS Finder window showing file tree updates when Claude creates or reorganizes files
+- **Safari / Firefox** — Alternate browser chrome for cross-browser demo scenarios
+
+### Document & Productivity Apps
+
+- **Word / Pages** — Render markdown or document artifacts in a simulated word processor with toolbar and page margins
+- **Excel / Numbers** — Spreadsheet view for data analysis demos — Claude generates tables/charts and they appear in a simulated spreadsheet
+- **Keynote / Slides** — Presentation view for slide deck generation demos
+
+### Developer Tools
+
+- **GitHub PR View** — Simulated GitHub pull request page with diff view, comments, and CI status checks
+- **Database Viewer** — Table view (like TablePlus) for API/database demos showing query results
+- **Postman / API Client** — REST client showing request/response when testing API endpoints
+
+### Communication
+
+- **Slack Notification** — Slack-style message/notification when Cowork completes a task or MCP tools are used
+- **Email Client** — Gmail-style interface for email drafting demos
+
+### Platform Features
+
+- **Recording / Export** — Export playback as video (WebM/MP4) or animated GIF for sharing
+- **Embed Mode** — Minimal iframe-embeddable player for docs and blog posts
+- **Collaborative Editing** — Real-time multiplayer simulation editing
+- **Template Library** — Community-shared simulation templates
+- **Custom Themes** — Match different OS versions or brand guidelines
+
+## Security
+
+Artifact HTML is rendered in sandboxed iframes (`sandbox="allow-scripts allow-forms"`) with no access to the parent page, cookies, or localStorage. User input within artifacts is HTML-escaped before DOM insertion. Imported simulation JSON is validated before loading. See [SECURITY.md](SECURITY.md) for details on reporting vulnerabilities.
+
 ## License
 
 MIT

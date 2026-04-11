@@ -504,13 +504,14 @@ let todos=[
   {id:5,text:'Prepare sprint demo slides',done:false,cat:'Work'},
 ];
 let filter='all',selCat=null,nextId=6;
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 
 document.getElementById('date').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
 document.getElementById('input').addEventListener('keydown',e=>{if(e.key==='Enter')addTodo()});
 
 function renderCats(){
   const el=document.getElementById('cats');
-  el.innerHTML=CATS.map(c=>'<button class="cat-btn'+(selCat===c.name?' active':'')+'" onclick="toggleCat(\''+c.name+'\')">'+c.name+'</button>').join('');
+  el.innerHTML=CATS.map(c=>'<button class="cat-btn'+(selCat===c.name?' active':'')+'" onclick="toggleCat(\''+esc(c.name)+'\')">'+esc(c.name)+'</button>').join('');
 }
 function toggleCat(name){selCat=selCat===name?null:name;renderCats();render()}
 function setFilter(f,btn){
@@ -544,7 +545,7 @@ function render(){
   if(!filtered.length){list.innerHTML='<div class="empty">No tasks here yet</div>';document.getElementById('count').textContent='';return}
   list.innerHTML=filtered.map(t=>{
     const c=CATS.find(c=>c.name===t.cat)||CATS[0];
-    return '<div class="todo-item'+(t.done?' done':'')+'" data-id="'+t.id+'"><div class="checkbox'+(t.done?' checked':'')+'" onclick="toggle('+t.id+')"></div><span class="todo-text">'+t.text+'</span><span class="todo-cat" style="color:'+c.color+';background:'+c.bg+'">'+t.cat+'</span><button class="delete-btn" onclick="remove('+t.id+')">×</button></div>';
+    return '<div class="todo-item'+(t.done?' done':'')+'" data-id="'+t.id+'"><div class="checkbox'+(t.done?' checked':'')+'" onclick="toggle('+t.id+')"></div><span class="todo-text">'+esc(t.text)+'</span><span class="todo-cat" style="color:'+esc(c.color)+';background:'+esc(c.bg)+'">'+esc(t.cat)+'</span><button class="delete-btn" onclick="remove('+t.id+')">×</button></div>';
   }).join('');
   const active=todos.filter(t=>!t.done).length;
   document.getElementById('count').textContent=active+' task'+(active!==1?'s':'')+' remaining';
@@ -656,16 +657,17 @@ h1{font-size:28px;font-weight:700;color:var(--text)}
 const CATS=[{name:'Personal',color:'#007aff',bg:'rgba(0,122,255,.1)'},{name:'Work',color:'#ff9500',bg:'rgba(255,149,0,.1)'},{name:'Health',color:'#34c759',bg:'rgba(52,199,89,.1)'},{name:'Learning',color:'#af52de',bg:'rgba(175,82,222,.1)'}];
 let todos=[{id:1,text:'Review Q2 analytics report',done:false,cat:'Work'},{id:2,text:'Morning run — 5km',done:true,cat:'Health'},{id:3,text:'Read chapter 4 of DDIA',done:false,cat:'Learning'},{id:4,text:'Call dentist for appointment',done:false,cat:'Personal'},{id:5,text:'Prepare sprint demo slides',done:false,cat:'Work'}];
 let filter='all',selCat=null,nextId=6,dark=false;
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 document.getElementById('date').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
 document.getElementById('input').addEventListener('keydown',e=>{if(e.key==='Enter')addTodo()});
 function toggleTheme(){dark=!dark;document.documentElement.setAttribute('data-theme',dark?'dark':'');document.getElementById('themeBtn').textContent=dark?'☀️':'🌙'}
-function renderCats(){document.getElementById('cats').innerHTML=CATS.map(c=>'<button class="cat-btn'+(selCat===c.name?' active':'')+'" onclick="toggleCat(\''+c.name+'\')">'+c.name+'</button>').join('')}
+function renderCats(){document.getElementById('cats').innerHTML=CATS.map(c=>'<button class="cat-btn'+(selCat===c.name?' active':'')+'" onclick="toggleCat(\''+esc(c.name)+'\')">'+esc(c.name)+'</button>').join('')}
 function toggleCat(n){selCat=selCat===n?null:n;renderCats();render()}
 function setFilter(f,btn){filter=f;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render()}
 function addTodo(){const inp=document.getElementById('input');const t=inp.value.trim();if(!t)return;todos.unshift({id:nextId++,text:t,done:false,cat:selCat||'Personal'});inp.value='';render()}
 function toggle(id){const t=todos.find(t=>t.id===id);if(t){t.done=!t.done;render()}}
 function remove(id){const el=document.querySelector('[data-id="'+id+'"]');if(el){el.classList.add('removing');setTimeout(()=>{todos=todos.filter(t=>t.id!==id);render()},250)}}
-function render(){let f=todos;if(filter==='active')f=todos.filter(t=>!t.done);if(filter==='done')f=todos.filter(t=>t.done);if(selCat)f=f.filter(t=>t.cat===selCat);const list=document.getElementById('list');if(!f.length){list.innerHTML='<div class="empty">No tasks here yet</div>';document.getElementById('count').textContent='';return}list.innerHTML=f.map(t=>{const c=CATS.find(c=>c.name===t.cat)||CATS[0];return'<div class="todo-item'+(t.done?' done':'')+'" data-id="'+t.id+'"><div class="checkbox'+(t.done?' checked':'')+'" onclick="toggle('+t.id+')"></div><span class="todo-text">'+t.text+'</span><span class="todo-cat" style="color:'+c.color+';background:'+c.bg+'">'+t.cat+'</span><button class="delete-btn" onclick="remove('+t.id+')">×</button></div>'}).join('');const a=todos.filter(t=>!t.done).length;document.getElementById('count').textContent=a+' task'+(a!==1?'s':'')+' remaining'}
+function render(){let f=todos;if(filter==='active')f=todos.filter(t=>!t.done);if(filter==='done')f=todos.filter(t=>t.done);if(selCat)f=f.filter(t=>t.cat===selCat);const list=document.getElementById('list');if(!f.length){list.innerHTML='<div class="empty">No tasks here yet</div>';document.getElementById('count').textContent='';return}list.innerHTML=f.map(t=>{const c=CATS.find(c=>c.name===t.cat)||CATS[0];return'<div class="todo-item'+(t.done?' done':'')+'" data-id="'+t.id+'"><div class="checkbox'+(t.done?' checked':'')+'" onclick="toggle('+t.id+')"></div><span class="todo-text">'+esc(t.text)+'</span><span class="todo-cat" style="color:'+esc(c.color)+';background:'+esc(c.bg)+'">'+esc(t.cat)+'</span><button class="delete-btn" onclick="remove('+t.id+')">×</button></div>'}).join('');const a=todos.filter(t=>!t.done).length;document.getElementById('count').textContent=a+' task'+(a!==1?'s':'')+' remaining'}
 renderCats();render();
 </script>
 </body>
