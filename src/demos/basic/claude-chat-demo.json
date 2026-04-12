@@ -1,0 +1,132 @@
+{
+  "id": "sample-chat-1",
+  "title": "Claude Chat Demo",
+  "description": "A sample Claude Chat conversation with an artifact",
+  "productType": "claude-chat",
+  "createdAt": "2026-04-11T00:00:00Z",
+  "updatedAt": "2026-04-11T00:00:00Z",
+  "metadata": {
+    "chatConfig": {
+      "modelName": "Claude Opus 4",
+      "theme": "light",
+      "conversationTitle": "React component help",
+      "sidebarConversations": [
+        {
+          "id": "c1",
+          "title": "React component help",
+          "timestamp": "Just now",
+          "isActive": true
+        },
+        {
+          "id": "c2",
+          "title": "Python data analysis",
+          "timestamp": "2h ago",
+          "isActive": false
+        },
+        {
+          "id": "c3",
+          "title": "API design review",
+          "timestamp": "Yesterday",
+          "isActive": false
+        },
+        {
+          "id": "c4",
+          "title": "Docker setup help",
+          "timestamp": "Yesterday",
+          "isActive": false
+        },
+        {
+          "id": "c5",
+          "title": "SQL query optimization",
+          "timestamp": "Apr 9",
+          "isActive": false
+        }
+      ],
+      "projects": [
+        {
+          "id": "p1",
+          "name": "Web App Redesign",
+          "conversationCount": 12
+        },
+        {
+          "id": "p2",
+          "name": "Backend API",
+          "conversationCount": 8
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "id": "ce1",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "Can you create a React counter component with increment and decrement buttons?",
+      "typingEffect": false
+    },
+    {
+      "id": "ce2",
+      "type": "thinking",
+      "delayMs": 200,
+      "durationMs": 800
+    },
+    {
+      "id": "ce3",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "Here's a clean React counter component with increment and decrement buttons, using hooks for state management:",
+      "streamingSpeed": "normal"
+    },
+    {
+      "id": "ce4",
+      "type": "artifact",
+      "delayMs": 300,
+      "artifactType": "code",
+      "title": "Counter.tsx",
+      "language": "tsx",
+      "content": "import { useState } from 'react'\n\nexport function Counter() {\n  const [count, setCount] = useState(0)\n\n  return (\n    <div className=\"flex items-center gap-4 p-6\">\n      <button\n        onClick={() => setCount(c => c - 1)}\n        className=\"px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600\"\n      >\n        -\n      </button>\n      <span className=\"text-2xl font-bold min-w-[3ch] text-center\">\n        {count}\n      </span>\n      <button\n        onClick={() => setCount(c => c + 1)}\n        className=\"px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600\"\n      >\n        +\n      </button>\n    </div>\n  )\n}"
+    },
+    {
+      "id": "ce5",
+      "type": "assistant-message",
+      "delayMs": 400,
+      "content": "The component uses `useState` to track the count value. The decrement button subtracts 1, and the increment button adds 1. The count is displayed between the buttons with a minimum width to prevent layout shifts.\n\nWould you like me to create a live preview so you can try it out in the browser?",
+      "streamingSpeed": "normal"
+    },
+    {
+      "id": "ce6",
+      "type": "user-message",
+      "delayMs": 1200,
+      "content": "Yes please!",
+      "typingEffect": false
+    },
+    {
+      "id": "ce7",
+      "type": "thinking",
+      "delayMs": 200,
+      "durationMs": 600
+    },
+    {
+      "id": "ce8",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "Here's a live preview of the Counter component — you can click the buttons to try it out:",
+      "streamingSpeed": "fast"
+    },
+    {
+      "id": "ce9",
+      "type": "artifact",
+      "delayMs": 300,
+      "artifactType": "html",
+      "title": "Counter Component Preview",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\"/>\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"/>\n<title>Counter Preview</title>\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f9fafb; display: flex; align-items: center; justify-content: center; min-height: 100vh; }\n  .card { background: #fff; border-radius: 20px; padding: 40px 48px; box-shadow: 0 4px 24px rgba(0,0,0,.06); text-align: center; }\n  h2 { font-size: 14px; color: #6b7280; font-weight: 500; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }\n  .counter { display: flex; align-items: center; gap: 24px; }\n  button { width: 56px; height: 56px; border-radius: 16px; border: none; font-size: 24px; font-weight: 700; cursor: pointer; transition: all .15s; }\n  .dec { background: #fef2f2; color: #ef4444; }\n  .dec:hover { background: #fee2e2; }\n  .dec:active { transform: scale(.95); }\n  .inc { background: #f0fdf4; color: #22c55e; }\n  .inc:hover { background: #dcfce7; }\n  .inc:active { transform: scale(.95); }\n  .count { font-size: 48px; font-weight: 800; color: #111827; min-width: 80px; transition: transform .1s; }\n  .count.bump { transform: scale(1.1); }\n  .reset { margin-top: 20px; padding: 8px 20px; border-radius: 10px; border: 1px solid #e5e7eb; background: #fff; color: #6b7280; font-size: 13px; font-weight: 500; cursor: pointer; }\n  .reset:hover { background: #f9fafb; }\n</style>\n</head>\n<body>\n<div class=\"card\">\n  <h2>Counter Component</h2>\n  <div class=\"counter\">\n    <button class=\"dec\" onclick=\"update(-1)\">−</button>\n    <div class=\"count\" id=\"count\">0</div>\n    <button class=\"inc\" onclick=\"update(1)\">+</button>\n  </div>\n  <button class=\"reset\" onclick=\"reset()\">Reset</button>\n</div>\n<script>\nlet count = 0;\nconst el = document.getElementById('count');\nfunction update(d) {\n  count += d;\n  el.textContent = count;\n  el.classList.add('bump');\n  setTimeout(() => el.classList.remove('bump'), 100);\n}\nfunction reset() { count = 0; el.textContent = '0'; }\n</script>\n</body>\n</html>"
+    },
+    {
+      "id": "ce10",
+      "type": "assistant-message",
+      "delayMs": 500,
+      "content": "The preview is live! Click the **+** and **−** buttons to change the count. I also added a Reset button and a subtle scale animation when the count changes.\n\nWould you like me to add any other features — maybe a step size control or a history of values?",
+      "streamingSpeed": "normal"
+    }
+  ]
+}

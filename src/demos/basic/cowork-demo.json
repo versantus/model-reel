@@ -1,0 +1,113 @@
+{
+  "id": "sample-cowork-1",
+  "title": "Cowork Demo",
+  "description": "A sample Claude Cowork task organizing files",
+  "productType": "claude-cowork",
+  "createdAt": "2026-04-11T00:00:00Z",
+  "updatedAt": "2026-04-11T00:00:00Z",
+  "metadata": {
+    "coworkConfig": {
+      "taskTitle": "Organize project files",
+      "folderPath": "/Users/dev/messy-project",
+      "suggestions": [
+        "Organize files",
+        "Crunch data",
+        "Research topic",
+        "Draft document"
+      ]
+    }
+  },
+  "events": [
+    {
+      "id": "cw1",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "Organize the files in this project by type and clean up unused dependencies",
+      "typingEffect": true
+    },
+    {
+      "id": "cw2",
+      "type": "thinking",
+      "delayMs": 500,
+      "durationMs": 1000,
+      "label": "Planning approach..."
+    },
+    {
+      "id": "cw3",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 0,
+      "stepLabel": "Scanning project structure",
+      "status": "running",
+      "detail": "Reading directory tree..."
+    },
+    {
+      "id": "cw4",
+      "type": "cowork-progress",
+      "delayMs": 2000,
+      "stepIndex": 0,
+      "stepLabel": "Scanning project structure",
+      "status": "complete",
+      "detail": "Found 47 files across 12 directories"
+    },
+    {
+      "id": "cw5",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 1,
+      "stepLabel": "Analyzing file types and dependencies",
+      "status": "running"
+    },
+    {
+      "id": "cw6",
+      "type": "cowork-progress",
+      "delayMs": 3000,
+      "stepIndex": 1,
+      "stepLabel": "Analyzing file types and dependencies",
+      "status": "complete",
+      "detail": "Identified 5 unused packages"
+    },
+    {
+      "id": "cw7",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 2,
+      "stepLabel": "Reorganizing file structure",
+      "status": "running",
+      "detail": "Moving files to appropriate directories..."
+    },
+    {
+      "id": "cw8",
+      "type": "cowork-progress",
+      "delayMs": 4000,
+      "stepIndex": 2,
+      "stepLabel": "Reorganizing file structure",
+      "status": "complete",
+      "detail": "Moved 23 files, created 4 new directories"
+    },
+    {
+      "id": "cw9",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 3,
+      "stepLabel": "Removing unused dependencies",
+      "status": "running"
+    },
+    {
+      "id": "cw10",
+      "type": "cowork-progress",
+      "delayMs": 2000,
+      "stepIndex": 3,
+      "stepLabel": "Removing unused dependencies",
+      "status": "complete",
+      "detail": "Removed: lodash, moment, classnames, uuid, chalk"
+    },
+    {
+      "id": "cw11",
+      "type": "cowork-notification",
+      "delayMs": 500,
+      "notificationType": "finished",
+      "message": "Project organization complete! Reorganized 23 files and removed 5 unused packages."
+    }
+  ]
+}

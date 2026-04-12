@@ -1,0 +1,108 @@
+{
+  "id": "sample-todo-app",
+  "title": "Build a Todo App",
+  "description": "Claude builds an interactive Todo app with local storage",
+  "productType": "claude-chat",
+  "createdAt": "2026-04-11T00:00:00Z",
+  "updatedAt": "2026-04-11T00:00:00Z",
+  "metadata": {
+    "chatConfig": {
+      "modelName": "Claude Sonnet 4.6",
+      "theme": "light",
+      "conversationTitle": "Interactive Todo App",
+      "sidebarConversations": [
+        {
+          "id": "c1",
+          "title": "Interactive Todo App",
+          "timestamp": "Just now",
+          "isActive": true
+        },
+        {
+          "id": "c2",
+          "title": "Blog post draft",
+          "timestamp": "3h ago",
+          "isActive": false
+        },
+        {
+          "id": "c3",
+          "title": "Meeting notes summary",
+          "timestamp": "Yesterday",
+          "isActive": false
+        }
+      ],
+      "projects": []
+    }
+  },
+  "events": [
+    {
+      "id": "td1",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "Create me a beautiful, fully working todo app. I want it to feel like a real product — with animations, categories, and a clean design. Make it actually functional with add, complete, delete, and filtering.",
+      "typingEffect": false
+    },
+    {
+      "id": "td2",
+      "type": "thinking",
+      "delayMs": 300,
+      "durationMs": 2000
+    },
+    {
+      "id": "td3",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "I'll build you a polished todo app with full interactivity. It'll have a clean minimal design, smooth animations, category tags, filtering, and persistent state using localStorage.",
+      "streamingSpeed": "fast"
+    },
+    {
+      "id": "td4",
+      "type": "artifact",
+      "delayMs": 500,
+      "artifactType": "html",
+      "title": "Todo App",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\"/>\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"/>\n<title>Todo App</title>\n<style>\n*{margin:0;padding:0;box-sizing:border-box}\nbody{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f7;min-height:100vh;display:flex;justify-content:center;padding:40px 20px}\n.app{width:100%;max-width:520px}\nh1{font-size:28px;font-weight:700;color:#1d1d1f;margin-bottom:4px}\n.subtitle{color:#86868b;font-size:14px;margin-bottom:24px}\n.input-row{display:flex;gap:8px;margin-bottom:16px}\n.input-row input{flex:1;padding:12px 16px;border:1px solid #d2d2d7;border-radius:12px;font-size:15px;outline:none;transition:border .2s}\n.input-row input:focus{border-color:#0071e3}\n.input-row button{background:#0071e3;color:#fff;border:none;border-radius:12px;padding:12px 20px;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .15s}\n.input-row button:hover{background:#0077ED}\n.categories{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}\n.cat-btn{padding:6px 14px;border-radius:99px;border:1px solid #d2d2d7;background:#fff;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;color:#1d1d1f}\n.cat-btn.active{background:#0071e3;color:#fff;border-color:#0071e3}\n.filters{display:flex;gap:4px;margin-bottom:16px;background:#e8e8ed;border-radius:10px;padding:3px}\n.filter-btn{flex:1;padding:7px 0;text-align:center;border:none;background:transparent;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;color:#86868b;transition:all .15s}\n.filter-btn.active{background:#fff;color:#1d1d1f;box-shadow:0 1px 3px rgba(0,0,0,.08)}\n.todo-list{display:flex;flex-direction:column;gap:8px}\n.todo-item{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e8e8ed;border-radius:12px;padding:14px 16px;transition:all .2s;animation:slideIn .25s ease}\n.todo-item.completing{animation:completeAnim .3s ease forwards}\n.todo-item.removing{animation:removeAnim .25s ease forwards}\n.todo-item.done{opacity:.5}\n.todo-item.done .todo-text{text-decoration:line-through;color:#86868b}\n@keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}\n@keyframes completeAnim{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}\n@keyframes removeAnim{to{opacity:0;transform:translateX(30px);height:0;padding:0;margin:0;border:none;overflow:hidden}}\n.checkbox{width:22px;height:22px;border:2px solid #d2d2d7;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}\n.checkbox.checked{background:#34c759;border-color:#34c759}\n.checkbox.checked::after{content:\"✓\";color:#fff;font-size:13px;font-weight:700}\n.todo-text{flex:1;font-size:15px;color:#1d1d1f}\n.todo-cat{font-size:10px;font-weight:600;padding:3px 8px;border-radius:99px;text-transform:uppercase;letter-spacing:.3px}\n.delete-btn{background:none;border:none;color:#d2d2d7;cursor:pointer;font-size:18px;padding:4px;border-radius:6px;transition:all .15s;line-height:1}\n.delete-btn:hover{color:#ff3b30;background:rgba(255,59,48,.08)}\n.empty{text-align:center;padding:48px 0;color:#86868b;font-size:14px}\n.count{text-align:center;color:#86868b;font-size:12px;margin-top:16px}\n</style>\n</head>\n<body>\n<div class=\"app\">\n  <h1>Today</h1>\n  <p class=\"subtitle\" id=\"date\"></p>\n  <div class=\"input-row\">\n    <input type=\"text\" id=\"input\" placeholder=\"Add a new task...\" />\n    <button onclick=\"addTodo()\">Add</button>\n  </div>\n  <div class=\"categories\" id=\"cats\"></div>\n  <div class=\"filters\">\n    <button class=\"filter-btn active\" onclick=\"setFilter('all',this)\">All</button>\n    <button class=\"filter-btn\" onclick=\"setFilter('active',this)\">Active</button>\n    <button class=\"filter-btn\" onclick=\"setFilter('done',this)\">Done</button>\n  </div>\n  <div class=\"todo-list\" id=\"list\"></div>\n  <p class=\"count\" id=\"count\"></p>\n</div>\n<script>\nconst CATS=[\n  {name:'Personal',color:'#007aff',bg:'rgba(0,122,255,.1)'},\n  {name:'Work',color:'#ff9500',bg:'rgba(255,149,0,.1)'},\n  {name:'Health',color:'#34c759',bg:'rgba(52,199,89,.1)'},\n  {name:'Learning',color:'#af52de',bg:'rgba(175,82,222,.1)'}\n];\nlet todos=[\n  {id:1,text:'Review Q2 analytics report',done:false,cat:'Work'},\n  {id:2,text:'Morning run — 5km',done:true,cat:'Health'},\n  {id:3,text:'Read chapter 4 of DDIA',done:false,cat:'Learning'},\n  {id:4,text:'Call dentist for appointment',done:false,cat:'Personal'},\n  {id:5,text:'Prepare sprint demo slides',done:false,cat:'Work'},\n];\nlet filter='all',selCat=null,nextId=6;\nfunction esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}\n\ndocument.getElementById('date').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});\ndocument.getElementById('input').addEventListener('keydown',e=>{if(e.key==='Enter')addTodo()});\n\nfunction renderCats(){\n  const el=document.getElementById('cats');\n  el.innerHTML=CATS.map(c=>'<button class=\"cat-btn'+(selCat===c.name?' active':'')+'\" onclick=\"toggleCat(''+esc(c.name)+'')\">'+esc(c.name)+'</button>').join('');\n}\nfunction toggleCat(name){selCat=selCat===name?null:name;renderCats();render()}\nfunction setFilter(f,btn){\n  filter=f;\n  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));\n  btn.classList.add('active');\n  render();\n}\nfunction addTodo(){\n  const inp=document.getElementById('input');\n  const text=inp.value.trim();\n  if(!text)return;\n  todos.unshift({id:nextId++,text,done:false,cat:selCat||'Personal'});\n  inp.value='';\n  render();\n}\nfunction toggle(id){\n  const t=todos.find(t=>t.id===id);\n  if(t){t.done=!t.done;render()}\n}\nfunction remove(id){\n  const el=document.querySelector('[data-id=\"'+id+'\"]');\n  if(el){el.classList.add('removing');setTimeout(()=>{todos=todos.filter(t=>t.id!==id);render()},250)}\n}\nfunction render(){\n  let filtered=todos;\n  if(filter==='active')filtered=todos.filter(t=>!t.done);\n  if(filter==='done')filtered=todos.filter(t=>t.done);\n  if(selCat)filtered=filtered.filter(t=>t.cat===selCat);\n  const list=document.getElementById('list');\n  if(!filtered.length){list.innerHTML='<div class=\"empty\">No tasks here yet</div>';document.getElementById('count').textContent='';return}\n  list.innerHTML=filtered.map(t=>{\n    const c=CATS.find(c=>c.name===t.cat)||CATS[0];\n    return '<div class=\"todo-item'+(t.done?' done':'')+'\" data-id=\"'+t.id+'\"><div class=\"checkbox'+(t.done?' checked':'')+'\" onclick=\"toggle('+t.id+')\"></div><span class=\"todo-text\">'+esc(t.text)+'</span><span class=\"todo-cat\" style=\"color:'+esc(c.color)+';background:'+esc(c.bg)+'\">'+esc(t.cat)+'</span><button class=\"delete-btn\" onclick=\"remove('+t.id+')\">×</button></div>';\n  }).join('');\n  const active=todos.filter(t=>!t.done).length;\n  document.getElementById('count').textContent=active+' task'+(active!==1?'s':'')+' remaining';\n}\nrenderCats();render();\n</script>\n</body>\n</html>"
+    },
+    {
+      "id": "td5",
+      "type": "assistant-message",
+      "delayMs": 600,
+      "content": "Here's your fully interactive todo app! It's all working right in the preview — try it out:\n\n**Features:**\n- **Add tasks** with the input field (press Enter or click Add)\n- **Toggle completion** by clicking the checkbox — with a satisfying animation\n- **Delete tasks** with the × button (slide-out animation)\n- **Filter** between All / Active / Done\n- **Category tags** — Personal, Work, Health, Learning — click to filter by category\n- **Slide-in animation** when new tasks appear\n\nThe design follows Apple's HIG with the rounded corners, muted grays, and SF-style typography. Would you like me to add drag-to-reorder, due dates, or a dark mode toggle?",
+      "streamingSpeed": "normal"
+    },
+    {
+      "id": "td6",
+      "type": "user-message",
+      "delayMs": 1000,
+      "content": "Yes! Add a dark mode toggle in the top right corner.",
+      "typingEffect": false
+    },
+    {
+      "id": "td7",
+      "type": "thinking",
+      "delayMs": 300,
+      "durationMs": 800
+    },
+    {
+      "id": "td8",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "Done — I've added a sun/moon toggle in the top right that smoothly transitions between light and dark themes. The dark theme uses a rich charcoal palette that's easy on the eyes.",
+      "streamingSpeed": "fast"
+    },
+    {
+      "id": "td9",
+      "type": "artifact",
+      "delayMs": 400,
+      "artifactType": "html",
+      "title": "Todo App (with Dark Mode)",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\"/>\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"/>\n<title>Todo App</title>\n<style>\n*{margin:0;padding:0;box-sizing:border-box}\n:root{--bg:#f5f5f7;--card:#fff;--border:#e8e8ed;--text:#1d1d1f;--text2:#86868b;--input-border:#d2d2d7;--filter-bg:#e8e8ed;--filter-active-bg:#fff;--accent:#0071e3}\n[data-theme=\"dark\"]{--bg:#1c1c1e;--card:#2c2c2e;--border:#3a3a3c;--text:#f5f5f7;--text2:#98989d;--input-border:#48484a;--filter-bg:#2c2c2e;--filter-active-bg:#48484a;--accent:#0a84ff}\nbody{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;display:flex;justify-content:center;padding:40px 20px;transition:background .3s}\n.app{width:100%;max-width:520px}\n.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}\nh1{font-size:28px;font-weight:700;color:var(--text)}\n.subtitle{color:var(--text2);font-size:14px;margin-top:2px}\n.theme-toggle{width:40px;height:40px;border-radius:12px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s}\n.theme-toggle:hover{border-color:var(--accent)}\n.input-row{display:flex;gap:8px;margin-bottom:16px}\n.input-row input{flex:1;padding:12px 16px;border:1px solid var(--input-border);border-radius:12px;font-size:15px;outline:none;transition:border .2s;background:var(--card);color:var(--text)}\n.input-row input:focus{border-color:var(--accent)}\n.input-row button{background:var(--accent);color:#fff;border:none;border-radius:12px;padding:12px 20px;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap}\n.categories{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}\n.cat-btn{padding:6px 14px;border-radius:99px;border:1px solid var(--input-border);background:var(--card);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;color:var(--text)}\n.cat-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}\n.filters{display:flex;gap:4px;margin-bottom:16px;background:var(--filter-bg);border-radius:10px;padding:3px}\n.filter-btn{flex:1;padding:7px 0;text-align:center;border:none;background:transparent;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;color:var(--text2);transition:all .15s}\n.filter-btn.active{background:var(--filter-active-bg);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}\n.todo-list{display:flex;flex-direction:column;gap:8px}\n.todo-item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;transition:all .2s;animation:slideIn .25s ease}\n.todo-item.done{opacity:.5}\n.todo-item.done .todo-text{text-decoration:line-through;color:var(--text2)}\n.todo-item.removing{animation:removeAnim .25s ease forwards}\n@keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}\n@keyframes removeAnim{to{opacity:0;transform:translateX(30px)}}\n.checkbox{width:22px;height:22px;border:2px solid var(--input-border);border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}\n.checkbox.checked{background:#34c759;border-color:#34c759}\n.checkbox.checked::after{content:\"✓\";color:#fff;font-size:13px;font-weight:700}\n.todo-text{flex:1;font-size:15px;color:var(--text)}\n.todo-cat{font-size:10px;font-weight:600;padding:3px 8px;border-radius:99px;text-transform:uppercase;letter-spacing:.3px}\n.delete-btn{background:none;border:none;color:var(--input-border);cursor:pointer;font-size:18px;padding:4px;border-radius:6px;transition:all .15s;line-height:1}\n.delete-btn:hover{color:#ff3b30;background:rgba(255,59,48,.08)}\n.empty{text-align:center;padding:48px 0;color:var(--text2);font-size:14px}\n.count{text-align:center;color:var(--text2);font-size:12px;margin-top:16px}\n</style>\n</head>\n<body>\n<div class=\"app\">\n  <div class=\"header\">\n    <div><h1>Today</h1><p class=\"subtitle\" id=\"date\"></p></div>\n    <button class=\"theme-toggle\" onclick=\"toggleTheme()\" id=\"themeBtn\">🌙</button>\n  </div>\n  <div class=\"input-row\">\n    <input type=\"text\" id=\"input\" placeholder=\"Add a new task...\"/>\n    <button onclick=\"addTodo()\">Add</button>\n  </div>\n  <div class=\"categories\" id=\"cats\"></div>\n  <div class=\"filters\">\n    <button class=\"filter-btn active\" onclick=\"setFilter('all',this)\">All</button>\n    <button class=\"filter-btn\" onclick=\"setFilter('active',this)\">Active</button>\n    <button class=\"filter-btn\" onclick=\"setFilter('done',this)\">Done</button>\n  </div>\n  <div class=\"todo-list\" id=\"list\"></div>\n  <p class=\"count\" id=\"count\"></p>\n</div>\n<script>\nconst CATS=[{name:'Personal',color:'#007aff',bg:'rgba(0,122,255,.1)'},{name:'Work',color:'#ff9500',bg:'rgba(255,149,0,.1)'},{name:'Health',color:'#34c759',bg:'rgba(52,199,89,.1)'},{name:'Learning',color:'#af52de',bg:'rgba(175,82,222,.1)'}];\nlet todos=[{id:1,text:'Review Q2 analytics report',done:false,cat:'Work'},{id:2,text:'Morning run — 5km',done:true,cat:'Health'},{id:3,text:'Read chapter 4 of DDIA',done:false,cat:'Learning'},{id:4,text:'Call dentist for appointment',done:false,cat:'Personal'},{id:5,text:'Prepare sprint demo slides',done:false,cat:'Work'}];\nlet filter='all',selCat=null,nextId=6,dark=false;\nfunction esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}\ndocument.getElementById('date').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});\ndocument.getElementById('input').addEventListener('keydown',e=>{if(e.key==='Enter')addTodo()});\nfunction toggleTheme(){dark=!dark;document.documentElement.setAttribute('data-theme',dark?'dark':'');document.getElementById('themeBtn').textContent=dark?'☀️':'🌙'}\nfunction renderCats(){document.getElementById('cats').innerHTML=CATS.map(c=>'<button class=\"cat-btn'+(selCat===c.name?' active':'')+'\" onclick=\"toggleCat(''+esc(c.name)+'')\">'+esc(c.name)+'</button>').join('')}\nfunction toggleCat(n){selCat=selCat===n?null:n;renderCats();render()}\nfunction setFilter(f,btn){filter=f;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render()}\nfunction addTodo(){const inp=document.getElementById('input');const t=inp.value.trim();if(!t)return;todos.unshift({id:nextId++,text:t,done:false,cat:selCat||'Personal'});inp.value='';render()}\nfunction toggle(id){const t=todos.find(t=>t.id===id);if(t){t.done=!t.done;render()}}\nfunction remove(id){const el=document.querySelector('[data-id=\"'+id+'\"]');if(el){el.classList.add('removing');setTimeout(()=>{todos=todos.filter(t=>t.id!==id);render()},250)}}\nfunction render(){let f=todos;if(filter==='active')f=todos.filter(t=>!t.done);if(filter==='done')f=todos.filter(t=>t.done);if(selCat)f=f.filter(t=>t.cat===selCat);const list=document.getElementById('list');if(!f.length){list.innerHTML='<div class=\"empty\">No tasks here yet</div>';document.getElementById('count').textContent='';return}list.innerHTML=f.map(t=>{const c=CATS.find(c=>c.name===t.cat)||CATS[0];return'<div class=\"todo-item'+(t.done?' done':'')+'\" data-id=\"'+t.id+'\"><div class=\"checkbox'+(t.done?' checked':'')+'\" onclick=\"toggle('+t.id+')\"></div><span class=\"todo-text\">'+esc(t.text)+'</span><span class=\"todo-cat\" style=\"color:'+esc(c.color)+';background:'+esc(c.bg)+'\">'+esc(t.cat)+'</span><button class=\"delete-btn\" onclick=\"remove('+t.id+')\">×</button></div>'}).join('');const a=todos.filter(t=>!t.done).length;document.getElementById('count').textContent=a+' task'+(a!==1?'s':'')+' remaining'}\nrenderCats();render();\n</script>\n</body>\n</html>"
+    },
+    {
+      "id": "td10",
+      "type": "assistant-message",
+      "delayMs": 500,
+      "content": "Done! There's now a moon/sun toggle in the top right corner. The dark theme uses CSS custom properties for a smooth transition — all colors update simultaneously with a 0.3s ease. The dark palette uses Apple's standard dark grays (#1c1c1e, #2c2c2e, #3a3a3c) for a native feel.",
+      "streamingSpeed": "normal"
+    }
+  ]
+}

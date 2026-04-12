@@ -1,0 +1,295 @@
+{
+  "id": "sample-cowork-build",
+  "title": "Cowork: Build Full-Stack App",
+  "description": "Claude Cowork autonomously builds a notes app with frontend and backend",
+  "productType": "claude-cowork",
+  "createdAt": "2026-04-11T00:00:00Z",
+  "updatedAt": "2026-04-11T00:00:00Z",
+  "metadata": {
+    "coworkConfig": {
+      "taskTitle": "Build a notes app",
+      "folderPath": "/Users/dev/notes-app",
+      "suggestions": [
+        "Build an app",
+        "Refactor code",
+        "Write tests",
+        "Review PR"
+      ]
+    }
+  },
+  "events": [
+    {
+      "id": "cwb1",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "Build a full-stack notes app with a React frontend and Express backend. Include markdown support, search, and a clean UI. Deploy-ready with Docker.",
+      "typingEffect": true
+    },
+    {
+      "id": "cwb2",
+      "type": "thinking",
+      "delayMs": 500,
+      "durationMs": 2000,
+      "label": "Planning full-stack architecture..."
+    },
+    {
+      "id": "cwb3",
+      "type": "assistant-message",
+      "delayMs": 300,
+      "content": "I'll build this as a monorepo with a React + Vite frontend and Express + SQLite backend. Let me scaffold the project, set up the API, build the UI, and containerize everything.",
+      "streamingSpeed": "fast"
+    },
+    {
+      "id": "cwb4",
+      "type": "cowork-progress",
+      "delayMs": 500,
+      "stepIndex": 0,
+      "stepLabel": "Scaffolding project structure",
+      "status": "running",
+      "detail": "Creating monorepo with client/ and server/ directories..."
+    },
+    {
+      "id": "cwb5",
+      "type": "tool-call",
+      "delayMs": 800,
+      "toolName": "Bash",
+      "toolInput": {
+        "command": "mkdir -p client/src/{components,hooks,lib} server/src/{routes,db} && npm init -y"
+      },
+      "description": "Creating monorepo structure",
+      "expandedByDefault": false
+    },
+    {
+      "id": "cwb6",
+      "type": "tool-result",
+      "delayMs": 500,
+      "toolCallId": "cwb5",
+      "output": "Created directories and package.json",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "cwb7",
+      "type": "cowork-progress",
+      "delayMs": 1500,
+      "stepIndex": 0,
+      "stepLabel": "Scaffolding project structure",
+      "status": "complete",
+      "detail": "Created 14 directories, initialized npm workspaces"
+    },
+    {
+      "id": "cwb8",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 1,
+      "stepLabel": "Building Express API",
+      "status": "running",
+      "detail": "Setting up routes, database, and middleware..."
+    },
+    {
+      "id": "cwb9",
+      "type": "tool-call",
+      "delayMs": 1000,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/notes-app/server/src/routes/notes.ts"
+      },
+      "description": "Creating notes CRUD routes",
+      "expandedByDefault": false
+    },
+    {
+      "id": "cwb10",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "cwb9",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "cwb11",
+      "type": "tool-call",
+      "delayMs": 400,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/notes-app/server/src/db/schema.ts"
+      },
+      "description": "Creating SQLite schema (notes: id, title, content, tags, timestamps)",
+      "expandedByDefault": false
+    },
+    {
+      "id": "cwb12",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "cwb11",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "cwb13",
+      "type": "cowork-progress",
+      "delayMs": 2500,
+      "stepIndex": 1,
+      "stepLabel": "Building Express API",
+      "status": "complete",
+      "detail": "Created 6 files: routes, database, middleware, server entry"
+    },
+    {
+      "id": "cwb14",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 2,
+      "stepLabel": "Building React frontend",
+      "status": "running",
+      "detail": "Creating components, hooks, and styling..."
+    },
+    {
+      "id": "cwb15",
+      "type": "tool-call",
+      "delayMs": 1200,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/notes-app/client/src/components/NoteEditor.tsx"
+      },
+      "description": "Creating markdown note editor with live preview",
+      "expandedByDefault": false
+    },
+    {
+      "id": "cwb16",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "cwb15",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "cwb17",
+      "type": "tool-call",
+      "delayMs": 400,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/notes-app/client/src/components/NoteList.tsx"
+      },
+      "description": "Creating searchable note list sidebar",
+      "expandedByDefault": false
+    },
+    {
+      "id": "cwb18",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "cwb17",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "cwb19",
+      "type": "cowork-progress",
+      "delayMs": 3000,
+      "stepIndex": 2,
+      "stepLabel": "Building React frontend",
+      "status": "complete",
+      "detail": "Created 8 components, 3 hooks, Tailwind config"
+    },
+    {
+      "id": "cwb20",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 3,
+      "stepLabel": "Adding Docker configuration",
+      "status": "running",
+      "detail": "Creating multi-stage Dockerfile and docker-compose..."
+    },
+    {
+      "id": "cwb21",
+      "type": "tool-call",
+      "delayMs": 800,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/notes-app/Dockerfile"
+      },
+      "description": "Creating multi-stage Dockerfile",
+      "expandedByDefault": false
+    },
+    {
+      "id": "cwb22",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "cwb21",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "cwb23",
+      "type": "cowork-progress",
+      "delayMs": 1500,
+      "stepIndex": 3,
+      "stepLabel": "Adding Docker configuration",
+      "status": "complete",
+      "detail": "Created Dockerfile, docker-compose.yml, .dockerignore"
+    },
+    {
+      "id": "cwb24",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 4,
+      "stepLabel": "Running tests and verification",
+      "status": "running",
+      "detail": "Type-checking and running test suite..."
+    },
+    {
+      "id": "cwb25",
+      "type": "tool-call",
+      "delayMs": 1500,
+      "toolName": "Bash",
+      "toolInput": {
+        "command": "npm run typecheck && npm test 2>&1"
+      },
+      "description": "Running type-check and tests",
+      "expandedByDefault": true
+    },
+    {
+      "id": "cwb26",
+      "type": "tool-result",
+      "delayMs": 2000,
+      "toolCallId": "cwb25",
+      "output": "$ tsc --noEmit\n✔ No type errors found\n\n$ vitest run\n ✓ server/tests/notes.test.ts (5 tests) 98ms\n ✓ client/tests/NoteEditor.test.tsx (3 tests) 204ms\n\n Test Files  2 passed (2)\n      Tests  8 passed (8)\n   Duration  1.87s",
+      "isError": false,
+      "isCollapsed": false
+    },
+    {
+      "id": "cwb27",
+      "type": "cowork-progress",
+      "delayMs": 1000,
+      "stepIndex": 4,
+      "stepLabel": "Running tests and verification",
+      "status": "complete",
+      "detail": "8 tests passed, 0 type errors"
+    },
+    {
+      "id": "cwb28",
+      "type": "cowork-notification",
+      "delayMs": 500,
+      "notificationType": "finished",
+      "message": "Full-stack notes app is ready! Created 24 files across client and server. All tests pass. Run `docker compose up` to start."
+    },
+    {
+      "id": "cwb29",
+      "type": "assistant-message",
+      "delayMs": 600,
+      "content": "Here's a preview of the notes app running locally. It has a sidebar with search, a markdown editor with live preview, and tag support. The UI is clean and responsive.",
+      "streamingSpeed": "normal"
+    },
+    {
+      "id": "cwb30",
+      "type": "artifact",
+      "delayMs": 800,
+      "artifactType": "html",
+      "title": "Notes App Preview",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\"/>\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/>\n<title>Notes</title>\n<style>\n*{margin:0;padding:0;box-sizing:border-box}\nbody{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#1a1a2e;display:flex;height:100vh;overflow:hidden}\n/* Sidebar */\n.sidebar{width:280px;background:#fff;border-right:1px solid #e5e7eb;display:flex;flex-direction:column;flex-shrink:0}\n.sidebar-header{padding:16px 16px 12px;border-bottom:1px solid #e5e7eb}\n.sidebar-header h2{font-size:15px;font-weight:700;color:#111;margin-bottom:10px;display:flex;align-items:center;gap:8px}\n.sidebar-header h2 svg{width:18px;height:18px}\n.search-box{width:100%;padding:7px 10px 7px 32px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;outline:none;background:#f9fafb url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E\") 10px center no-repeat}\n.search-box:focus{border-color:#6366f1;box-shadow:0 0 0 2px rgba(99,102,241,.12)}\n.note-list{flex:1;overflow-y:auto;padding:6px 8px}\n.note-item{padding:10px 12px;border-radius:8px;cursor:pointer;margin-bottom:2px;transition:background .15s}\n.note-item:hover{background:#f3f4f6}\n.note-item.active{background:#eef2ff;border:1px solid #c7d2fe}\n.note-item h3{font-size:13px;font-weight:600;color:#111;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.note-item p{font-size:11px;color:#6b7280;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.note-item .meta{display:flex;align-items:center;gap:6px;margin-top:4px}\n.note-item .meta time{font-size:10px;color:#9ca3af}\n.tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:500}\n.tag-blue{background:#dbeafe;color:#2563eb}\n.tag-green{background:#dcfce7;color:#16a34a}\n.tag-purple{background:#ede9fe;color:#7c3aed}\n.tag-amber{background:#fef3c7;color:#d97706}\n.new-btn{margin:8px;padding:8px;border:1px dashed #d1d5db;border-radius:8px;background:none;cursor:pointer;font-size:12px;color:#6b7280;transition:all .15s}\n.new-btn:hover{border-color:#6366f1;color:#6366f1;background:#eef2ff}\n/* Main */\n.main{flex:1;display:flex;flex-direction:column;min-width:0}\n.toolbar{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:1px solid #e5e7eb;background:#fff}\n.toolbar-left{display:flex;align-items:center;gap:8px}\n.toolbar input{font-size:16px;font-weight:600;border:none;outline:none;background:transparent;color:#111}\n.toolbar-right{display:flex;align-items:center;gap:6px}\n.toolbar-right button{padding:5px 10px;border:1px solid #e5e7eb;border-radius:6px;background:#fff;font-size:12px;cursor:pointer;color:#374151;transition:all .15s}\n.toolbar-right button:hover{background:#f3f4f6}\n.toolbar-right button.active{background:#eef2ff;border-color:#c7d2fe;color:#4f46e5}\n.editor-area{flex:1;display:flex;overflow:hidden}\n.editor-pane{flex:1;padding:20px 24px;overflow-y:auto;font-family:'SF Mono',Menlo,monospace;font-size:13px;line-height:1.7;color:#374151;border:none;outline:none;resize:none;background:#fff}\n.preview-pane{flex:1;padding:20px 24px;overflow-y:auto;border-left:1px solid #e5e7eb;background:#fafafa}\n.preview-pane h1{font-size:22px;font-weight:700;margin:0 0 12px;color:#111}\n.preview-pane h2{font-size:17px;font-weight:600;margin:16px 0 8px;color:#1a1a2e}\n.preview-pane p{font-size:14px;line-height:1.7;color:#374151;margin-bottom:10px}\n.preview-pane code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px;color:#6366f1;font-family:'SF Mono',Menlo,monospace}\n.preview-pane pre{background:#1e293b;color:#e2e8f0;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:12px 0;font-size:12px;line-height:1.6}\n.preview-pane ul,.preview-pane ol{padding-left:20px;margin-bottom:10px}\n.preview-pane li{font-size:14px;line-height:1.7;color:#374151}\n.preview-pane blockquote{border-left:3px solid #c7d2fe;padding:8px 16px;margin:12px 0;background:#f5f3ff;border-radius:0 6px 6px 0;color:#4338ca;font-style:italic}\n.status-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 20px;border-top:1px solid #e5e7eb;background:#fff;font-size:11px;color:#9ca3af}\n</style>\n</head>\n<body>\n<div class=\"sidebar\">\n  <div class=\"sidebar-header\">\n    <h2><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 20h9\"/><path d=\"M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.855z\"/></svg> Notes</h2>\n    <input class=\"search-box\" placeholder=\"Search notes...\" id=\"search\"/>\n  </div>\n  <div class=\"note-list\" id=\"noteList\"></div>\n  <button class=\"new-btn\" onclick=\"addNote()\">+ New note</button>\n</div>\n<div class=\"main\">\n  <div class=\"toolbar\">\n    <div class=\"toolbar-left\">\n      <input id=\"titleInput\" value=\"Getting Started\" spellcheck=\"false\"/>\n    </div>\n    <div class=\"toolbar-right\">\n      <button id=\"btnWrite\" class=\"active\" onclick=\"setMode('write')\">Write</button>\n      <button id=\"btnPreview\" onclick=\"setMode('preview')\">Preview</button>\n      <button id=\"btnSplit\" onclick=\"setMode('split')\">Split</button>\n    </div>\n  </div>\n  <div class=\"editor-area\">\n    <textarea class=\"editor-pane\" id=\"editor\" spellcheck=\"false\"></textarea>\n    <div class=\"preview-pane\" id=\"preview\" style=\"display:none\"></div>\n  </div>\n  <div class=\"status-bar\">\n    <span id=\"wordCount\">0 words</span>\n    <span id=\"savedAt\">Saved just now</span>\n  </div>\n</div>\n<script>\nfunction esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}\nconst NOTES=[\n  {id:1,title:'Getting Started',content:'# Getting Started\\n\\nWelcome to **Notes** — a clean, fast note-taking app with markdown support.\\n\\n## Features\\n\\n- **Markdown editor** with live preview\\n- **Search** across all your notes instantly\\n- **Tags** to organise by topic\\n- **Auto-save** so you never lose work\\n\\n## Keyboard Shortcuts\\n\\n- `Cmd+N` — New note\\n- `Cmd+S` — Save\\n- `Cmd+P` — Toggle preview\\n\\n> Start writing — your ideas deserve a good home.',tags:['guide'],updated:'2026-04-11T10:30:00Z'},\n  {id:2,title:'API Design Notes',content:'# API Design\\n\\n## REST Endpoints\\n\\n```\\nGET    /api/notes          List all notes\\nPOST   /api/notes          Create note\\nGET    /api/notes/:id       Get note\\nPUT    /api/notes/:id       Update note\\nDELETE /api/notes/:id       Delete note\\n```\\n\\n## Schema\\n\\nEach note has:\\n- `id` — UUID primary key\\n- `title` — string, max 200 chars\\n- `content` — markdown text\\n- `tags` — array of strings\\n- `createdAt` / `updatedAt` — ISO timestamps\\n\\n## Auth\\n\\nUsing JWT tokens with refresh rotation. Tokens expire after 15 minutes.',tags:['api','backend'],updated:'2026-04-11T09:15:00Z'},\n  {id:3,title:'Sprint Planning',content:'# Sprint 12 Planning\\n\\n## Goals\\n\\n1. Ship notes search (full-text with SQLite FTS5)\\n2. Add tag filtering in sidebar\\n3. Dark mode toggle\\n4. Fix mobile layout issues\\n\\n## Estimates\\n\\n| Task | Points |\\n|------|--------|\\n| Search | 5 |\\n| Tags | 3 |\\n| Dark mode | 2 |\\n| Mobile fix | 3 |\\n\\n**Total: 13 points** — fits in the sprint.',tags:['planning'],updated:'2026-04-10T16:45:00Z'},\n  {id:4,title:'Docker Setup',content:'# Docker Configuration\\n\\n## Development\\n\\n```bash\\ndocker compose up --build\\n```\\n\\nThis starts:\\n- **Frontend** on port 5173 (Vite dev server)\\n- **Backend** on port 3001 (Express + SQLite)\\n- **Nginx** reverse proxy on port 80\\n\\n## Production\\n\\n```bash\\ndocker compose -f docker-compose.prod.yml up -d\\n```\\n\\nUses multi-stage build for smaller images (~45MB final).',tags:['devops'],updated:'2026-04-10T14:20:00Z'},\n  {id:5,title:'Meeting Notes — Design Review',content:'# Design Review — Apr 10\\n\\n## Attendees\\nAlice, Bob, Charlie\\n\\n## Decisions\\n\\n- Sidebar width: 280px (not 320 — too wide on laptops)\\n- Editor font: SF Mono 13px\\n- Keep the split view, users love it\\n- Add markdown toolbar for mobile users\\n\\n## Action Items\\n\\n- [ ] Alice: Update Figma with new sidebar width\\n- [ ] Bob: Implement markdown toolbar\\n- [ ] Charlie: User test the split view on iPad',tags:['meeting','design'],updated:'2026-04-10T11:00:00Z'}\n];\nconst TAG_COLORS={guide:'blue',api:'purple',backend:'purple',planning:'amber',devops:'green',meeting:'blue',design:'green'};\nlet notes=[...NOTES],activeId=1,mode='write';\n\nfunction render(){\n  const q=document.getElementById('search').value.toLowerCase();\n  const filtered=notes.filter(n=>n.title.toLowerCase().includes(q)||n.content.toLowerCase().includes(q));\n  document.getElementById('noteList').innerHTML=filtered.map(n=>{\n    const preview=n.content.replace(/^#+ /gm,'').replace(/[*_`\\[\\]]/g,'').slice(0,60);\n    const tags=n.tags.map(t=>'<span class=\"tag tag-'+(TAG_COLORS[t]||'blue')+'\">'+esc(t)+'</span>').join(' ');\n    const time=new Date(n.updated).toLocaleDateString('en-GB',{day:'numeric',month:'short'});\n    return '<div class=\"note-item'+(n.id===activeId?' active':'')+'\" onclick=\"selectNote('+n.id+')\"><h3>'+esc(n.title)+'</h3><p>'+esc(preview)+'</p><div class=\"meta\">'+tags+' <time>'+time+'</time></div></div>'\n  }).join('');\n  const note=notes.find(n=>n.id===activeId);\n  if(note){\n    document.getElementById('titleInput').value=note.title;\n    document.getElementById('editor').value=note.content.replace(/\\\\n/g,'\\n');\n    renderPreview();\n    const words=note.content.split(/\\s+/).filter(Boolean).length;\n    document.getElementById('wordCount').textContent=words+' words';\n  }\n}\n\nfunction renderPreview(){\n  const note=notes.find(n=>n.id===activeId);\n  if(!note)return;\n  let md=note.content.replace(/\\\\n/g,'\\n');\n  let html=md\n    .replace(/```([\\s\\S]*?)```/g,(m,c)=>'<pre>'+esc(c.trim())+'</pre>')\n    .replace(/`([^`]+)`/g,(m,c)=>'<code>'+esc(c)+'</code>')\n    .replace(/^### (.+)$/gm,'<h3>$1</h3>')\n    .replace(/^## (.+)$/gm,'<h2>$1</h2>')\n    .replace(/^# (.+)$/gm,'<h1>$1</h1>')\n    .replace(/\\*\\*(.+?)\\*\\*/g,'<strong>$1</strong>')\n    .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>')\n    .replace(/^- \\[x\\] (.+)$/gm,'<li>&#9745; $1</li>')\n    .replace(/^- \\[ \\] (.+)$/gm,'<li>&#9744; $1</li>')\n    .replace(/^- (.+)$/gm,'<li>$1</li>')\n    .replace(/^\\d+\\. (.+)$/gm,'<li>$1</li>')\n    .replace(/(<li>.*<\\/li>)/s,function(m){return '<ul>'+m+'</ul>'})\n    .replace(/\\n{2,}/g,'</p><p>')\n    .replace(/\\n/g,'<br>');\n  html='<p>'+html+'</p>';\n  document.getElementById('preview').innerHTML=html;\n}\n\nfunction selectNote(id){activeId=id;render()}\nfunction addNote(){const n={id:Date.now(),title:'Untitled',content:'',tags:[],updated:new Date().toISOString()};notes.unshift(n);activeId=n.id;render();document.getElementById('titleInput').focus()}\n\nfunction setMode(m){\n  mode=m;\n  const ed=document.getElementById('editor'),pv=document.getElementById('preview');\n  document.querySelectorAll('.toolbar-right button').forEach(b=>b.classList.remove('active'));\n  if(m==='write'){ed.style.display='block';pv.style.display='none';document.getElementById('btnWrite').classList.add('active')}\n  else if(m==='preview'){ed.style.display='none';pv.style.display='block';document.getElementById('btnPreview').classList.add('active');renderPreview()}\n  else{ed.style.display='block';pv.style.display='block';document.getElementById('btnSplit').classList.add('active');renderPreview()}\n}\n\ndocument.getElementById('editor').addEventListener('input',function(){\n  const note=notes.find(n=>n.id===activeId);\n  if(note){note.content=this.value;note.updated=new Date().toISOString();document.getElementById('savedAt').textContent='Saved just now';if(mode!=='write')renderPreview();const words=this.value.split(/\\s+/).filter(Boolean).length;document.getElementById('wordCount').textContent=words+' words'}\n});\ndocument.getElementById('titleInput').addEventListener('input',function(){\n  const note=notes.find(n=>n.id===activeId);\n  if(note){note.title=this.value;render()}\n});\ndocument.getElementById('search').addEventListener('input',render);\nrender();setMode('split');\n</script>\n</body>\n</html>"
+    }
+  ]
+}

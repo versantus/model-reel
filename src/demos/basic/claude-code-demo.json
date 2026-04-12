@@ -1,0 +1,98 @@
+{
+  "id": "sample-code-1",
+  "title": "Claude Code Demo",
+  "description": "A sample Claude Code session showing file editing",
+  "productType": "claude-code",
+  "createdAt": "2026-04-11T00:00:00Z",
+  "updatedAt": "2026-04-11T00:00:00Z",
+  "metadata": {
+    "codeConfig": {
+      "modelName": "claude-opus-4-6",
+      "gitBranch": "feature/auth",
+      "workingDirectory": "/Users/dev/myproject",
+      "initialCost": "$0.00",
+      "initialContext": 3
+    }
+  },
+  "events": [
+    {
+      "id": "e1",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "Can you add input validation to the login form?",
+      "typingEffect": true
+    },
+    {
+      "id": "e2",
+      "type": "thinking",
+      "delayMs": 300,
+      "durationMs": 1200,
+      "label": "Analyzing codebase..."
+    },
+    {
+      "id": "e3",
+      "type": "tool-call",
+      "delayMs": 200,
+      "toolName": "Read",
+      "toolInput": {
+        "file_path": "/Users/dev/myproject/src/components/LoginForm.tsx"
+      },
+      "description": "Reading LoginForm.tsx",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e4",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "e3",
+      "output": "import { useState } from 'react'\n\nexport function LoginForm() {\n  const [email, setEmail] = useState('')\n  const [password, setPassword] = useState('')\n\n  const handleSubmit = (e: React.FormEvent) => {\n    e.preventDefault()\n    // TODO: add validation\n    fetch('/api/login', {\n      method: 'POST',\n      body: JSON.stringify({ email, password }),\n    })\n  }\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <input value={email} onChange={e => setEmail(e.target.value)} />\n      <input type=\"password\" value={password} onChange={e => setPassword(e.target.value)} />\n      <button type=\"submit\">Login</button>\n    </form>\n  )\n}",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e5",
+      "type": "assistant-message",
+      "delayMs": 300,
+      "content": "I can see the LoginForm component needs validation. Let me add email format validation and password length requirements.",
+      "streamingSpeed": "normal"
+    },
+    {
+      "id": "e6",
+      "type": "tool-call",
+      "delayMs": 400,
+      "toolName": "Edit",
+      "toolInput": {
+        "file_path": "/Users/dev/myproject/src/components/LoginForm.tsx",
+        "old_string": "    // TODO: add validation\n    fetch",
+        "new_string": "    const errors: string[] = []\n    if (!email.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/)) {\n      errors.push('Invalid email format')\n    }\n    if (password.length < 8) {\n      errors.push('Password must be at least 8 characters')\n    }\n    if (errors.length > 0) {\n      setValidationErrors(errors)\n      return\n    }\n    fetch"
+      },
+      "description": "Adding validation logic to LoginForm.tsx",
+      "expandedByDefault": true
+    },
+    {
+      "id": "e7",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "e6",
+      "output": "File edited successfully.",
+      "isError": false,
+      "isCollapsed": false
+    },
+    {
+      "id": "e8",
+      "type": "status-bar-update",
+      "delayMs": 0,
+      "updates": {
+        "cost": "$0.03",
+        "contextPercent": 8
+      }
+    },
+    {
+      "id": "e9",
+      "type": "assistant-message",
+      "delayMs": 300,
+      "content": "I've added input validation to the login form:\n\n- **Email validation** using a regex pattern to check for valid email format\n- **Password validation** requiring at least 8 characters\n- Validation errors are collected and displayed before the API call is made\n\nYou'll also need to add a `validationErrors` state variable and render the errors in the form. Would you like me to add that as well?",
+      "streamingSpeed": "normal"
+    }
+  ]
+}

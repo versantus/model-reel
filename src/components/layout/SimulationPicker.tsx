@@ -4,18 +4,10 @@ import { nanoid } from 'nanoid'
 import { useSimulationStore } from '../../store/simulation-store'
 import { usePlaybackStore } from '../../store/playback-store'
 import { useEditorStore } from '../../store/editor-store'
-import { sampleClaudeCodeSimulation, sampleClaudeChatSimulation, sampleCoworkSimulation } from '../../utils/sample-data'
-import { sampleDocumentSimulation } from '../../utils/sample-document-demo'
+import { allDemos } from '../../demos/demo-loader'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
 import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
-
-const demos = [
-  { label: 'Claude Code Demo', sim: sampleClaudeCodeSimulation, view: 'claude-code' as const },
-  { label: 'Claude Chat Demo', sim: sampleClaudeChatSimulation, view: 'claude-chat' as const },
-  { label: 'Cowork Demo', sim: sampleCoworkSimulation, view: 'claude-cowork' as const },
-  { label: 'Document Generation', sim: sampleDocumentSimulation, view: 'claude-chat' as const },
-]
 
 export function SimulationPicker() {
   const [open, setOpen] = useState(false)
@@ -87,7 +79,7 @@ export function SimulationPicker() {
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
           <div className="absolute bottom-full right-0 mb-2 w-56 bg-white border border-claude-border rounded-xl shadow-xl z-50 overflow-hidden">
             <div className="px-3 py-2 text-[11px] text-claude-text-tertiary uppercase tracking-wider font-medium">Simulations</div>
-            {demos.map((d) => (
+            {allDemos.map((d) => (
               <button
                 key={d.label}
                 onClick={() => handleLoad(d.sim, d.view)}
