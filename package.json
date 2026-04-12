@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "Interactive simulator for creating realistic demos of AI products",
   "license": "MIT",
+  "author": "Nik Roberts <nik@versantus.co.uk> (https://www.versantus.co.uk)",
   "keywords": [
     "model-reel",
     "simulator",
