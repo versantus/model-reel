@@ -1,4 +1,8 @@
+import { Play, Download, X } from 'lucide-react'
 import { useSimulationStore } from '../../store/simulation-store'
+import { useEditorStore } from '../../store/editor-store'
+import { usePlayback } from '../../hooks/usePlayback'
+import { downloadSimulation } from '../../engine/serialization'
 import type { Simulation, ProductType } from '../../types/simulation'
 
 interface SimulationMetadataProps {
@@ -7,9 +11,23 @@ interface SimulationMetadataProps {
 
 export function SimulationMetadata({ simulation }: SimulationMetadataProps) {
   const loadSimulation = useSimulationStore((s) => s.loadSimulation)
+  const resetPlayback = useSimulationStore((s) => s.resetPlayback)
+  const setEditorVisible = useEditorStore((s) => s.setEditorVisible)
+  const { play, stop } = usePlayback()
 
   const update = (updates: Partial<Simulation>) => {
     loadSimulation({ ...simulation, ...updates })
+  }
+
+  const handlePreview = () => {
+    stop()
+    resetPlayback()
+    setEditorVisible(false)
+    setTimeout(() => play(), 50)
+  }
+
+  const handleClose = () => {
+    setEditorVisible(false)
   }
 
   return (
@@ -31,6 +49,34 @@ export function SimulationMetadata({ simulation }: SimulationMetadataProps) {
         <option value="claude-cowork">Cowork</option>
       </select>
       <span className="text-[12px] text-claude-text-tertiary">{simulation.events.length} events</span>
+
+      <div className="flex-1" />
+
+      <div className="flex items-center gap-1.5">
+        <button
+          onClick={() => downloadSimulation(simulation)}
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium text-claude-text-secondary hover:bg-claude-sidebar-hover border border-claude-border-light"
+          title="Export as JSON"
+        >
+          <Download className="w-3 h-3" />
+          Export
+        </button>
+        <button
+          onClick={handlePreview}
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium text-white bg-claude-accent hover:bg-claude-accent/90"
+          title="Preview simulation"
+        >
+          <Play className="w-3 h-3" />
+          Preview
+        </button>
+        <button
+          onClick={handleClose}
+          className="p-1 rounded-lg text-claude-text-tertiary hover:bg-claude-sidebar-hover hover:text-claude-text"
+          title="Close editor"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   )
 }
