@@ -32,7 +32,10 @@ React 19, TypeScript 6, Vite 8, Tailwind CSS v4, Zustand, Immer, react-markdown,
 - Built by: Versantus Ltd (https://www.versantus.ai), Oxford, UK
 - Author: Nik Roberts
 
-## llms-full.txt
+## Simulation authoring reference
 
-For the full project documentation including event types, JSON format, and API reference, see the README at:
-https://github.com/versantus/model-reel/blob/main/README.md
+For the complete simulation JSON schema, all event types, timing rules, and examples:
+https://model-reel.versantus.ai/llms-full.md
+
+Or see docs/llms-full.md in the repository:
+https://github.com/versantus/model-reel/blob/main/docs/llms-full.md
