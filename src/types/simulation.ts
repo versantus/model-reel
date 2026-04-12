@@ -133,7 +133,7 @@ export interface StatusBarUpdateEvent extends BaseEvent {
 
 export interface ArtifactEvent extends BaseEvent {
   type: 'artifact'
-  artifactType: 'code' | 'html' | 'react' | 'markdown' | 'svg'
+  artifactType: 'code' | 'html' | 'react' | 'markdown' | 'svg' | 'word' | 'pdf'
   title: string
   content: string
   language?: string

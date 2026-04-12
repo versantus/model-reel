@@ -1,5 +1,6 @@
 import { useSimulationStore } from '../../store/simulation-store'
 import { useChromeStore } from '../../store/chrome-store'
+import { useDocumentStore } from '../../store/document-store'
 import { useAutoScroll } from '../../hooks/useAutoScroll'
 import { CoworkLeftSidebar } from './CoworkLeftSidebar'
 import { CoworkRightSidebar } from './CoworkRightSidebar'
@@ -114,22 +115,35 @@ function CoworkLanding() {
 
 function CoworkArtifactCard({ event }: { event: ArtifactEvent }) {
   const openChrome = useChromeStore((s) => s.open)
+  const openDocument = useDocumentStore((s) => s.open)
+  const isDoc = event.artifactType === 'word' || event.artifactType === 'pdf'
+  const handleOpen = () => isDoc ? openDocument(event) : openChrome(event)
+
   return (
     <div className="border border-claude-card-border rounded-xl p-4 bg-claude-card-bg my-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-claude-bg flex items-center justify-center text-claude-text-tertiary">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+            {event.artifactType === 'word' ? (
+              <svg className="w-5 h-5" viewBox="0 0 16 16" fill="none"><rect width="16" height="16" rx="2" fill="#2B579A"/><text x="3" y="12" fill="white" fontSize="10" fontWeight="bold" fontFamily="Arial">W</text></svg>
+            ) : event.artifactType === 'pdf' ? (
+              <svg className="w-5 h-5" viewBox="0 0 16 16" fill="none"><rect width="16" height="16" rx="2" fill="#D93025"/><text x="1" y="12" fill="white" fontSize="8" fontWeight="bold" fontFamily="Arial">PDF</text></svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+            )}
           </div>
           <div>
             <p className="text-[13px] font-medium text-claude-text">{event.title}</p>
             <p className="text-[12px] text-claude-text-tertiary">
-              {event.artifactType === 'html' ? 'HTML Document' : event.artifactType.toUpperCase()}
+              {event.artifactType === 'word' ? 'Document · DOCX'
+                : event.artifactType === 'pdf' ? 'Document · PDF'
+                : event.artifactType === 'html' ? 'HTML Document'
+                : event.artifactType.toUpperCase()}
             </p>
           </div>
         </div>
         <button
-          onClick={() => openChrome(event)}
+          onClick={handleOpen}
           className="flex items-center gap-1.5 px-3 py-1.5 text-[12px] text-claude-text-secondary bg-claude-bg border border-claude-border rounded-lg hover:bg-claude-sidebar-hover"
         >
           Open Preview
