@@ -66,7 +66,7 @@ Would you like me to write more or adjust the tone?`,
       id: 'e5',
       type: 'user-message',
       delayMs: 0,
-      content: 'I run an outdoor experience business called Fat Squirrel Outdoor. We do axe throwing, campfire cooking, and woodland experiences in the Cotswolds. Our customers are groups of friends, stag and hen dos, and corporate teams looking for something different. The vibe is rustic, fun, and a bit adventurous. Write me 3 Instagram captions for spring — warm, not salesy, like you\'re telling a mate about a brilliant day out.',
+      content: 'I run an outdoor experience business called Fat Squirrel Outdoor. We do axe throwing, campfire cooking, and woodland experiences in the Cotswolds. Our customers are corporate teams, groups of friends, and private parties looking to get out of the office and into the woods. The vibe is relaxed, social, and a bit adventurous — think axes, fire, conversation, and good food. Write me 3 Instagram captions for spring — warm, not salesy, like you\'re telling a mate about a brilliant day out.',
       typingEffect: true,
     },
     {
@@ -84,21 +84,21 @@ Would you like me to write more or adjust the tone?`,
 **1.**
 Threw an axe. Hit the target. Felt like an absolute legend. 🪓
 
-Axe throwing is one of those things you don't realise you're good at until you try it. And when the axe sticks? Proper satisfying.
+That moment when the axe sticks and your whole team cheers like you've won the league. It's stupidly satisfying.
 
 Spring sessions are booking up — grab your mates and come have a go. 🔥
 
 **2.**
-Three things that improve literally any weekend: axes, fire, and not looking at your phone. 🏕️
+The best team days don't involve a PowerPoint. They involve axes, fire, and someone who swears they've done this before (they haven't). 🏕️
 
-We sorted the first two. The third one's on you.
+We supply the wood, the axes, and the campfire. You bring the chat.
 
 **3.**
 Someone at the campfire last week said "I haven't laughed this hard in ages" and honestly? Same. Every single time.
 
-There's something about standing in a Cotswold woodland with an axe in one hand and a cup of something warm in the other that just works. No screens. No agenda. Just a couple of hours of proper fun.
+I don't know what it is about holding an axe in a woodland that makes people loosen up. Maybe it's the fire. Maybe it's the fresh air. Maybe it's just nice to do something that doesn't involve a screen for a few hours.
 
-Tag someone who needs this. 🪓🔥`,
+Spring weekends are filling up — link in bio if you fancy it. 🪓🔥`,
       streamingSpeed: 'normal',
     },
     {
@@ -112,7 +112,7 @@ Tag someone who needs this. 🪓🔥`,
       id: 'e9',
       type: 'user-message',
       delayMs: 0,
-      content: 'A customer just sent this enquiry: "Hi, we\'re looking at booking a stag do activity for 12 people on 14th June. We like the look of the axe throwing and campfire combo. A couple of questions — can we bring our own drinks? And is there any shelter if the weather\'s rubbish? Also one of our group has a dodgy shoulder — is that going to be a problem?" — Write a warm, helpful reply under 150 words.',
+      content: 'A customer just sent this enquiry: "Hi, we\'re looking at booking a team day for 16 people on 14th June. We like the look of the axe throwing and campfire combo. A couple of questions — can we bring our own drinks? And is there any shelter if the weather\'s rubbish? Also one of our group has a dodgy shoulder — is that going to be a problem?" — Write a warm, helpful reply under 150 words.',
       typingEffect: true,
     },
     {
@@ -127,9 +127,9 @@ Tag someone who needs this. 🪓🔥`,
       delayMs: 200,
       content: `Hi there,
 
-14th June for 12 — great choice. The axe throwing and campfire combo is our most popular stag do package, and for good reason.
+16 on 14th June — great choice. The axe throwing and campfire combo is our most popular corporate package, and for good reason.
 
-Yes, you can bring your own drinks. We just ask that axe throwing happens before the serious drinking starts (safety first, fun second).
+Yes, you can bring your own drinks. We just ask that the axe throwing happens before the serious drinking starts (safety first, fun second).
 
 We've got a covered area right next to the campfire, so if the weather's being British, you'll still be warm and dry.
 
@@ -176,41 +176,37 @@ Fat Squirrel Outdoor 🪓`,
 **Original 1:**
 > Threw an axe. Hit the target. Felt like an absolute legend. 🪓
 >
-> Axe throwing is one of those things you don't realise you're good at until you try it. And when the axe sticks? Proper satisfying.
+> That moment when the axe sticks and your whole team cheers like you've won the league. It's stupidly satisfying.
 >
 > Spring sessions are booking up — grab your mates and come have a go. 🔥
 
-**Issues:** None really. This one's genuine — short sentences, personal voice, no AI tells. The emoji use is natural. Keep it.
+**Issues:** None really. Short, personal, genuine voice. The emoji use is natural. Keep it.
 
 **Original 2:**
-> Three things that improve literally any weekend: axes, fire, and not looking at your phone. 🏕️
+> The best team days don't involve a PowerPoint. They involve axes, fire, and someone who swears they've done this before (they haven't). 🏕️
 >
-> We sorted the first two. The third one's on you.
+> We supply the wood, the axes, and the campfire. You bring the chat.
 
-**Issues:** Mild rule-of-three ("axes, fire, and not looking at your phone") but it works because it's a joke with a punchline, not a listicle. Keep it.
+**Issues:** The opener is strong and genuinely funny. "We supply X, you bring Y" is a bit of a formula but it works because it's short and the contrast is good. Keep it.
 
 **Original 3:**
 > Someone at the campfire last week said "I haven't laughed this hard in ages" and honestly? Same. Every single time.
 >
-> There's something about standing in a Cotswold woodland with an axe in one hand and a cup of something warm in the other that just works. No screens. No agenda. Just a couple of hours of proper fun.
->
-> Tag someone who needs this. 🪓🔥
-
-**Issues:** "There's something about... that just works" is a slight AI tell. "Proper fun" is fine but paired with the structured three-beat description (axe + cup + woodland) it reads a bit composed. And "Tag someone who needs this" is a classic AI CTA pattern.
-
-**Rewrite of 3:**
-
-> Someone at the campfire last week said "I haven't laughed this hard in ages" and honestly? Same.
->
 > I don't know what it is about holding an axe in a woodland that makes people loosen up. Maybe it's the fire. Maybe it's the fresh air. Maybe it's just nice to do something that doesn't involve a screen for a few hours.
 >
-> Spring weekends are filling up — link in bio if you fancy it.
+> Spring weekends are filling up — link in bio if you fancy it. 🪓🔥
 
-**Summary of changes:**
-- Removed "There's something about X that just works" (significance inflation)
-- Broke the composed three-beat into a more natural "maybe it's X. maybe it's Y" pattern
-- Replaced "Tag someone who needs this" (classic AI CTA) with a casual, non-pushy close
-- Kept the genuine voice and personal detail`,
+**Issues:** This one's mostly clean. The "maybe it's X. maybe it's Y. maybe it's Z" pattern is a natural way to express uncertainty rather than a forced rule-of-three. The CTA "link in bio if you fancy it" is casual and not pushy. This is already pretty good. Keep it.
+
+**Overall verdict:** These captions are already pretty human-sounding. The main AI tell across all three is that they're slightly too polished — every caption ends on a CTA and has perfect structure. Real social media posts are a bit more ragged. Maybe one caption doesn't have a CTA at all. Maybe one ends mid-thought.
+
+**Quick fix:** Remove the CTA from caption 1 and let it just end on the feeling:
+
+> Threw an axe. Hit the target. Felt like an absolute legend. 🪓
+>
+> That moment when the axe sticks and your whole team cheers like you've won the league.
+
+Done. Feels less like content marketing now.`,
       streamingSpeed: 'normal',
     },
     {
