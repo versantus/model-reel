@@ -54,7 +54,7 @@ export const sampleDocumentSimulation: Simulation = {
 
 ## Executive Summary
 
-Q1 2026 was a strong quarter. Monthly active users reached 12,000, revenue grew 34% quarter-over-quarter to $480K, and customer churn fell to 2.1% — well below the 3% industry benchmark.
+Q1 2026 was a strong quarter. Monthly active users reached 12,000, revenue grew 34% quarter-over-quarter to $480K, and customer churn fell to 2.1%, well below the 3% industry benchmark.
 
 These results reflect continued product-market fit, improved onboarding flows, and the pricing changes introduced in late Q4.
 
@@ -78,15 +78,7 @@ These results reflect continued product-market fit, improved onboarding flows, a
 
 The Enterprise tier saw the highest growth at 52% QoQ, driven by three new contracts signed in February. The Professional tier grew 28%, while Starter remained flat.
 
----
-
-## User Growth
-
-New user sign-ups increased 41% to 4,800 in Q1. Organic search and referral channels drove 63% of new registrations, reducing our dependence on paid acquisition.
-
-The 30-day activation rate improved from 38% to 47% following the onboarding redesign shipped in January.
-
----
+---PAGE---
 
 ## Churn Analysis
 

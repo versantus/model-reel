@@ -1,12 +1,63 @@
 import { useDocumentStore } from '../../store/document-store'
 import { X, Minus, Maximize2, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, List, ListOrdered, Undo, Redo, Printer, Save } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
+const mdComponents = {
+  h1: ({ children }: { children?: React.ReactNode }) => (
+    <h1 className="text-[22px] font-bold text-[#1F1F1F] mb-4 mt-2 leading-tight">{children}</h1>
+  ),
+  h2: ({ children }: { children?: React.ReactNode }) => (
+    <h2 className="text-[16px] font-semibold text-[#2B579A] mb-3 mt-6 pb-1 border-b border-[#D6D6D6]">{children}</h2>
+  ),
+  h3: ({ children }: { children?: React.ReactNode }) => (
+    <h3 className="text-[14px] font-semibold text-[#333] mb-2 mt-4">{children}</h3>
+  ),
+  p: ({ children }: { children?: React.ReactNode }) => (
+    <p className="text-[12px] text-[#333] mb-3 leading-[1.6]">{children}</p>
+  ),
+  strong: ({ children }: { children?: React.ReactNode }) => (
+    <strong className="font-semibold text-[#1F1F1F]">{children}</strong>
+  ),
+  em: ({ children }: { children?: React.ReactNode }) => (
+    <em className="italic text-[#555]">{children}</em>
+  ),
+  hr: () => (
+    <hr className="my-4 border-t border-[#D6D6D6]" />
+  ),
+  ul: ({ children }: { children?: React.ReactNode }) => (
+    <ul className="list-disc pl-6 mb-3 space-y-1">{children}</ul>
+  ),
+  ol: ({ children }: { children?: React.ReactNode }) => (
+    <ol className="list-decimal pl-6 mb-3 space-y-1">{children}</ol>
+  ),
+  li: ({ children }: { children?: React.ReactNode }) => (
+    <li className="text-[12px] text-[#333] leading-[1.6]">{children}</li>
+  ),
+  table: ({ children }: { children?: React.ReactNode }) => (
+    <div className="my-4 overflow-x-auto">
+      <table className="w-full border-collapse text-[11px]">{children}</table>
+    </div>
+  ),
+  thead: ({ children }: { children?: React.ReactNode }) => (
+    <thead className="bg-[#F0F0F0]">{children}</thead>
+  ),
+  th: ({ children }: { children?: React.ReactNode }) => (
+    <th className="border border-[#C8C8C8] px-3 py-1.5 text-left font-semibold text-[#1F1F1F]">{children}</th>
+  ),
+  td: ({ children }: { children?: React.ReactNode }) => (
+    <td className="border border-[#D6D6D6] px-3 py-1.5 text-[#333]">{children}</td>
+  ),
+}
 
 export function WordWindow() {
   const { isOpen, artifact, close } = useDocumentStore()
 
   if (!isOpen || !artifact) return null
   if (artifact.artifactType !== 'word') return null
+
+  const pages = artifact.content.split('---PAGE---').map(s => s.trim()).filter(Boolean)
+  const pageCount = pages.length || 1
 
   return (
     <>
@@ -114,27 +165,30 @@ export function WordWindow() {
           </div>
         </div>
 
-        {/* Document area - gray background with white page */}
-        <div className="flex-1 bg-[#E0E0E0] overflow-auto flex justify-center py-6">
-          <div
-            className="bg-white shadow-lg border border-[#D0D0D0]"
-            style={{
-              width: '8.5in',
-              minHeight: '11in',
-              padding: '1in 1.25in',
-              maxWidth: '100%',
-            }}
-          >
-            <article className="word-document prose prose-sm max-w-none text-[#333] leading-relaxed">
-              <ReactMarkdown>{artifact.content}</ReactMarkdown>
-            </article>
-          </div>
+        {/* Document area - gray background with white pages */}
+        <div className="flex-1 bg-[#E0E0E0] overflow-auto flex flex-col items-center gap-6 py-6">
+          {pages.map((pageContent, i) => (
+            <div
+              key={i}
+              className="bg-white shadow-lg border border-[#D0D0D0]"
+              style={{
+                width: '8.5in',
+                minHeight: '11in',
+                padding: '1in 1.25in',
+                maxWidth: '100%',
+              }}
+            >
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+                {pageContent.trim()}
+              </ReactMarkdown>
+            </div>
+          ))}
         </div>
 
         {/* Status bar */}
         <div className="flex items-center justify-between px-3 py-1 bg-[#2B579A] text-white/70 text-[10px] shrink-0">
           <div className="flex items-center gap-4">
-            <span>Page 1 of 1</span>
+            <span>Page 1 of {pageCount}</span>
             <span>{artifact.content.split(/\s+/).length} words</span>
             <span>English (United Kingdom)</span>
           </div>

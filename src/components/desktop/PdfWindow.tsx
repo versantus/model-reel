@@ -1,6 +1,54 @@
 import { useDocumentStore } from '../../store/document-store'
 import { X, Minus, Maximize2, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download, Printer, Search } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
+const mdComponents = {
+  h1: ({ children }: { children?: React.ReactNode }) => (
+    <h1 className="text-[20px] font-bold text-[#111] mb-4 mt-2 leading-tight">{children}</h1>
+  ),
+  h2: ({ children }: { children?: React.ReactNode }) => (
+    <h2 className="text-[15px] font-semibold text-[#111] mb-3 mt-5">{children}</h2>
+  ),
+  h3: ({ children }: { children?: React.ReactNode }) => (
+    <h3 className="text-[13px] font-semibold text-[#222] mb-2 mt-4">{children}</h3>
+  ),
+  p: ({ children }: { children?: React.ReactNode }) => (
+    <p className="text-[11px] text-[#222] mb-2.5 leading-[1.65]">{children}</p>
+  ),
+  strong: ({ children }: { children?: React.ReactNode }) => (
+    <strong className="font-semibold text-[#111]">{children}</strong>
+  ),
+  em: ({ children }: { children?: React.ReactNode }) => (
+    <em className="italic text-[#444]">{children}</em>
+  ),
+  hr: () => (
+    <hr className="my-4 border-t border-[#DDD]" />
+  ),
+  ul: ({ children }: { children?: React.ReactNode }) => (
+    <ul className="list-disc pl-5 mb-2.5 space-y-0.5">{children}</ul>
+  ),
+  ol: ({ children }: { children?: React.ReactNode }) => (
+    <ol className="list-decimal pl-5 mb-2.5 space-y-0.5">{children}</ol>
+  ),
+  li: ({ children }: { children?: React.ReactNode }) => (
+    <li className="text-[11px] text-[#222] leading-[1.65]">{children}</li>
+  ),
+  table: ({ children }: { children?: React.ReactNode }) => (
+    <div className="my-3 overflow-x-auto">
+      <table className="w-full border-collapse text-[10px]">{children}</table>
+    </div>
+  ),
+  thead: ({ children }: { children?: React.ReactNode }) => (
+    <thead className="bg-[#F5F5F5]">{children}</thead>
+  ),
+  th: ({ children }: { children?: React.ReactNode }) => (
+    <th className="border border-[#D0D0D0] px-2.5 py-1.5 text-left font-semibold text-[#111]">{children}</th>
+  ),
+  td: ({ children }: { children?: React.ReactNode }) => (
+    <td className="border border-[#DDD] px-2.5 py-1.5 text-[#222]">{children}</td>
+  ),
+}
 
 export function PdfWindow() {
   const { isOpen, artifact, close } = useDocumentStore()
@@ -107,9 +155,9 @@ export function PdfWindow() {
                 maxWidth: 'calc(100% - 2rem)',
               }}
             >
-              <article className="pdf-page prose prose-sm max-w-none text-[#222] leading-relaxed">
-                <ReactMarkdown>{pageContent.trim()}</ReactMarkdown>
-              </article>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+                {pageContent.trim()}
+              </ReactMarkdown>
               {/* Page number */}
               <div className="text-center text-[10px] text-[#999] mt-8 pt-4 border-t border-[#EEE]">
                 {i + 1}
