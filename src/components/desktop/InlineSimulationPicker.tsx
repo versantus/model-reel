@@ -5,6 +5,7 @@ import { useSimulationStore } from '../../store/simulation-store'
 import { usePlaybackStore } from '../../store/playback-store'
 import { useEditorStore } from '../../store/editor-store'
 import { sampleClaudeCodeSimulation, sampleClaudeChatSimulation, sampleCoworkSimulation } from '../../utils/sample-data'
+import { fatSquirrelDemo } from '../../utils/fat-squirrel-demo'
 import { sampleLandingPageSimulation, sampleTodoAppSimulation, sampleApiSimulation, sampleDashboardSimulation, sampleCoworkBuildSimulation, sampleFinanceTrackerSimulation } from '../../utils/sample-data-advanced'
 import { sampleSltDashboardSimulation } from '../../utils/sample-slt-dashboard'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
@@ -12,6 +13,7 @@ import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
 
 const demos = [
+  { label: '🌲 Fat Squirrel — AI Demo', sim: fatSquirrelDemo, view: 'claude-chat' as const },
   { label: 'Claude Code Demo', sim: sampleClaudeCodeSimulation, view: 'claude-code' as const },
   { label: 'Claude Chat Demo', sim: sampleClaudeChatSimulation, view: 'claude-chat' as const },
   { label: 'Cowork Demo', sim: sampleCoworkSimulation, view: 'claude-cowork' as const },

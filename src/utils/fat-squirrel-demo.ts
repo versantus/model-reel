@@ -1,9 +1,9 @@
 import type { Simulation } from '../types/simulation'
 
 export const fatSquirrelDemo: Simulation = {
-  id: 'fat-squirrel-venue-demo',
+  id: 'fat-squirrel-ai-demo',
   title: 'AI for Your Business — Live Demo',
-  description: 'Claude generates a wedding venue description, social posts, and an enquiry reply — showing what AI can do for a small business in under 2 minutes.',
+  description: 'Claude generates social posts and an enquiry reply for an outdoor experience business — showing what AI can do for a small business in under 2 minutes.',
   productType: 'claude-chat',
   createdAt: '2026-04-12T00:00:00Z',
   updatedAt: '2026-04-12T00:00:00Z',
@@ -11,13 +11,13 @@ export const fatSquirrelDemo: Simulation = {
     chatConfig: {
       modelName: 'claude-sonnet-4-20250514',
       theme: 'light',
-      conversationTitle: 'Wedding venue marketing',
+      conversationTitle: 'Fat Squirrel Outdoor marketing',
       sidebarConversations: [
         { id: 'c1', title: 'Website copy draft', timestamp: 'Yesterday', isActive: false },
-        { id: 'c2', title: 'Email to caterer', timestamp: '2 days ago', isActive: false },
+        { id: 'c2', title: 'Gift voucher wording', timestamp: '2 days ago', isActive: false },
       ],
       projects: [
-        { id: 'p1', name: 'Cotswold Venue', conversationCount: 3 },
+        { id: 'p1', name: 'Fat Squirrel Outdoor', conversationCount: 5 },
       ],
     },
   },
@@ -27,7 +27,7 @@ export const fatSquirrelDemo: Simulation = {
       id: 'e1',
       type: 'user-message',
       delayMs: 0,
-      content: 'write some social media posts for my venue',
+      content: 'write some social media posts for my business',
       typingEffect: true,
     },
     {
@@ -40,17 +40,17 @@ export const fatSquirrelDemo: Simulation = {
       id: 'e3',
       type: 'assistant-message',
       delayMs: 200,
-      content: `Here are some social media posts for your venue:
+      content: `Here are some social media posts for your business:
 
-1. "Come visit our beautiful venue! Perfect for weddings, events, and more. Book now!"
+1. "Come visit us for a great experience! Perfect for groups, parties, and more. Book now!"
 
-2. "Looking for the perfect venue? We've got you covered. Stunning views, amazing food, unforgettable experiences."
+2. "Looking for something different to do? We've got you covered. Fun activities, great atmosphere, unforgettable memories."
 
-3. "Don't miss out on our spring special! Book your event today and save 20%."
+3. "Don't miss out on our spring special! Book your session today and save 20%."
 
-4. "Our venue is the ideal place for your next celebration. Contact us to learn more."
+4. "Our venue is the ideal place for your next event. Contact us to learn more."
 
-5. "Happy Monday! Start your week by planning your dream event at our gorgeous venue."
+5. "Happy Monday! Start your week by planning something exciting with us."
 
 Would you like me to write more or adjust the tone?`,
       streamingSpeed: 'fast',
@@ -66,7 +66,7 @@ Would you like me to write more or adjust the tone?`,
       id: 'e5',
       type: 'user-message',
       delayMs: 0,
-      content: 'I run a Cotswold wedding venue called Fat Squirrel Outdoor. We do outdoor ceremonies in an orchard, campfire receptions, and wildflower meadows. Our couples are adventurous, outdoorsy, and want something different from a hotel ballroom. Write me 3 Instagram captions for spring — warm, not salesy, like you\'re telling a friend about somewhere special.',
+      content: 'I run an outdoor experience business called Fat Squirrel Outdoor. We do axe throwing, campfire cooking, and woodland experiences in the Cotswolds. Our customers are groups of friends, stag and hen dos, and corporate teams looking for something different. The vibe is rustic, fun, and a bit adventurous. Write me 3 Instagram captions for spring — warm, not salesy, like you\'re telling a mate about a brilliant day out.',
       typingEffect: true,
     },
     {
@@ -82,23 +82,23 @@ Would you like me to write more or adjust the tone?`,
       content: `Here are 3 Instagram captions for Fat Squirrel Outdoor:
 
 **1.**
-The blossom is out, the fire pit's lit, and someone's about to say yes under the apple trees 🍎
+Threw an axe. Hit the target. Felt like an absolute legend. 🪓
 
-We don't do carpeted ballrooms. We do orchards. Wildflower aisles. Receptions where the sky changes colour and nobody wants to go home.
+Axe throwing is one of those things you don't realise you're good at until you try it. And when the axe sticks? Proper satisfying.
 
-Spring at Fat Squirrel hits different. Come see for yourself — link in bio.
+Spring sessions are booking up — grab your mates and come have a go. 🔥
 
 **2.**
-They wanted a wedding that felt like *them*. So we lit a campfire, hung some lights in the willow, and let the Cotswold hills do the rest 🏕️
+Three things that improve literally any weekend: axes, fire, and not looking at your phone. 🏕️
 
-This is what "I don't want a normal wedding" looks like. And it's beautiful.
+We sorted the first two. The third one's on you.
 
 **3.**
-Three things you can guarantee at Fat Squirrel this spring: wildflowers in the meadow, a cracking fire, and at least one guest who says "I didn't know places like this existed."
+Someone at the campfire last week said "I haven't laughed this hard in ages" and honestly? Same. Every single time.
 
-That last one? That's the one that gets us every time 🌸
+There's something about standing in a Cotswold woodland with an axe in one hand and a cup of something warm in the other that just works. No screens. No agenda. Just a couple of hours of proper fun.
 
-Tag someone who needs to see this.`,
+Tag someone who needs this. 🪓🔥`,
       streamingSpeed: 'normal',
     },
     {
@@ -112,7 +112,7 @@ Tag someone who needs to see this.`,
       id: 'e9',
       type: 'user-message',
       delayMs: 0,
-      content: 'A couple just sent this enquiry: "Hi, we\'re getting married next June and we love the look of your outdoor venue. We\'re a bit worried about the weather though! Can we have a backup plan? Also do you allow dogs? We have a golden retriever called Bertie who we really want there." — Write a warm, professional reply under 120 words.',
+      content: 'A customer just sent this enquiry: "Hi, we\'re looking at booking a stag do activity for 12 people on 14th June. We like the look of the axe throwing and campfire combo. A couple of questions — can we bring our own drinks? And is there any shelter if the weather\'s rubbish? Also one of our group has a dodgy shoulder — is that going to be a problem?" — Write a warm, helpful reply under 150 words.',
       typingEffect: true,
     },
     {
@@ -127,16 +127,18 @@ Tag someone who needs to see this.`,
       delayMs: 200,
       content: `Hi there,
 
-June is one of our favourite months here — the orchard is in full bloom and the meadow is stunning.
+14th June for 12 — great choice. The axe throwing and campfire combo is our most popular stag do package, and for good reason.
 
-And yes, we absolutely love a weather question, because we've got it sorted: our barn is licensed for ceremonies too, so if the Cotswolds decide to be British about it, you'll still have the most beautiful indoor ceremony. Best of both worlds.
+Yes, you can bring your own drinks. We just ask that axe throwing happens before the serious drinking starts (safety first, fun second).
 
-As for Bertie — of course he's welcome. We've had golden retrievers, terriers, and one very confident dachshund trot down our aisle. Dogs and outdoor weddings are made for each other.
+We've got a covered area right next to the campfire, so if the weather's being British, you'll still be warm and dry.
 
-We'd love to show you around. When works for you?
+Regarding the dodgy shoulder — it shouldn't be a problem at all. Our instructors can adapt the technique, and there's no pressure to throw with the bad arm. We've had plenty of guests work around injuries and still have a brilliant time. Just mention it when you arrive so we can look after them.
 
-Warm regards,
-Nik`,
+Want me to hold that date for you?
+
+Cheers,
+Fat Squirrel Outdoor 🪓`,
       streamingSpeed: 'normal',
     },
     {
