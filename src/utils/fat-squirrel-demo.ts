@@ -154,7 +154,7 @@ Fat Squirrel Outdoor 🪓`,
       id: 'e14',
       type: 'user-message',
       delayMs: 0,
-      content: 'Now run the humanizer skill on those Instagram captions. Check for: significance inflation, promotional language, forced rule of three, em dash overuse, sycophantic tone, AI vocabulary words, copula avoidance, and generic conclusions. Rewrite anything that reads like AI output and make it sound like a real person wrote it.',
+      content: 'Now use the humanizer skill on those Instagram captions.',
       typingEffect: true,
     },
     {
