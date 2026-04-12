@@ -145,7 +145,79 @@ Fat Squirrel Outdoor 🪓`,
       id: 'e12',
       type: 'status-bar-update',
       delayMs: 0,
-      updates: { cost: '$0.08', contextPercent: 12 },
+      updates: { cost: '$0.06', contextPercent: 15 },
+    },
+
+    // ===== PROMPT 4: Humanizer pass =====
+    {
+      id: 'e13',
+      type: 'pause',
+      delayMs: 1500,
+    },
+    {
+      id: 'e14',
+      type: 'user-message',
+      delayMs: 0,
+      content: "Now run those Instagram captions through an anti-AI writing check. The main patterns to look for: significance inflation ('testament to', 'pivotal'), promotional language ('nestled', 'vibrant', 'boasts'), forced rule of three, em dash overuse, sycophantic tone ('Great question!'), and generic conclusions. Rewrite them to sound like a real person wrote them — someone who actually goes axe throwing and is genuinely excited about it, not a marketing robot.",
+      typingEffect: true,
+    },
+    {
+      id: 'e15',
+      type: 'thinking',
+      delayMs: 400,
+      durationMs: 1200,
+    },
+    {
+      id: 'e16',
+      type: 'assistant-message',
+      delayMs: 200,
+      content: `Good call. Let me check each one.
+
+**Original 1:**
+> Threw an axe. Hit the target. Felt like an absolute legend. 🪓
+>
+> Axe throwing is one of those things you don't realise you're good at until you try it. And when the axe sticks? Proper satisfying.
+>
+> Spring sessions are booking up — grab your mates and come have a go. 🔥
+
+**Issues:** None really. This one's genuine — short sentences, personal voice, no AI tells. The emoji use is natural. Keep it.
+
+**Original 2:**
+> Three things that improve literally any weekend: axes, fire, and not looking at your phone. 🏕️
+>
+> We sorted the first two. The third one's on you.
+
+**Issues:** Mild rule-of-three ("axes, fire, and not looking at your phone") but it works because it's a joke with a punchline, not a listicle. Keep it.
+
+**Original 3:**
+> Someone at the campfire last week said "I haven't laughed this hard in ages" and honestly? Same. Every single time.
+>
+> There's something about standing in a Cotswold woodland with an axe in one hand and a cup of something warm in the other that just works. No screens. No agenda. Just a couple of hours of proper fun.
+>
+> Tag someone who needs this. 🪓🔥
+
+**Issues:** "There's something about... that just works" is a slight AI tell. "Proper fun" is fine but paired with the structured three-beat description (axe + cup + woodland) it reads a bit composed. And "Tag someone who needs this" is a classic AI CTA pattern.
+
+**Rewrite of 3:**
+
+> Someone at the campfire last week said "I haven't laughed this hard in ages" and honestly? Same.
+>
+> I don't know what it is about holding an axe in a woodland that makes people loosen up. Maybe it's the fire. Maybe it's the fresh air. Maybe it's just nice to do something that doesn't involve a screen for a few hours.
+>
+> Spring weekends are filling up — link in bio if you fancy it.
+
+**Summary of changes:**
+- Removed "There's something about X that just works" (significance inflation)
+- Broke the composed three-beat into a more natural "maybe it's X. maybe it's Y" pattern
+- Replaced "Tag someone who needs this" (classic AI CTA) with a casual, non-pushy close
+- Kept the genuine voice and personal detail`,
+      streamingSpeed: 'normal',
+    },
+    {
+      id: 'e17',
+      type: 'status-bar-update',
+      delayMs: 0,
+      updates: { cost: '$0.14', contextPercent: 22 },
     },
   ],
 }
