@@ -25,7 +25,7 @@ export function AppShell() {
       {/* Top bar */}
       <div className="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-800">
         <div className="flex items-center gap-4">
-          <h1 className="text-sm font-semibold text-white tracking-wide">Claude Simulator</h1>
+          <h1 className="text-sm font-semibold text-white tracking-wide">Model Reel</h1>
           <div className="flex items-center gap-1 bg-gray-800 rounded-lg p-0.5">
             {viewTabs.map((tab) => {
               const Icon = tab.icon

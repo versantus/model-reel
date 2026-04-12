@@ -1,8 +1,8 @@
-# Claude Desktop Simulator
+# Model Reel
 
-A pixel-perfect, interactive simulator for creating and playing back realistic demos of Anthropic's Claude products. Supports **Claude Chat** (claude.ai), **Claude Code** (terminal CLI), and **Claude Cowork** (autonomous desktop mode) — all rendered inside a simulated macOS desktop environment.
+An interactive simulator for creating and playing back realistic demos of Anthropic's Claude products. Supports **Claude Chat** (claude.ai), **Claude Code** (terminal CLI), and **Claude Cowork** (autonomous desktop mode), all running inside a simulated macOS desktop environment.
 
-![Claude Desktop Simulator](https://img.shields.io/badge/React-19-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-6-blue) ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-blue) ![License](https://img.shields.io/badge/License-MIT-green)
+![Model Reel](https://img.shields.io/badge/React-19-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-6-blue) ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-blue) ![License](https://img.shields.io/badge/License-MIT-green)
 
 ### Claude Chat
 ![Claude Chat view](screenshots/chat-view.png)
@@ -48,7 +48,7 @@ Use cases:
 
 ### Artifact Preview with Simulated Chrome
 
-When a simulation includes HTML artifacts (websites, apps, dashboards), clicking "Google Chrome" opens a **simulated Chrome browser window** with working title bar, address bar, and tab — rendering the artifact in an iframe. During playback, Chrome opens automatically when artifact events complete.
+When a simulation includes HTML artifacts (websites, apps, dashboards), clicking "Google Chrome" opens a **simulated Chrome browser window** with working title bar, address bar, and tab, rendering the artifact in an iframe. During playback, Chrome opens automatically when artifact events complete.
 
 ### Built-in Demo Simulations
 
@@ -89,8 +89,8 @@ When a simulation includes HTML artifacts (websites, apps, dashboards), clicking
 ### Installation
 
 ```bash
-git clone https://github.com/ner/claude-simulator.git
-cd claude-simulator
+git clone https://github.com/versantus/model-reel.git
+cd model-reel
 npm install
 ```
 
@@ -231,7 +231,7 @@ src/
 
 ## Roadmap
 
-Ideas for future simulated windows and features — contributions welcome!
+Ideas for future simulated windows and features. Contributions welcome!
 
 ### Simulated App Windows
 
@@ -268,6 +268,10 @@ Ideas for future simulated windows and features — contributions welcome!
 ## Security
 
 Artifact HTML is rendered in sandboxed iframes (`sandbox="allow-scripts allow-forms"`) with no access to the parent page, cookies, or localStorage. User input within artifacts is HTML-escaped before DOM insertion. Imported simulation JSON is validated before loading. See [SECURITY.md](SECURITY.md) for details on reporting vulnerabilities.
+
+## Built by Versantus
+
+Model Reel is built with love by [Versantus](https://www.versantus.ai), an Oxford, UK-based AI strategy, implementation, and training consultancy helping organisations put AI to work. From leadership training to building production platforms, Versantus gets real results.
 
 ## License
 

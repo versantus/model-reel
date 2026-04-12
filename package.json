@@ -1,10 +1,17 @@
 {
-  "name": "claude-simulator",
+  "name": "model-reel",
   "private": false,
   "version": "1.0.0",
-  "description": "Pixel-perfect interactive simulator for Claude Desktop, Claude Code, and Claude Chat",
+  "description": "Interactive simulator for creating realistic demos of AI products",
   "license": "MIT",
-  "keywords": ["claude", "simulator", "demo", "anthropic", "react"],
+  "keywords": [
+    "model-reel",
+    "simulator",
+    "demo",
+    "ai",
+    "llm",
+    "react"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",

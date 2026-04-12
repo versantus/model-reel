@@ -25,3 +25,6 @@ dist-ssr
 
 # Screenshot capture script (not needed in repo)
 screenshots/capture.mjs
+
+# Local Netlify folder
+.netlify
