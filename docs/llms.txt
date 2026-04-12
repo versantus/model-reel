@@ -1,0 +1,38 @@
+# Model Reel
+
+> An interactive simulator for creating and playing back realistic demos of Anthropic's Claude products.
+
+Model Reel lets you author scripted simulations of Claude product interactions and play them back with realistic streaming text, tool calls, artifacts, and UI interactions. It runs entirely in the browser.
+
+## What it does
+
+- Simulates three Claude product surfaces: Claude Chat (claude.ai), Claude Code (terminal CLI), and Claude Cowork (autonomous desktop agent)
+- Plays back scripted events with character-by-character streaming, typing effects, thinking indicators, and configurable speed
+- Renders HTML artifacts in a simulated Chrome browser window
+- Includes a visual timeline-based editor for building simulations
+- Ships with 10 ready-made demo simulations
+- Supports JSON import/export for sharing simulations
+
+## Who it's for
+
+- Product teams creating demos of Claude capabilities without live API calls
+- Trainers building step-by-step walkthroughs of Claude workflows
+- Marketing teams recording polished demos of Claude in action
+- Developers prototyping Claude interface ideas
+
+## Tech stack
+
+React 19, TypeScript 6, Vite 8, Tailwind CSS v4, Zustand, Immer, react-markdown, react-syntax-highlighter
+
+## Links
+
+- Website: https://model-reel.versantus.ai
+- Source code: https://github.com/versantus/model-reel
+- License: MIT
+- Built by: Versantus Ltd (https://www.versantus.ai), Oxford, UK
+- Author: Nik Roberts
+
+## llms-full.txt
+
+For the full project documentation including event types, JSON format, and API reference, see the README at:
+https://github.com/versantus/model-reel/blob/main/README.md

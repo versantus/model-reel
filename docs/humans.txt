@@ -1,0 +1,15 @@
+/* TEAM */
+Creator: Nik Roberts
+Site: https://www.versantus.ai
+Location: Oxford, UK
+
+/* COMPANY */
+Name: Versantus Ltd
+Site: https://www.versantus.co.uk
+Description: AI strategy, implementation, and training consultancy
+
+/* SITE */
+Standards: HTML5, CSS3
+Components: React 19, TypeScript 6, Vite 8, Tailwind CSS v4, Zustand
+Software: Model Reel (https://github.com/versantus/model-reel)
+License: MIT

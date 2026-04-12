@@ -5,15 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Model Reel - Interactive Demo Builder for Claude Products</title>
   <meta name="description" content="An interactive simulator for creating and playing back realistic demos of Anthropic's Claude products. Supports Claude Chat, Claude Code, and Claude Cowork in a simulated macOS desktop." />
+  <link rel="canonical" href="https://model-reel.versantus.ai/" />
+  <meta name="author" content="Nik Roberts, Versantus Ltd" />
+  <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Model Reel - Interactive Demo Builder for Claude Products" />
   <meta property="og:description" content="Build scripted simulations with streaming text, tool calls, and artifacts for Claude Chat, Claude Code, and Claude Cowork." />
-  <meta property="og:image" content="screenshots/chat-view.webp" />
+  <meta property="og:image" content="https://model-reel.versantus.ai/screenshots/chat-view.webp" />
+  <meta property="og:image:width" content="1440" />
+  <meta property="og:image:height" content="900" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://model-reel.versantus.ai/" />
+  <meta property="og:site_name" content="Model Reel" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Model Reel - Interactive Demo Builder for Claude Products" />
   <meta name="twitter:description" content="Build scripted simulations with streaming text, tool calls, and artifacts for Claude Chat, Claude Code, and Claude Cowork." />
-  <meta name="twitter:image" content="screenshots/chat-view.webp" />
+  <meta name="twitter:image" content="https://model-reel.versantus.ai/screenshots/chat-view.webp" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="author" href="humans.txt" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Model Reel",
+    "description": "An interactive simulator for creating and playing back realistic demos of Anthropic's Claude products. Supports Claude Chat, Claude Code, and Claude Cowork in a simulated macOS desktop.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web, macOS, Windows, Linux",
+    "url": "https://model-reel.versantus.ai/",
+    "downloadUrl": "https://github.com/versantus/model-reel",
+    "screenshot": "https://model-reel.versantus.ai/screenshots/chat-view.webp",
+    "license": "https://opensource.org/licenses/MIT",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "author": {
+      "@type": "Organization",
+      "name": "Versantus Ltd",
+      "url": "https://www.versantus.ai"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Nik Roberts"
+    },
+    "programmingLanguage": ["TypeScript", "React"],
+    "softwareRequirements": "Node.js 18+"
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -24,7 +59,7 @@
             'claude-accent': '#C8651B',
             'claude-accent-light': '#E8853A',
             'claude-text': '#2D2B28',
-            'claude-text-secondary': '#76726C',
+            'claude-text-secondary': '#6B665E',
             'claude-border': '#E5E0D9',
             'terminal-bg': '#0D1117',
             'terminal-surface': '#161B22',
@@ -93,32 +128,31 @@
       background: linear-gradient(160deg, #F9F6F1 0%, #F2EDE5 40%, #F9F6F1 100%);
     }
 
-    /* Hero slideshow - 5 images, 25s cycle */
+    /* Hero slideshow */
     .slideshow { position: relative; }
     .slideshow img {
       position: absolute;
       top: 0; left: 0;
       width: 100%;
       opacity: 0;
-      animation: slide 25s infinite;
+      transition: opacity 0.6s ease;
     }
-    .slideshow img:nth-child(1) { animation-delay: 0s; }
-    .slideshow img:nth-child(2) { animation-delay: 5s; }
-    .slideshow img:nth-child(3) { animation-delay: 10s; }
-    .slideshow img:nth-child(4) { animation-delay: 15s; }
-    .slideshow img:nth-child(5) { animation-delay: 20s; }
-    /* First image visible before animation starts */
-    .slideshow img:first-child { opacity: 1; }
-    @keyframes slide {
-      0%    { opacity: 0; }
-      2%    { opacity: 1; }
-      20%   { opacity: 1; }
-      22%   { opacity: 0; }
-      100%  { opacity: 0; }
+    .slideshow img.active { opacity: 1; }
+
+    /* Focus visible for keyboard nav */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #C8651B;
+      outline-offset: 2px;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body class="bg-claude-bg text-claude-text antialiased">
+
+  <!-- Skip to content -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-claude-accent focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
 
   <!-- ============================================================= -->
   <!-- STICKY NAV                                                     -->
@@ -137,7 +171,7 @@
         <a href="#get-started" class="text-sm text-claude-text-secondary hover:text-claude-text transition-colors">Get Started</a>
         <a href="https://github.com/versantus/model-reel" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center gap-1.5 text-sm font-medium text-claude-text-secondary hover:text-claude-text transition-colors">
-          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           Star on GitHub
         </a>
       </div>
@@ -160,6 +194,7 @@
   <!-- ============================================================= -->
   <!-- HERO                                                           -->
   <!-- ============================================================= -->
+  <main id="main-content">
   <section class="hero-gradient pt-20 pb-24 sm:pt-28 sm:pb-32">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center mb-14">
@@ -190,8 +225,8 @@
             <span class="window-dot window-dot-yellow"></span>
             <span class="window-dot window-dot-green"></span>
           </div>
-          <div class="slideshow" style="aspect-ratio: 1440/900;">
-            <img src="screenshots/chat-view.webp" alt="Claude Chat simulator" loading="eager" />
+          <div class="slideshow" id="hero-slideshow" style="aspect-ratio: 1440/900;">
+            <img src="screenshots/chat-view.webp" alt="Claude Chat simulator" class="active" loading="eager" />
             <img src="screenshots/code-view.webp" alt="Claude Code terminal" loading="lazy" />
             <img src="screenshots/cowork-dashboard.webp" alt="Claude Cowork dashboard" loading="lazy" />
             <img src="screenshots/editor.webp" alt="Visual simulation editor" loading="lazy" />
@@ -200,24 +235,24 @@
         </div>
       </div>
 
-      <!-- Detail crops -->
-      <div class="max-w-4xl mx-auto mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="rounded-xl overflow-hidden border border-claude-border shadow-sm">
-          <img src="screenshots/detail-chat-messages.webp" alt="Chat message rendering detail" class="w-full block" loading="lazy" />
+      <!-- Clickable thumbnails -->
+      <div class="max-w-4xl mx-auto mt-10 grid grid-cols-2 md:grid-cols-4 gap-4" id="hero-thumbs">
+        <button class="rounded-xl overflow-hidden border-2 border-claude-accent shadow-sm text-left cursor-pointer hover:border-claude-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claude-accent transition-colors" data-slide="0" aria-label="Show Claude Chat: markdown rendering detail">
+          <img src="screenshots/detail-chat-messages.webp" alt="" class="w-full block" loading="lazy" />
           <p class="text-xs text-claude-text-secondary text-center py-2">Markdown rendering</p>
-        </div>
-        <div class="rounded-xl overflow-hidden border border-claude-border shadow-sm">
-          <img src="screenshots/detail-code-tools.webp" alt="Tool call cards detail" class="w-full block" loading="lazy" />
+        </button>
+        <button class="rounded-xl overflow-hidden border-2 border-claude-border shadow-sm text-left cursor-pointer hover:border-claude-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claude-accent transition-colors" data-slide="1" aria-label="Show Claude Code: tool call cards detail">
+          <img src="screenshots/detail-code-tools.webp" alt="" class="w-full block" loading="lazy" />
           <p class="text-xs text-claude-text-secondary text-center py-2">Tool call cards</p>
-        </div>
-        <div class="rounded-xl overflow-hidden border border-claude-border shadow-sm">
-          <img src="screenshots/detail-editor-timeline.webp" alt="Editor timeline detail" class="w-full block" loading="lazy" />
+        </button>
+        <button class="rounded-xl overflow-hidden border-2 border-claude-border shadow-sm text-left cursor-pointer hover:border-claude-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claude-accent transition-colors" data-slide="2" aria-label="Show simulation editor: timeline detail">
+          <img src="screenshots/detail-editor-timeline.webp" alt="" class="w-full block" loading="lazy" />
           <p class="text-xs text-claude-text-secondary text-center py-2">Timeline editor</p>
-        </div>
-        <div class="rounded-xl overflow-hidden border border-claude-border shadow-sm">
-          <img src="screenshots/detail-chrome-preview.webp" alt="Chrome preview detail" class="w-full block" loading="lazy" />
+        </button>
+        <button class="rounded-xl overflow-hidden border-2 border-claude-border shadow-sm text-left cursor-pointer hover:border-claude-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claude-accent transition-colors" data-slide="3" aria-label="Show Chrome: live HTML preview detail">
+          <img src="screenshots/detail-chrome-preview.webp" alt="" class="w-full block" loading="lazy" />
           <p class="text-xs text-claude-text-secondary text-center py-2">Live HTML preview</p>
-        </div>
+        </button>
       </div>
     </div>
   </section>
@@ -335,15 +370,15 @@
             </p>
             <ul class="space-y-2">
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Character-by-character streaming with natural timing
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Thinking and processing indicators
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Adjustable playback speed (0.5x to 4x)
               </li>
             </ul>
@@ -386,15 +421,15 @@
             </p>
             <ul class="space-y-2">
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Timeline-based event sequencing
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Event palette with drag-and-drop
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 JSON import &amp; export for sharing
               </li>
             </ul>
@@ -417,15 +452,15 @@
             </p>
             <ul class="space-y-2">
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Accurate Chrome window rendering
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Live HTML artifact rendering
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Address bar with realistic URL display
               </li>
             </ul>
@@ -505,15 +540,15 @@
             </p>
             <ul class="space-y-2">
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Covers Chat, Code, and Cowork product views
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Use as templates for custom simulations
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
-                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 Presentation-ready out of the box
               </li>
             </ul>
@@ -670,6 +705,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ============================================================= -->
   <!-- FOOTER                                                         -->
   <!-- ============================================================= -->
@@ -728,6 +765,55 @@
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
     document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+
+    // Hero slideshow with clickable thumbnails
+    (function() {
+      const slides = document.querySelectorAll('#hero-slideshow img');
+      const thumbs = document.querySelectorAll('#hero-thumbs button');
+      // Thumbnail index maps to slideshow: 0→chat(0), 1→code(1), 2→editor(3), 3→artifact(4)
+      const thumbToSlide = [0, 1, 3, 4];
+      let current = 0;
+      let autoTimer = null;
+
+      function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        slides[index].classList.add('active');
+        current = index;
+        // Update thumb borders
+        thumbs.forEach(t => {
+          t.classList.remove('border-claude-accent');
+          t.classList.add('border-claude-border');
+        });
+        const activeThumb = thumbToSlide.indexOf(index);
+        if (activeThumb >= 0) {
+          thumbs[activeThumb].classList.remove('border-claude-border');
+          thumbs[activeThumb].classList.add('border-claude-accent');
+        }
+      }
+
+      function nextSlide() {
+        showSlide((current + 1) % slides.length);
+      }
+
+      function startAuto() {
+        autoTimer = setInterval(nextSlide, 4000);
+      }
+
+      function resetAuto() {
+        clearInterval(autoTimer);
+        startAuto();
+      }
+
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          const idx = thumbToSlide[parseInt(thumb.dataset.slide)];
+          showSlide(idx);
+          resetAuto();
+        });
+      });
+
+      startAuto();
+    })();
   </script>
 </body>
 </html>
