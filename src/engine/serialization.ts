@@ -12,6 +12,14 @@ export function deserializeSimulation(json: string): Simulation {
   return data as Simulation
 }
 
+export function validateSimulation(data: unknown): Simulation {
+  const obj = data as Record<string, unknown>
+  if (!obj.id || !obj.productType || !Array.isArray(obj.events)) {
+    throw new Error('Invalid simulation format')
+  }
+  return obj as unknown as Simulation
+}
+
 export function downloadSimulation(sim: Simulation) {
   const json = serializeSimulation(sim)
   const blob = new Blob([json], { type: 'application/json' })

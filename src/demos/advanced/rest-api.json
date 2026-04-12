@@ -1,0 +1,276 @@
+{
+  "id": "sample-api-build",
+  "title": "Build a REST API",
+  "description": "Claude Code builds a REST API from scratch with tests and database setup",
+  "productType": "claude-code",
+  "createdAt": "2026-04-11T00:00:00Z",
+  "updatedAt": "2026-04-11T00:00:00Z",
+  "metadata": {
+    "codeConfig": {
+      "modelName": "claude-opus-4-6",
+      "gitBranch": "main",
+      "workingDirectory": "/Users/dev/bookshelf-api",
+      "initialCost": "$0.00",
+      "initialContext": 2
+    }
+  },
+  "events": [
+    {
+      "id": "api1",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "Set up a Node.js REST API for a bookshelf app using Express and SQLite. I need CRUD endpoints for books, input validation, error handling, and tests. Use TypeScript.",
+      "typingEffect": true
+    },
+    {
+      "id": "api2",
+      "type": "thinking",
+      "delayMs": 400,
+      "durationMs": 2000,
+      "label": "Planning project structure..."
+    },
+    {
+      "id": "api3",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "I'll set up a TypeScript Express API with SQLite for a bookshelf app. Let me start by creating the project structure and installing dependencies.",
+      "streamingSpeed": "fast"
+    },
+    {
+      "id": "api4",
+      "type": "tool-call",
+      "delayMs": 300,
+      "toolName": "Bash",
+      "toolInput": {
+        "command": "mkdir -p src/{routes,middleware,db} tests && npm init -y"
+      },
+      "description": "Creating project structure",
+      "expandedByDefault": false
+    },
+    {
+      "id": "api5",
+      "type": "tool-result",
+      "delayMs": 800,
+      "toolCallId": "api4",
+      "output": "Wrote to /Users/dev/bookshelf-api/package.json:\n{\n  \"name\": \"bookshelf-api\",\n  \"version\": \"1.0.0\"\n}",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "api6",
+      "type": "permission-prompt",
+      "delayMs": 200,
+      "toolName": "Bash",
+      "description": "Install npm packages",
+      "command": "npm install express better-sqlite3 zod && npm install -D typescript @types/express @types/better-sqlite3 vitest supertest @types/supertest tsx"
+    },
+    {
+      "id": "api7",
+      "type": "permission-response",
+      "delayMs": 1500,
+      "promptId": "api6",
+      "response": "allow"
+    },
+    {
+      "id": "api8",
+      "type": "tool-call",
+      "delayMs": 200,
+      "toolName": "Bash",
+      "toolInput": {
+        "command": "npm install express better-sqlite3 zod && npm install -D typescript @types/express @types/better-sqlite3 vitest supertest @types/supertest tsx"
+      },
+      "description": "Installing dependencies",
+      "expandedByDefault": false
+    },
+    {
+      "id": "api9",
+      "type": "tool-result",
+      "delayMs": 3000,
+      "toolCallId": "api8",
+      "output": "added 127 packages in 4s\n\n18 packages are looking for funding\n  run `npm fund` for details",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "api10",
+      "type": "status-bar-update",
+      "delayMs": 0,
+      "updates": {
+        "cost": "$0.04",
+        "contextPercent": 6
+      }
+    },
+    {
+      "id": "api11",
+      "type": "tool-call",
+      "delayMs": 200,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/bookshelf-api/src/db/schema.ts"
+      },
+      "description": "Creating database schema",
+      "expandedByDefault": true
+    },
+    {
+      "id": "api12",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "api11",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": false
+    },
+    {
+      "id": "api13",
+      "type": "tool-call",
+      "delayMs": 200,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/bookshelf-api/src/db/database.ts"
+      },
+      "description": "Creating database connection module",
+      "expandedByDefault": false
+    },
+    {
+      "id": "api14",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "api13",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "api15",
+      "type": "tool-call",
+      "delayMs": 200,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/bookshelf-api/src/routes/books.ts"
+      },
+      "description": "Creating books router with CRUD endpoints",
+      "expandedByDefault": true
+    },
+    {
+      "id": "api16",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "api15",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": false
+    },
+    {
+      "id": "api17",
+      "type": "tool-call",
+      "delayMs": 200,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/bookshelf-api/src/middleware/validate.ts"
+      },
+      "description": "Creating Zod validation middleware",
+      "expandedByDefault": false
+    },
+    {
+      "id": "api18",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "api17",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "api19",
+      "type": "tool-call",
+      "delayMs": 200,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/bookshelf-api/src/index.ts"
+      },
+      "description": "Creating main server entry point",
+      "expandedByDefault": false
+    },
+    {
+      "id": "api20",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "api19",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "api21",
+      "type": "status-bar-update",
+      "delayMs": 0,
+      "updates": {
+        "cost": "$0.12",
+        "contextPercent": 14
+      }
+    },
+    {
+      "id": "api22",
+      "type": "assistant-message",
+      "delayMs": 300,
+      "content": "Good — the core API is set up. Now let me write the test suite using Vitest and Supertest.",
+      "streamingSpeed": "fast"
+    },
+    {
+      "id": "api23",
+      "type": "tool-call",
+      "delayMs": 300,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/dev/bookshelf-api/tests/books.test.ts"
+      },
+      "description": "Writing API test suite",
+      "expandedByDefault": true
+    },
+    {
+      "id": "api24",
+      "type": "tool-result",
+      "delayMs": 100,
+      "toolCallId": "api23",
+      "output": "File created successfully.",
+      "isError": false,
+      "isCollapsed": false
+    },
+    {
+      "id": "api25",
+      "type": "tool-call",
+      "delayMs": 300,
+      "toolName": "Bash",
+      "toolInput": {
+        "command": "npx vitest run --reporter=verbose 2>&1"
+      },
+      "description": "Running tests",
+      "expandedByDefault": true
+    },
+    {
+      "id": "api26",
+      "type": "tool-result",
+      "delayMs": 2500,
+      "toolCallId": "api25",
+      "output": " ✓ tests/books.test.ts (7 tests) 142ms\n   ✓ GET /api/books > returns empty array initially\n   ✓ POST /api/books > creates a new book\n   ✓ POST /api/books > validates required fields\n   ✓ GET /api/books/:id > returns a single book\n   ✓ GET /api/books/:id > returns 404 for missing book\n   ✓ PUT /api/books/:id > updates a book\n   ✓ DELETE /api/books/:id > deletes a book\n\n Test Files  1 passed (1)\n      Tests  7 passed (7)\n   Start at  14:32:18\n   Duration  1.24s (transform 89ms, setup 0ms, collect 234ms, tests 142ms, environment 0ms, prepare 41ms)",
+      "isError": false,
+      "isCollapsed": false
+    },
+    {
+      "id": "api27",
+      "type": "status-bar-update",
+      "delayMs": 0,
+      "updates": {
+        "cost": "$0.18",
+        "contextPercent": 19
+      }
+    },
+    {
+      "id": "api28",
+      "type": "assistant-message",
+      "delayMs": 400,
+      "content": "All 7 tests pass. Here's what I built:\n\n**Project structure:**\n```\nsrc/\n  db/schema.ts       — SQLite table definition (books: id, title, author, isbn, year, created_at)\n  db/database.ts     — Connection singleton with WAL mode\n  routes/books.ts    — Full CRUD: GET /, GET /:id, POST /, PUT /:id, DELETE /:id\n  middleware/validate.ts — Zod schema validation middleware\n  index.ts           — Express app setup with error handler\ntests/\n  books.test.ts      — 7 tests covering all endpoints + validation\n```\n\n**Key decisions:**\n- **Zod** for request validation — returns structured error messages\n- **better-sqlite3** for synchronous SQLite (simpler than async for this use case)\n- **In-memory DB for tests** so they're fast and isolated\n- **Proper HTTP status codes**: 201 for create, 204 for delete, 404 for missing, 400 for validation errors\n\nRun `npx tsx src/index.ts` to start the server on port 3000. Want me to add pagination, search, or authentication next?",
+      "streamingSpeed": "normal"
+    }
+  ]
+}

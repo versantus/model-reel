@@ -4,31 +4,10 @@ import { nanoid } from 'nanoid'
 import { useSimulationStore } from '../../store/simulation-store'
 import { usePlaybackStore } from '../../store/playback-store'
 import { useEditorStore } from '../../store/editor-store'
-import { sampleClaudeCodeSimulation, sampleClaudeChatSimulation, sampleCoworkSimulation } from '../../utils/sample-data'
-import { fatSquirrelDemo } from '../../utils/fat-squirrel-demo'
-import { fatSquirrelLifeAdminDemo } from '../../utils/fat-squirrel-life-admin'
-import { sampleLandingPageSimulation, sampleTodoAppSimulation, sampleApiSimulation, sampleDashboardSimulation, sampleCoworkBuildSimulation, sampleFinanceTrackerSimulation } from '../../utils/sample-data-advanced'
-import { sampleSltDashboardSimulation } from '../../utils/sample-slt-dashboard'
-import { sampleDocumentSimulation } from '../../utils/sample-document-demo'
+import { basicDemos, advancedDemos } from '../../demos/demo-loader'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
 import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
-
-const demos = [
-  { label: '🌲 Fat Squirrel — Marketing', sim: fatSquirrelDemo, view: 'claude-chat' as const },
-  { label: '🌲 Fat Squirrel — Life Admin', sim: fatSquirrelLifeAdminDemo, view: 'claude-chat' as const },
-  { label: 'Claude Code Demo', sim: sampleClaudeCodeSimulation, view: 'claude-code' as const },
-  { label: 'Claude Chat Demo', sim: sampleClaudeChatSimulation, view: 'claude-chat' as const },
-  { label: 'Cowork Demo', sim: sampleCoworkSimulation, view: 'claude-cowork' as const },
-  { label: 'Build a Landing Page', sim: sampleLandingPageSimulation, view: 'claude-chat' as const },
-  { label: 'Build a Todo App', sim: sampleTodoAppSimulation, view: 'claude-chat' as const },
-  { label: 'Build a REST API', sim: sampleApiSimulation, view: 'claude-code' as const },
-  { label: 'Analytics Dashboard', sim: sampleDashboardSimulation, view: 'claude-chat' as const },
-  { label: 'Cowork: Full-Stack App', sim: sampleCoworkBuildSimulation, view: 'claude-cowork' as const },
-  { label: 'Cowork: SLT Dashboard', sim: sampleSltDashboardSimulation, view: 'claude-cowork' as const },
-  { label: 'Finance Tracker', sim: sampleFinanceTrackerSimulation, view: 'claude-chat' as const },
-  { label: 'Document Generation', sim: sampleDocumentSimulation, view: 'claude-chat' as const },
-]
 
 export function InlineSimulationPicker() {
   const [open, setOpen] = useState(false)
@@ -103,7 +82,7 @@ export function InlineSimulationPicker() {
               <div className="px-3 py-1.5 text-[10px] text-claude-text-tertiary uppercase tracking-wider font-medium">
                 Basic Demos
               </div>
-              {demos.slice(0, 3).map((d) => (
+              {basicDemos.map((d) => (
                 <button
                   key={d.label}
                   onClick={() => handleLoad(d.sim, d.view)}
@@ -115,7 +94,7 @@ export function InlineSimulationPicker() {
               <div className="px-3 py-1.5 text-[10px] text-claude-text-tertiary uppercase tracking-wider font-medium border-t border-claude-border-light mt-0.5 pt-1.5">
                 Advanced Demos
               </div>
-              {demos.slice(3).map((d) => (
+              {advancedDemos.map((d) => (
                 <button
                   key={d.label}
                   onClick={() => handleLoad(d.sim, d.view)}
