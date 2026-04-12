@@ -3,6 +3,7 @@ import { PlaybackEngine } from '../engine/playback-engine'
 import { useSimulationStore } from '../store/simulation-store'
 import { usePlaybackStore } from '../store/playback-store'
 import { useChromeStore } from '../store/chrome-store'
+import { useDocumentStore } from '../store/document-store'
 import type { ArtifactEvent } from '../types/simulation'
 
 export function usePlayback() {
@@ -19,6 +20,7 @@ export function usePlayback() {
   const pause = usePlaybackStore((s) => s.pause)
   const stop = usePlaybackStore((s) => s.stop)
   const openChrome = useChromeStore((s) => s.open)
+  const openDocument = useDocumentStore((s) => s.open)
 
   useEffect(() => {
     const engine = new PlaybackEngine({
@@ -35,7 +37,12 @@ export function usePlayback() {
       onEventComplete: (event, _index) => {
         completeEvent(event.id)
         if (event.type === 'artifact') {
-          openChrome(event as ArtifactEvent)
+          const artifact = event as ArtifactEvent
+          if (artifact.artifactType === 'word' || artifact.artifactType === 'pdf') {
+            openDocument(artifact)
+          } else {
+            openChrome(artifact)
+          }
         }
       },
       onPlaybackComplete: () => {
@@ -44,7 +51,7 @@ export function usePlayback() {
     })
     engineRef.current = engine
     return () => engine.stop()
-  }, [appendRenderedEvent, updateEventProgress, completeEvent, updateStatusBar, setEventIndex, stop, openChrome])
+  }, [appendRenderedEvent, updateEventProgress, completeEvent, updateStatusBar, setEventIndex, stop, openChrome, openDocument])
 
   useEffect(() => {
     if (simulation && engineRef.current) {

@@ -1,5 +1,7 @@
 import { ClaudeWindow } from './ClaudeWindow'
 import { ChromeWindow } from './ChromeWindow'
+import { WordWindow } from './WordWindow'
+import { PdfWindow } from './PdfWindow'
 import { PlaybackControls } from '../layout/PlaybackControls'
 import { useSimulationStore } from '../../store/simulation-store'
 import { useEditorStore } from '../../store/editor-store'
@@ -15,8 +17,10 @@ export function DesktopShell() {
         <ClaudeWindow />
       </div>
 
-      {/* Simulated Chrome browser window (for artifacts) */}
+      {/* Simulated app windows (for artifacts) */}
       <ChromeWindow />
+      <WordWindow />
+      <PdfWindow />
 
       {/* Playback controls - below window, in the "desktop" area */}
       {simulation && !isEditorVisible && (

@@ -5,6 +5,7 @@ import { useSimulationStore } from '../../store/simulation-store'
 import { usePlaybackStore } from '../../store/playback-store'
 import { useEditorStore } from '../../store/editor-store'
 import { sampleClaudeCodeSimulation, sampleClaudeChatSimulation, sampleCoworkSimulation } from '../../utils/sample-data'
+import { sampleDocumentSimulation } from '../../utils/sample-document-demo'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
 import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
@@ -13,6 +14,7 @@ const demos = [
   { label: 'Claude Code Demo', sim: sampleClaudeCodeSimulation, view: 'claude-code' as const },
   { label: 'Claude Chat Demo', sim: sampleClaudeChatSimulation, view: 'claude-chat' as const },
   { label: 'Cowork Demo', sim: sampleCoworkSimulation, view: 'claude-cowork' as const },
+  { label: 'Document Generation', sim: sampleDocumentSimulation, view: 'claude-chat' as const },
 ]
 
 export function SimulationPicker() {

@@ -9,6 +9,7 @@ import { fatSquirrelDemo } from '../../utils/fat-squirrel-demo'
 import { fatSquirrelLifeAdminDemo } from '../../utils/fat-squirrel-life-admin'
 import { sampleLandingPageSimulation, sampleTodoAppSimulation, sampleApiSimulation, sampleDashboardSimulation, sampleCoworkBuildSimulation, sampleFinanceTrackerSimulation } from '../../utils/sample-data-advanced'
 import { sampleSltDashboardSimulation } from '../../utils/sample-slt-dashboard'
+import { sampleDocumentSimulation } from '../../utils/sample-document-demo'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
 import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
@@ -26,6 +27,7 @@ const demos = [
   { label: 'Cowork: Full-Stack App', sim: sampleCoworkBuildSimulation, view: 'claude-cowork' as const },
   { label: 'Cowork: SLT Dashboard', sim: sampleSltDashboardSimulation, view: 'claude-cowork' as const },
   { label: 'Finance Tracker', sim: sampleFinanceTrackerSimulation, view: 'claude-chat' as const },
+  { label: 'Document Generation', sim: sampleDocumentSimulation, view: 'claude-chat' as const },
 ]
 
 export function InlineSimulationPicker() {
