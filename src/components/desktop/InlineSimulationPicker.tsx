@@ -11,6 +11,7 @@ import { fatSquirrelLifeAdminCoworkDemo } from '../../utils/fat-squirrel-life-ad
 import { sampleLandingPageSimulation, sampleTodoAppSimulation, sampleApiSimulation, sampleDashboardSimulation, sampleCoworkBuildSimulation, sampleFinanceTrackerSimulation } from '../../utils/sample-data-advanced'
 import { sampleSltDashboardSimulation } from '../../utils/sample-slt-dashboard'
 import { sampleDocumentSimulation } from '../../utils/sample-document-demo'
+import { enableOpenDayDemo } from '../../utils/enable-open-day-demo'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
 import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
@@ -30,6 +31,7 @@ const demos = [
   { label: 'Cowork: SLT Dashboard', sim: sampleSltDashboardSimulation, view: 'claude-cowork' as const },
   { label: 'Finance Tracker', sim: sampleFinanceTrackerSimulation, view: 'claude-chat' as const },
   { label: 'Document Generation', sim: sampleDocumentSimulation, view: 'claude-chat' as const },
+  { label: 'Enable Open Day Email', sim: enableOpenDayDemo, view: 'claude-cowork' as const },
 ]
 
 export function InlineSimulationPicker() {

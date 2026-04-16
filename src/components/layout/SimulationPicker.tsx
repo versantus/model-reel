@@ -7,6 +7,7 @@ import { useEditorStore } from '../../store/editor-store'
 import { sampleClaudeCodeSimulation, sampleClaudeChatSimulation, sampleCoworkSimulation } from '../../utils/sample-data'
 import { sampleDocumentSimulation } from '../../utils/sample-document-demo'
 import { fatSquirrelLifeAdminCoworkDemo } from '../../utils/fat-squirrel-life-admin-cowork'
+import { enableOpenDayDemo } from '../../utils/enable-open-day-demo'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
 import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
@@ -17,6 +18,7 @@ const demos = [
   { label: 'Cowork Demo', sim: sampleCoworkSimulation, view: 'claude-cowork' as const },
   { label: 'Document Generation', sim: sampleDocumentSimulation, view: 'claude-chat' as const },
   { label: 'Life Admin (Cowork)', sim: fatSquirrelLifeAdminCoworkDemo, view: 'claude-cowork' as const },
+  { label: 'Enable Open Day Email', sim: enableOpenDayDemo, view: 'claude-cowork' as const },
 ]
 
 export function SimulationPicker() {
