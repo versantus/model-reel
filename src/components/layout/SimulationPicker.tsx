@@ -8,6 +8,7 @@ import { sampleClaudeCodeSimulation, sampleClaudeChatSimulation, sampleCoworkSim
 import { sampleDocumentSimulation } from '../../utils/sample-document-demo'
 import { fatSquirrelLifeAdminCoworkDemo } from '../../utils/fat-squirrel-life-admin-cowork'
 import { enableOpenDayDemo } from '../../utils/enable-open-day-demo'
+import { linkedinCarouselSkillDemo } from '../../utils/linkedin-carousel-skill-demo'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
 import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
@@ -19,6 +20,7 @@ const demos = [
   { label: 'Document Generation', sim: sampleDocumentSimulation, view: 'claude-chat' as const },
   { label: 'Life Admin (Cowork)', sim: fatSquirrelLifeAdminCoworkDemo, view: 'claude-cowork' as const },
   { label: 'Enable Open Day Email', sim: enableOpenDayDemo, view: 'claude-cowork' as const },
+  { label: 'LinkedIn Carousel → Skill', sim: linkedinCarouselSkillDemo, view: 'claude-chat' as const },
 ]
 
 export function SimulationPicker() {

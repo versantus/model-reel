@@ -12,6 +12,8 @@ import { sampleLandingPageSimulation, sampleTodoAppSimulation, sampleApiSimulati
 import { sampleSltDashboardSimulation } from '../../utils/sample-slt-dashboard'
 import { sampleDocumentSimulation } from '../../utils/sample-document-demo'
 import { enableOpenDayDemo } from '../../utils/enable-open-day-demo'
+import { nine23Demo } from '../../utils/nine23-demo'
+import { linkedinCarouselSkillDemo } from '../../utils/linkedin-carousel-skill-demo'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
 import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
@@ -32,6 +34,8 @@ const demos = [
   { label: 'Finance Tracker', sim: sampleFinanceTrackerSimulation, view: 'claude-chat' as const },
   { label: 'Document Generation', sim: sampleDocumentSimulation, view: 'claude-chat' as const },
   { label: 'Enable Open Day Email', sim: enableOpenDayDemo, view: 'claude-cowork' as const },
+  { label: '🏢 923 Jobs — Lazy vs Good', sim: nine23Demo, view: 'claude-chat' as const },
+  { label: '🌲 LinkedIn Carousel → Skill', sim: linkedinCarouselSkillDemo, view: 'claude-chat' as const },
 ]
 
 export function InlineSimulationPicker() {
