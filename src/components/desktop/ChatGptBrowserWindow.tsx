@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight, RotateCw, Lock, Star, Share2, Plus } from 'lucide-react'
 import { ChatGptTabView } from '../chatgpt/ChatGptTabView'
 import { SimulationEditor } from '../editor/SimulationEditor'
+import { InlineSimulationPicker } from './InlineSimulationPicker'
 import { useEditorStore } from '../../store/editor-store'
 import { useSimulationStore } from '../../store/simulation-store'
 
@@ -64,6 +65,9 @@ export function ChatGptBrowserWindow() {
         <button className="p-1.5 rounded-full hover:bg-[#F1F3F4] text-[#5F6368]">
           <Star className="w-4 h-4" />
         </button>
+        <div className="pl-2 ml-1 border-l border-[#DADCE0]">
+          <InlineSimulationPicker />
+        </div>
       </div>
 
       {/* Page content (the ChatGPT web app) */}
