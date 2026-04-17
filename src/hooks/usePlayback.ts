@@ -63,6 +63,13 @@ export function usePlayback() {
     engineRef.current?.setSpeed(speed)
   }, [speed])
 
+  const autoplayToken = usePlaybackStore((s) => s.autoplayToken)
+  useEffect(() => {
+    if (autoplayToken === 0 || !simulation || !engineRef.current) return
+    play()
+    engineRef.current.play()
+  }, [autoplayToken, simulation, play])
+
   const handlePlay = useCallback(() => {
     if (!engineRef.current) return
     play()

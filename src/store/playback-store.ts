@@ -8,6 +8,7 @@ interface PlaybackStore {
   currentEventIndex: number
   speed: PlaybackSpeed
   mode: 'playback' | 'editor'
+  autoplayToken: number
 
   play: () => void
   pause: () => void
@@ -16,6 +17,7 @@ interface PlaybackStore {
   advanceEvent: () => void
   setSpeed: (speed: PlaybackSpeed) => void
   setMode: (mode: 'playback' | 'editor') => void
+  requestAutoplay: () => void
 }
 
 export const usePlaybackStore = create<PlaybackStore>()((set) => ({
@@ -24,6 +26,7 @@ export const usePlaybackStore = create<PlaybackStore>()((set) => ({
   currentEventIndex: -1,
   speed: 1,
   mode: 'playback',
+  autoplayToken: 0,
 
   play: () => set({ isPlaying: true, isPaused: false }),
   pause: () => set({ isPlaying: false, isPaused: true }),
@@ -32,4 +35,5 @@ export const usePlaybackStore = create<PlaybackStore>()((set) => ({
   advanceEvent: () => set((s) => ({ currentEventIndex: s.currentEventIndex + 1 })),
   setSpeed: (speed) => set({ speed }),
   setMode: (mode) => set({ mode }),
+  requestAutoplay: () => set((s) => ({ autoplayToken: s.autoplayToken + 1 })),
 }))

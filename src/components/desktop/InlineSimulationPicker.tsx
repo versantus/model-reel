@@ -15,14 +15,18 @@ export function InlineSimulationPicker() {
   const loadSimulation = useSimulationStore((s) => s.loadSimulation)
   const resetPlayback = useSimulationStore((s) => s.resetPlayback)
   const stop = usePlaybackStore((s) => s.stop)
+  const requestAutoplay = usePlaybackStore((s) => s.requestAutoplay)
   const setActiveView = useEditorStore((s) => s.setActiveView)
+  const setEditorVisible = useEditorStore((s) => s.setEditorVisible)
 
   const handleLoad = (sim: Simulation, view?: ProductType) => {
     stop()
     resetPlayback()
+    setEditorVisible(false)
     loadSimulation(sim)
     if (view) setActiveView(view)
     setOpen(false)
+    requestAutoplay()
   }
 
   const handleNew = () => {
