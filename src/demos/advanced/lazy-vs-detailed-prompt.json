@@ -1,0 +1,98 @@
+{
+  "id": "lazy-vs-detailed-prompt",
+  "title": "ChatGPT — Lazy prompt vs. detailed prompt",
+  "description": "Same ask, two prompts. First is a one-liner and gets generic AI slop — clichés, emoji, hashtag spam, no voice. The second loads the request with audience, point of view, a specific anecdote and a forbidden-phrases list, and the output is a post that actually sounds like a person. The contrast is the lesson.",
+  "productType": "chatgpt",
+  "createdAt": "2026-04-17T00:00:00Z",
+  "updatedAt": "2026-04-17T00:00:00Z",
+  "metadata": {
+    "gptConfig": {
+      "modelName": "5",
+      "theme": "light",
+      "conversationTitle": "LinkedIn post — AI for SMEs",
+      "sidebarConversations": [
+        { "id": "c1", "title": "LinkedIn post — AI for SMEs", "timestamp": "2026-04-17T10:15:00Z", "isActive": true },
+        { "id": "c2", "title": "Q2 planning offsite agenda", "timestamp": "2026-04-16T14:40:00Z", "isActive": false },
+        { "id": "c3", "title": "Supplier follow-up email", "timestamp": "2026-04-15T09:05:00Z", "isActive": false },
+        { "id": "c4", "title": "Packaging copy rewrite", "timestamp": "2026-04-12T16:20:00Z", "isActive": false }
+      ]
+    }
+  },
+  "events": [
+    {
+      "id": "e1",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "Write a LinkedIn post about AI for small businesses.",
+      "typingEffect": true
+    },
+    {
+      "id": "e2",
+      "type": "thinking",
+      "delayMs": 500,
+      "durationMs": 900,
+      "label": "Thinking..."
+    },
+    {
+      "id": "e3",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "🚀 **AI is transforming small businesses in 2026 — and the opportunity has never been greater.**\n\nIn today's fast-paced business landscape, small and medium-sized enterprises are at a pivotal crossroads. Artificial Intelligence is no longer a luxury reserved for Fortune 500 companies — it's an essential tool for businesses of every size looking to stay competitive, drive efficiency, and unlock their full potential.\n\nHere's how AI is revolutionising SMEs:\n\n✅ **Streamlining operations** — from automating repetitive tasks to optimising workflows\n✅ **Enhancing customer experience** — chatbots, personalisation, and 24/7 support\n✅ **Data-driven decision making** — turning insights into action\n✅ **Marketing at scale** — content generation, targeted campaigns, SEO optimisation\n✅ **Cost reduction** — doing more with less, game-changing efficiencies\n\nThe businesses that embrace AI today will be the market leaders of tomorrow. Don't get left behind — it's time to harness the power of AI and future-proof your business! 💡\n\nWhat's your experience with AI in your small business? Drop a comment below or DM me to learn more about how we can help you leverage AI for growth. 👇\n\n#AI #SmallBusiness #Innovation #DigitalTransformation #Entrepreneurship #Technology #FutureOfWork #BusinessGrowth #ArtificialIntelligence #SME",
+      "streamingSpeed": "fast"
+    },
+    {
+      "id": "e4",
+      "type": "pause",
+      "delayMs": 1800,
+      "durationMs": 1200
+    },
+    {
+      "id": "e5",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "That's unusable — it reads like every other AI post on LinkedIn. Try again, with proper context:\n\n**Audience:** SME owners, 20–50 staff, mostly not technical. Running on instinct and spreadsheets.\n\n**Who I am:** I run a 30-person outdoor brand. Tried AI last year — wasted £4k on an agency who built us a customer service chatbot that nobody used. Six months later I gave up on them and spent one afternoon with Claude writing two months of content, social posts and supplier emails. That actually worked.\n\n**Voice:** First person. Dry. Slightly self-deprecating. Specific numbers. Short sentences. Full stops. No rhetorical questions.\n\n**Angle:** Start from the £4k mistake, not \"AI is transformative.\" The point is: AI works for SMEs when you use it yourself, not when you pay someone else to build you something around it.\n\n**Never use:** leverage, unlock, harness, game-changer, revolutionary, \"in today's\", \"the future of\", emojis, rocket ships, \"DM me\", hashtag spam. No CTA. No \"what's your experience\" question at the end.\n\n**Length:** 120 words max. One practical takeaway at the end, no fluff.",
+      "typingEffect": true
+    },
+    {
+      "id": "e6",
+      "type": "thinking",
+      "delayMs": 400,
+      "durationMs": 1900,
+      "label": "Reading the constraints..."
+    },
+    {
+      "id": "e7",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "Last year I spent £4,000 on an AI customer service chatbot.\n\nAn agency built it. It sat on our website for six months. Seventeen people used it. Most of those were me, checking it still worked.\n\nThen I gave up, opened Claude myself, and in one afternoon wrote two months of social posts, a supplier chase email, and rewrote our returns policy. Cost: £15 in API credits.\n\nWhat I learned, the expensive way:\n\nAI works for small businesses when *you* use it. Not when you pay someone to build a thing around it. The value is in the boring stuff you already do — drafting, summarising, turning a three-line brief into a full email. Not a chatbot on your homepage that nobody asked for.\n\nStop buying AI. Start using it.",
+      "streamingSpeed": "normal"
+    },
+    {
+      "id": "e8",
+      "type": "pause",
+      "delayMs": 1500,
+      "durationMs": 1000
+    },
+    {
+      "id": "e9",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "Huge difference. What actually changed?",
+      "typingEffect": true
+    },
+    {
+      "id": "e10",
+      "type": "thinking",
+      "delayMs": 400,
+      "durationMs": 1100,
+      "label": "Thinking..."
+    },
+    {
+      "id": "e11",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "The first prompt gave me a topic. The second gave me enough to write *as you*:\n\n1. **A specific story, with numbers.** \"£4k on a chatbot, 17 users, one afternoon with Claude\" is something I couldn't have invented. It's the spine of the whole post.\n2. **A point of view.** \"AI works when you use it, not when you pay someone to build a thing around it.\" I had an angle to argue, not a subject to describe.\n3. **A voice.** \"Dry, slightly self-deprecating, short sentences, no rhetorical questions\" told me how to sound. Without it I default to the LinkedIn house style — which is why generic AI posts all read the same.\n4. **A forbidden list.** \"No leverage, harness, game-changer, emojis, hashtags, DM me\" stripped out the reflexes I'd otherwise reach for. Constraint does more work here than instruction.\n5. **A length cap.** 120 words forced every sentence to carry weight. The first post was 210 words mostly saying nothing.\n\nThe pattern, more generally: the lazy prompt asks for *a thing*. The good prompt hands over context, opinions, and specifics the model couldn't have guessed — and then trusts it to write.",
+      "streamingSpeed": "normal"
+    }
+  ]
+}
