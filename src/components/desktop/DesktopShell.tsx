@@ -1,4 +1,5 @@
 import { ClaudeWindow } from './ClaudeWindow'
+import { ChatGptBrowserWindow } from './ChatGptBrowserWindow'
 import { ChromeWindow } from './ChromeWindow'
 import { WordWindow } from './WordWindow'
 import { PdfWindow } from './PdfWindow'
@@ -9,12 +10,13 @@ import { useEditorStore } from '../../store/editor-store'
 export function DesktopShell() {
   const simulation = useSimulationStore((s) => s.simulation)
   const isEditorVisible = useEditorStore((s) => s.isEditorVisible)
+  const isChatGpt = simulation?.productType === 'chatgpt'
 
   return (
     <div className="h-full macos-desktop flex flex-col items-center justify-center p-6 pb-20 relative">
-      {/* Claude Desktop Window */}
+      {/* Product window — browser for ChatGPT, macOS app for Claude */}
       <div className="w-full flex-1 max-w-[1200px] max-h-[820px] relative z-20 overflow-hidden rounded-xl">
-        <ClaudeWindow />
+        {isChatGpt ? <ChatGptBrowserWindow /> : <ClaudeWindow />}
       </div>
 
       {/* Simulated app windows (for artifacts) */}
