@@ -12,7 +12,7 @@ interface EditorStore {
 }
 
 export const useEditorStore = create<EditorStore>()((set) => ({
-  activeView: 'claude-code',
+  activeView: 'claude-code-gui',
   selectedEventId: null,
   isEditorVisible: false,
 

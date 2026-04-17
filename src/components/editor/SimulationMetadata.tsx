@@ -44,7 +44,8 @@ export function SimulationMetadata({ simulation }: SimulationMetadataProps) {
         onChange={(e) => update({ productType: e.target.value as ProductType })}
         className="bg-claude-surface border border-claude-border rounded-lg px-2 py-1 text-[12px] text-claude-text-secondary focus:outline-none"
       >
-        <option value="claude-code">Claude Code</option>
+        <option value="claude-code-gui">Claude Code (GUI)</option>
+        <option value="claude-code">Claude Code (text)</option>
         <option value="claude-chat">Claude Chat</option>
         <option value="claude-cowork">Cowork</option>
         <option value="chatgpt">ChatGPT</option>

@@ -7,7 +7,8 @@ import type { ProductType } from '../../types/simulation'
 const tabs: { id: ProductType; label: string }[] = [
   { id: 'claude-chat', label: 'Chat' },
   { id: 'claude-cowork', label: 'Cowork' },
-  { id: 'claude-code', label: 'Code' },
+  { id: 'claude-code-gui', label: 'Code' },
+  { id: 'claude-code', label: 'Code (text)' },
 ]
 
 export function WindowChrome() {

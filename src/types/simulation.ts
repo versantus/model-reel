@@ -1,4 +1,4 @@
-export type ProductType = 'claude-code' | 'claude-chat' | 'claude-cowork' | 'chatgpt'
+export type ProductType = 'claude-code' | 'claude-code-gui' | 'claude-chat' | 'claude-cowork' | 'chatgpt'
 
 export interface Simulation {
   id: string
@@ -13,6 +13,7 @@ export interface Simulation {
 
 export interface SimulationMetadata {
   codeConfig?: CodeConfig
+  guiConfig?: GuiConfig
   chatConfig?: ChatConfig
   coworkConfig?: CoworkConfig
   gptConfig?: GptConfig
@@ -38,6 +39,25 @@ export interface CoworkConfig {
   taskTitle: string
   folderPath: string
   suggestions: string[]
+}
+
+export interface GuiConfig {
+  userName: string
+  modelName: string
+  reasoningLevel?: 'Low' | 'Medium' | 'High' | 'Extra high'
+  workingFolder?: string
+  stats: {
+    sessions: number
+    messages: number
+    totalTokensM: number
+    activeDays: number
+    currentStreakDays: number
+    longestStreakDays: number
+    peakHour: number
+    favoriteModel: string
+  }
+  activityHeatmap?: number[]
+  footnote?: string
 }
 
 export interface GptConfig {

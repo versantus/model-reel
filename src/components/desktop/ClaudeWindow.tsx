@@ -4,6 +4,7 @@ import { WindowChrome } from './WindowChrome'
 import { ChatTabView } from './ChatTabView'
 import { CoworkTabView } from './CoworkTabView'
 import { CodeTabView } from './CodeTabView'
+import { ClaudeCodeGuiView } from './ClaudeCodeGuiView'
 import { SimulationEditor } from '../editor/SimulationEditor'
 
 export function ClaudeWindow() {
@@ -24,6 +25,7 @@ export function ClaudeWindow() {
           <>
             {activeView === 'claude-chat' && <ChatTabView />}
             {activeView === 'claude-cowork' && <CoworkTabView />}
+            {activeView === 'claude-code-gui' && <ClaudeCodeGuiView />}
             {activeView === 'claude-code' && <CodeTabView />}
           </>
         )}
