@@ -47,6 +47,7 @@ export const useSimulationStore = create<SimulationStore>()(
 
     appendRenderedEvent: (event) =>
       set((state) => {
+        if (state.renderedEvents.some((r) => r.event.id === event.id)) return
         state.renderedEvents.push({
           event,
           progress: 0,
