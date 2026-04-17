@@ -18,7 +18,7 @@ export function useDeepLink() {
     if (!match) return
 
     const { loadSimulation, resetPlayback } = useSimulationStore.getState()
-    const { stop, requestAutoplay } = usePlaybackStore.getState()
+    const { stop, requestAutoplay, setSpeed } = usePlaybackStore.getState()
     const { setActiveView, setEditorVisible } = useEditorStore.getState()
 
     stop()
@@ -26,6 +26,7 @@ export function useDeepLink() {
     setEditorVisible(false)
     loadSimulation(match.sim)
     setActiveView(match.view)
+    setSpeed(2)
     requestAutoplay()
   }, [])
 }

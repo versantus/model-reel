@@ -1,35 +1,19 @@
 {
   "id": "fat-squirrel-life-admin",
   "title": "Life Admin — AI for the stuff that eats your evening",
-  "description": "Claude handles three life admin tasks in one prompt: cancel a gym membership, draft a school email, and find a dentist appointment. Shows AI isn't just for business.",
-  "productType": "claude-chat",
+  "description": "Claude Cowork handles three life admin tasks in one prompt: cancel a gym membership, draft a school email, and find a dentist appointment. Shows AI isn't just for business.",
+  "productType": "claude-cowork",
   "createdAt": "2026-04-12T00:00:00Z",
   "updatedAt": "2026-04-12T00:00:00Z",
   "metadata": {
-    "chatConfig": {
-      "modelName": "claude-sonnet-4-20250514",
-      "theme": "light",
-      "conversationTitle": "Life admin",
-      "sidebarConversations": [
-        {
-          "id": "c1",
-          "title": "Fat Squirrel Outdoor marketing",
-          "timestamp": "Just now",
-          "isActive": false
-        },
-        {
-          "id": "c2",
-          "title": "Team day enquiry reply",
-          "timestamp": "Earlier",
-          "isActive": false
-        }
-      ],
-      "projects": [
-        {
-          "id": "p1",
-          "name": "Personal",
-          "conversationCount": 2
-        }
+    "coworkConfig": {
+      "taskTitle": "Life admin",
+      "folderPath": "/Users/nik/Personal/Life admin",
+      "suggestions": [
+        "Cancel a subscription",
+        "Draft a school email",
+        "Find a local service",
+        "Book an appointment"
       ]
     }
   },
@@ -45,17 +29,77 @@
       "id": "e2",
       "type": "thinking",
       "delayMs": 400,
-      "durationMs": 1500
+      "durationMs": 1200,
+      "label": "Planning approach..."
     },
     {
       "id": "e3",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 0,
+      "stepLabel": "Drafting gym cancellation email",
+      "status": "running"
+    },
+    {
+      "id": "e4",
+      "type": "cowork-progress",
+      "delayMs": 1400,
+      "stepIndex": 0,
+      "stepLabel": "Drafting gym cancellation email",
+      "status": "complete",
+      "detail": "To: Cotswold Fitness · Member CF-44210 · Effective 30 April"
+    },
+    {
+      "id": "e5",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 1,
+      "stepLabel": "Drafting school email to Mrs Patterson",
+      "status": "running"
+    },
+    {
+      "id": "e6",
+      "type": "cowork-progress",
+      "delayMs": 1400,
+      "stepIndex": 1,
+      "stepLabel": "Drafting school email to Mrs Patterson",
+      "status": "complete",
+      "detail": "Parents evening apology + alternative slot request"
+    },
+    {
+      "id": "e7",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 2,
+      "stepLabel": "Searching NHS dentists near Witney",
+      "status": "running",
+      "detail": "Filtering for Tuesday morning availability..."
+    },
+    {
+      "id": "e8",
+      "type": "cowork-progress",
+      "delayMs": 1800,
+      "stepIndex": 2,
+      "stepLabel": "Searching NHS dentists near Witney",
+      "status": "complete",
+      "detail": "3 practices found accepting NHS patients"
+    },
+    {
+      "id": "e9",
       "type": "assistant-message",
-      "delayMs": 200,
+      "delayMs": 300,
       "content": "Here we go:\n\n---\n\n**1. Gym cancellation email**\n\nSubject: Membership cancellation — Nik Roberts, CF-44210\n\nDear Cotswold Fitness,\n\nI'm writing to cancel my membership, effective 30th April 2026. My member number is CF-44210.\n\nPlease confirm receipt and let me know if there's anything else I need to do. I'd also appreciate confirmation that no further payments will be taken after this date.\n\nMany thanks,\nNik Roberts\n\n---\n\n**2. School email**\n\nSubject: Parents evening — Nik Roberts, Year 4\n\nDear Mrs Patterson,\n\nI'm sorry but I won't be able to make parents evening this Thursday due to a work commitment. I'd really like to catch up about how things are going — is there another slot you could offer, or would a phone call at a different time work for you?\n\nApologies for the late notice.\n\nBest wishes,\nNik Roberts\n\n---\n\n**3. Dentist**\n\nFor NHS dentists near Witney with Tuesday morning availability, I'd suggest calling:\n\n- **Witney Dental Practice** (01993 703XXX) — NHS, open Tuesdays from 8:30am\n- **Newlands Dental Care** (01993 705XXX) — accepting NHS patients, Tuesday slots available\n- **Windrush Health Centre** (01993 702XXX) — NHS dental service, Tuesday mornings\n\nAll three are in Witney town centre. I'd ring first thing Monday — NHS dental slots go fast.\n\n---\n\nThree things that would've taken you an hour, done in about 30 seconds of asking. That's the point.",
       "streamingSpeed": "normal"
     },
     {
-      "id": "e4",
+      "id": "e10",
+      "type": "cowork-notification",
+      "delayMs": 600,
+      "notificationType": "finished",
+      "message": "Life admin sorted — 3 tasks handled. Two emails ready to send, dentist shortlist ready to call."
+    },
+    {
+      "id": "e11",
       "type": "status-bar-update",
       "delayMs": 0,
       "updates": {
