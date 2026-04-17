@@ -7,6 +7,7 @@ import { ChatGptMessage } from './ChatGptMessage'
 import { ChatGptInputBar } from './ChatGptInputBar'
 import { ChatGptThinking } from './ChatGptThinking'
 import { ChatGptTopBar } from './ChatGptTopBar'
+import { ChatGptCodeInterpreter } from './ChatGptCodeInterpreter'
 import type { ArtifactEvent } from '../../types/simulation'
 
 export function ChatGptTabView() {
@@ -36,7 +37,7 @@ export function ChatGptTabView() {
             {renderedEvents.map((re) => {
               const { event, progress, isComplete } = re
               if (event.type === 'user-message') {
-                return <ChatGptMessage key={event.id} role="user" content={event.content} progress={progress} />
+                return <ChatGptMessage key={event.id} role="user" content={event.content} progress={progress} attachments={event.attachments} />
               }
               if (event.type === 'assistant-message') {
                 return <ChatGptMessage key={event.id} role="assistant" content={event.content} progress={progress} isComplete={isComplete} />
@@ -46,6 +47,9 @@ export function ChatGptTabView() {
               }
               if (event.type === 'thinking' && !isComplete) {
                 return <ChatGptThinking key={event.id} label={event.label} />
+              }
+              if (event.type === 'code-interpreter') {
+                return <ChatGptCodeInterpreter key={event.id} event={event} progress={progress} isComplete={isComplete} />
               }
               return null
             })}

@@ -75,6 +75,7 @@ export type SimulationEvent =
   | CoworkProgressEvent
   | CoworkNotificationEvent
   | PauseEvent
+  | CodeInterpreterEvent
 
 interface BaseEvent {
   id: string
@@ -83,10 +84,20 @@ interface BaseEvent {
   durationMs?: number
 }
 
+export type AttachmentKind = 'spreadsheet' | 'pdf' | 'image' | 'document' | 'code' | 'other'
+
+export interface MessageAttachment {
+  name: string
+  kind: AttachmentKind
+  size?: string
+  sheetCount?: number
+}
+
 export interface UserMessageEvent extends BaseEvent {
   type: 'user-message'
   content: string
   typingEffect: boolean
+  attachments?: MessageAttachment[]
 }
 
 export interface AssistantMessageEvent extends BaseEvent {
@@ -163,6 +174,16 @@ export interface CoworkNotificationEvent extends BaseEvent {
 
 export interface PauseEvent extends BaseEvent {
   type: 'pause'
+}
+
+export interface CodeInterpreterEvent extends BaseEvent {
+  type: 'code-interpreter'
+  language: 'python'
+  code: string
+  output: string
+  analyzingLabel?: string
+  analyzedLabel?: string
+  expandedByDefault?: boolean
 }
 
 // --- Rendered state ---

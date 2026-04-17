@@ -187,6 +187,8 @@ export class PlaybackEngine {
         return 300
       case 'pause':
         return event.durationMs ?? 2000
+      case 'code-interpreter':
+        return event.durationMs ?? 3500
       case 'status-bar-update':
         return 0
       default:

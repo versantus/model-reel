@@ -111,6 +111,11 @@ html, body, #root {
 @keyframes spin-slow { to { transform: rotate(360deg); } }
 .animate-spin-slow { animation: spin-slow 1.5s linear infinite; }
 
+@keyframes shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: -100% 50%; }
+}
+
 /* macOS Sequoia wallpaper */
 .macos-desktop {
   background: linear-gradient(160deg, #1B2838 0%, #1A3045 20%, #1C4462 40%, #3B6B8A 60%, #7BA0B8 80%, #C4D5DF 100%);
