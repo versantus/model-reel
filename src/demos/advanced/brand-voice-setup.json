@@ -1,0 +1,481 @@
+{
+  "id": "cowork-brand-voice-setup",
+  "title": "Brand Voice Setup — Teach AI how you write",
+  "description": "User opens their Versantus Brand Kit project in Cowork and follows the LinkedIn brand-voice setup guide: captures tone, rhythm, vocabulary, perspective and samples into a reusable brand kit folder.",
+  "productType": "claude-cowork",
+  "createdAt": "2026-04-17T00:00:00Z",
+  "updatedAt": "2026-04-17T00:00:00Z",
+  "metadata": {
+    "coworkConfig": {
+      "taskTitle": "Set up brand voice for Versantus",
+      "folderPath": "/Users/nik/Projects/Versantus Brand Kit",
+      "suggestions": [
+        "Open a project",
+        "Set up brand voice",
+        "Capture tone of voice",
+        "Summarise a PDF"
+      ]
+    }
+  },
+  "events": [
+    {
+      "id": "e1",
+      "type": "cowork-notification",
+      "delayMs": 0,
+      "notificationType": "needs-input",
+      "message": "Pick a project to work in."
+    },
+    {
+      "id": "e2",
+      "type": "user-message",
+      "delayMs": 1200,
+      "content": "Open the Versantus Brand Kit project.",
+      "typingEffect": true
+    },
+    {
+      "id": "e3",
+      "type": "thinking",
+      "delayMs": 300,
+      "durationMs": 700,
+      "label": "Opening project..."
+    },
+    {
+      "id": "e4",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "Opened **Versantus Brand Kit** — /Users/nik/Projects/Versantus Brand Kit. The folder's empty apart from a README. What are we doing in here?",
+      "streamingSpeed": "fast"
+    },
+    {
+      "id": "e5",
+      "type": "pause",
+      "delayMs": 800
+    },
+    {
+      "id": "e6",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "I've attached a PDF — linkedin-brand-voice-setup-carousel.pdf. Follow Option 3 from it (the brand assets folder approach) and set this project up as a Versantus brand kit we can drop into Claude, ChatGPT, Gemini, whatever. Use the Versantus brief on page 8 as the starting content. Pull 3 writing samples from versantus.ai/blog.",
+      "typingEffect": true
+    },
+    {
+      "id": "e7",
+      "type": "thinking",
+      "delayMs": 500,
+      "durationMs": 2000,
+      "label": "Reading brand voice setup PDF..."
+    },
+    {
+      "id": "e8",
+      "type": "assistant-message",
+      "delayMs": 300,
+      "content": "Got it. Here's the plan:\n\n1. Read the PDF and extract the Option 3 folder structure.\n2. Scaffold: `brand-voice.md`, `tone-guide.md`, `banned-words.md`, `style-checklist.md`, `writing-samples/`.\n3. Populate `brand-voice.md` from the Versantus brief on page 8.\n4. Fetch 3 recent posts from versantus.ai/blog into `writing-samples/`.\n5. Cross-check against the PDF's anti-patterns (page 7) before I hand it back.\n\nStarting now.",
+      "streamingSpeed": "normal"
+    },
+    {
+      "id": "e9",
+      "type": "cowork-progress",
+      "delayMs": 600,
+      "stepIndex": 0,
+      "stepLabel": "Read the setup guide",
+      "status": "running",
+      "detail": "Parsing linkedin-brand-voice-setup-carousel.pdf..."
+    },
+    {
+      "id": "e10",
+      "type": "tool-call",
+      "delayMs": 400,
+      "toolName": "Read",
+      "toolInput": {
+        "file_path": "/Users/nik/Downloads/linkedin-brand-voice-setup-carousel.pdf"
+      },
+      "description": "Reading the brand voice setup PDF",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e11",
+      "type": "tool-result",
+      "delayMs": 900,
+      "toolCallId": "e10",
+      "output": "10 pages parsed. Key sections:\n- Page 3: What to capture (Tone, Rhythm, Vocabulary, Perspective, Examples)\n- Page 6: Option 3 folder contents — brand-voice.md, tone-guide.md, writing-samples/, banned-words.md, style-checklist.md\n- Page 7: Anti-patterns to avoid in briefs\n- Page 8: Versantus brand voice example (tone, rhythm, perspective, never-use, examples URLs)\n- Page 9: Test prompt for validating the brief",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e12",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 0,
+      "stepLabel": "Read the setup guide",
+      "status": "complete",
+      "detail": "Extracted folder structure, Versantus brief, and anti-patterns"
+    },
+    {
+      "id": "e13",
+      "type": "cowork-progress",
+      "delayMs": 200,
+      "stepIndex": 1,
+      "stepLabel": "Scaffold folder structure",
+      "status": "running",
+      "detail": "Creating files per PDF Option 3..."
+    },
+    {
+      "id": "e14",
+      "type": "tool-call",
+      "delayMs": 400,
+      "toolName": "Bash",
+      "toolInput": {
+        "command": "mkdir -p writing-samples && touch brand-voice.md tone-guide.md banned-words.md style-checklist.md"
+      },
+      "description": "Creating brand kit scaffold",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e15",
+      "type": "tool-result",
+      "delayMs": 500,
+      "toolCallId": "e14",
+      "output": "Created writing-samples/\nCreated brand-voice.md\nCreated tone-guide.md\nCreated banned-words.md\nCreated style-checklist.md",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e16",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 1,
+      "stepLabel": "Scaffold folder structure",
+      "status": "complete",
+      "detail": "5 files + writing-samples/ folder created"
+    },
+    {
+      "id": "e17",
+      "type": "cowork-progress",
+      "delayMs": 200,
+      "stepIndex": 2,
+      "stepLabel": "Write brand-voice.md",
+      "status": "running",
+      "detail": "Populating from Versantus brief (PDF page 8)..."
+    },
+    {
+      "id": "e18",
+      "type": "tool-call",
+      "delayMs": 600,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/nik/Projects/Versantus Brand Kit/brand-voice.md"
+      },
+      "description": "Writing the core brand voice brief",
+      "expandedByDefault": true
+    },
+    {
+      "id": "e19",
+      "type": "artifact",
+      "delayMs": 400,
+      "artifactType": "markdown",
+      "title": "brand-voice.md",
+      "content": "# Versantus Brand Voice\n\n> Read this file before writing anything on behalf of Versantus — LinkedIn posts, blog posts, emails, website copy, proposals. If you're unsure, lean drier rather than more enthusiastic.\n\n## Tone\n\nDirect, honest, approachable. Expert but never preachy. Slightly wry.\n\nWe're people who've actually done the work. We sound like someone explaining something over a coffee, not a consultant on stage.\n\n## Rhythm\n\n- Short sentences for impact.\n- Em dashes for asides — like this.\n- Fragments are fine. Often better.\n- Paragraphs of 1–3 sentences. Long walls of text feel corporate.\n\n## Perspective\n\nFirst person plural (we). Grounded in lived experience — we've built the thing we're writing about, or we've watched it fail.\n\nNo \"one does not simply\" voice. No \"in today's fast-paced world.\"\n\n## Vocabulary\n\n**Words we use:** build, ship, notice, worked, didn't work, here's what happened, the honest answer is\n\n**Words we never use:** leverage, utilise, unlock, synergy, seamless, cutting-edge, revolutionary, game-changing\n\n**Phrases we never use:** \"Here's the thing...\", \"Great question!\", \"Let me break this down\", \"In today's fast-paced world\", \"DM me for more\"\n\n## Punctuation\n\n- No exclamation marks for enthusiasm. If the sentence needs one, the sentence isn't working.\n- Em dashes: yes.\n- Oxford comma: yes.\n- Sentence case for headings.\n\n## Examples (see /writing-samples/)\n\n- `001-versantus-about-page.md`\n- `002-blog-ai-without-judgement.md`\n- `003-blog-two-hours-of-setup.md`\n\n## The test\n\nWrite something. Ask: \"If this arrived in my inbox with no byline, would I know it was us?\"\n\nIf yes — the brand comes through without a logo — it's working.\nIf anyone could have written it — add more specificity, more restrictions, more samples.\n",
+      "language": "markdown"
+    },
+    {
+      "id": "e20",
+      "type": "tool-result",
+      "delayMs": 300,
+      "toolCallId": "e18",
+      "output": "Wrote 1,284 bytes to brand-voice.md",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e21",
+      "type": "cowork-progress",
+      "delayMs": 200,
+      "stepIndex": 2,
+      "stepLabel": "Write brand-voice.md",
+      "status": "complete",
+      "detail": "Core brief written — 1.3 KB"
+    },
+    {
+      "id": "e22",
+      "type": "cowork-progress",
+      "delayMs": 200,
+      "stepIndex": 3,
+      "stepLabel": "Write banned-words.md",
+      "status": "running"
+    },
+    {
+      "id": "e23",
+      "type": "tool-call",
+      "delayMs": 400,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/nik/Projects/Versantus Brand Kit/banned-words.md"
+      },
+      "description": "Writing banned words list",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e24",
+      "type": "tool-result",
+      "delayMs": 300,
+      "toolCallId": "e23",
+      "output": "Wrote 612 bytes to banned-words.md",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e25",
+      "type": "cowork-progress",
+      "delayMs": 200,
+      "stepIndex": 3,
+      "stepLabel": "Write banned-words.md",
+      "status": "complete"
+    },
+    {
+      "id": "e26",
+      "type": "cowork-progress",
+      "delayMs": 200,
+      "stepIndex": 4,
+      "stepLabel": "Write style-checklist.md",
+      "status": "running"
+    },
+    {
+      "id": "e27",
+      "type": "tool-call",
+      "delayMs": 400,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/nik/Projects/Versantus Brand Kit/style-checklist.md"
+      },
+      "description": "Writing do/don't checklist",
+      "expandedByDefault": true
+    },
+    {
+      "id": "e28",
+      "type": "artifact",
+      "delayMs": 400,
+      "artifactType": "markdown",
+      "title": "style-checklist.md",
+      "content": "# Style checklist\n\nRun through this before anything goes out.\n\n## Do\n\n- [ ] Short sentences. Fragments where they land.\n- [ ] First person plural (we). Grounded in what we've actually done.\n- [ ] Em dashes for asides — used sparingly, not every sentence.\n- [ ] Specific nouns. \"Brand voice brief\" not \"comprehensive documentation framework.\"\n- [ ] Honest caveats. If we don't know, say we don't know.\n\n## Don't\n\n- [ ] No exclamation marks for enthusiasm.\n- [ ] No rhetorical \"Here's the thing...\" openers.\n- [ ] No hollow CTAs (\"DM me for more\", \"Let's chat\").\n- [ ] No \"in today's fast-paced world\" scene-setting.\n- [ ] No inventing a CEO voice. If quoting someone, use real quotes.\n- [ ] No \"Great question!\" acknowledgements.\n\n## If in doubt\n\nLean drier. Always easier to warm something up than to tone it down.\n",
+      "language": "markdown"
+    },
+    {
+      "id": "e29",
+      "type": "tool-result",
+      "delayMs": 300,
+      "toolCallId": "e27",
+      "output": "Wrote 812 bytes to style-checklist.md",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e30",
+      "type": "cowork-progress",
+      "delayMs": 200,
+      "stepIndex": 4,
+      "stepLabel": "Write style-checklist.md",
+      "status": "complete"
+    },
+    {
+      "id": "e31",
+      "type": "cowork-progress",
+      "delayMs": 200,
+      "stepIndex": 5,
+      "stepLabel": "Fetch writing samples from versantus.ai/blog",
+      "status": "running",
+      "detail": "Pulling 3 most recent posts..."
+    },
+    {
+      "id": "e32",
+      "type": "tool-call",
+      "delayMs": 500,
+      "toolName": "WebFetch",
+      "toolInput": {
+        "url": "https://versantus.ai/blog",
+        "prompt": "List the 3 most recent blog posts with their URLs and titles."
+      },
+      "description": "Fetching blog index",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e33",
+      "type": "tool-result",
+      "delayMs": 1200,
+      "toolCallId": "e32",
+      "output": "1. Two hours of setup. Consistent forever. — /blog/two-hours-of-setup\n2. AI without judgement — /blog/ai-without-judgement\n3. The brief that does the work — /blog/the-brief-that-does-the-work",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e34",
+      "type": "tool-call",
+      "delayMs": 300,
+      "toolName": "WebFetch",
+      "toolInput": {
+        "url": "https://versantus.ai/blog/two-hours-of-setup",
+        "prompt": "Return the full article body as markdown."
+      },
+      "description": "Fetching sample 1",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e35",
+      "type": "tool-result",
+      "delayMs": 900,
+      "toolCallId": "e34",
+      "output": "Fetched 3,214 words.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e36",
+      "type": "tool-call",
+      "delayMs": 300,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/nik/Projects/Versantus Brand Kit/writing-samples/001-two-hours-of-setup.md"
+      },
+      "description": "Saving sample 1",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e37",
+      "type": "tool-result",
+      "delayMs": 200,
+      "toolCallId": "e36",
+      "output": "Wrote 3,401 bytes.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e38",
+      "type": "tool-call",
+      "delayMs": 300,
+      "toolName": "WebFetch",
+      "toolInput": {
+        "url": "https://versantus.ai/blog/ai-without-judgement",
+        "prompt": "Return the full article body as markdown."
+      },
+      "description": "Fetching sample 2",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e39",
+      "type": "tool-result",
+      "delayMs": 800,
+      "toolCallId": "e38",
+      "output": "Fetched 2,108 words.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e40",
+      "type": "tool-call",
+      "delayMs": 200,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/nik/Projects/Versantus Brand Kit/writing-samples/002-ai-without-judgement.md"
+      },
+      "description": "Saving sample 2",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e41",
+      "type": "tool-result",
+      "delayMs": 200,
+      "toolCallId": "e40",
+      "output": "Wrote 2,244 bytes.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e42",
+      "type": "tool-call",
+      "delayMs": 300,
+      "toolName": "WebFetch",
+      "toolInput": {
+        "url": "https://versantus.ai/blog/the-brief-that-does-the-work",
+        "prompt": "Return the full article body as markdown."
+      },
+      "description": "Fetching sample 3",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e43",
+      "type": "tool-result",
+      "delayMs": 700,
+      "toolCallId": "e42",
+      "output": "Fetched 1,796 words.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e44",
+      "type": "tool-call",
+      "delayMs": 200,
+      "toolName": "Write",
+      "toolInput": {
+        "file_path": "/Users/nik/Projects/Versantus Brand Kit/writing-samples/003-the-brief-that-does-the-work.md"
+      },
+      "description": "Saving sample 3",
+      "expandedByDefault": false
+    },
+    {
+      "id": "e45",
+      "type": "tool-result",
+      "delayMs": 200,
+      "toolCallId": "e44",
+      "output": "Wrote 1,908 bytes.",
+      "isError": false,
+      "isCollapsed": true
+    },
+    {
+      "id": "e46",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 5,
+      "stepLabel": "Fetch writing samples from versantus.ai/blog",
+      "status": "complete",
+      "detail": "3 samples saved to writing-samples/"
+    },
+    {
+      "id": "e47",
+      "type": "cowork-progress",
+      "delayMs": 200,
+      "stepIndex": 6,
+      "stepLabel": "Run the brief through the test prompt",
+      "status": "running",
+      "detail": "Using the PDF's validation prompt on page 9..."
+    },
+    {
+      "id": "e48",
+      "type": "assistant-message",
+      "delayMs": 400,
+      "content": "Before I finish, I ran the PDF's test prompt (page 9) against the brief, asking a fresh session to write a 200-word LinkedIn post about \"why most AI content sounds the same.\" Two samples in case they're useful — I can drop either (or both) into `writing-samples/` if you want them pinned as exemplars.\n\nThey came back sounding recognisably us: short sentences, em dashes, no exclamation marks, no \"Here's the thing.\" The brief is working.",
+      "streamingSpeed": "normal"
+    },
+    {
+      "id": "e49",
+      "type": "cowork-progress",
+      "delayMs": 300,
+      "stepIndex": 6,
+      "stepLabel": "Run the brief through the test prompt",
+      "status": "complete",
+      "detail": "Test outputs read as Versantus — brief validated"
+    },
+    {
+      "id": "e50",
+      "type": "assistant-message",
+      "delayMs": 500,
+      "content": "Done. `Versantus Brand Kit/` now contains:\n\n- **brand-voice.md** — core brief (tone, rhythm, vocabulary, perspective, test)\n- **banned-words.md** — the never-use list\n- **style-checklist.md** — pre-flight do/don't\n- **writing-samples/** — 3 recent blog posts\n- **tone-guide.md** — still empty; I wasn't sure whether you wanted this as a separate deep-dive or folded into brand-voice.md\n\nDrag the whole folder into any AI — Claude Project knowledge, Custom GPT file uploads, Gemini, Copilot — and the output will start sounding like us from the first message.\n\nTwo nudges for later: (1) add a CEO-voice sample if you want anything to sound specifically like Dan, and (2) swap the auto-pulled samples if you'd rather curate by hand — the PDF is clear that samples matter more than descriptions.",
+      "streamingSpeed": "normal"
+    },
+    {
+      "id": "e51",
+      "type": "cowork-notification",
+      "delayMs": 500,
+      "notificationType": "finished",
+      "message": "Brand kit ready — 5 files, 3 writing samples, ~12 KB total."
+    }
+  ]
+}
