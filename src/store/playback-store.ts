@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 export type PlaybackSpeed = 0.5 | 1 | 2 | 4
 
@@ -20,20 +21,29 @@ interface PlaybackStore {
   requestAutoplay: () => void
 }
 
-export const usePlaybackStore = create<PlaybackStore>()((set) => ({
-  isPlaying: false,
-  isPaused: false,
-  currentEventIndex: -1,
-  speed: 1,
-  mode: 'playback',
-  autoplayToken: 0,
+export const usePlaybackStore = create<PlaybackStore>()(
+  persist(
+    (set) => ({
+      isPlaying: false,
+      isPaused: false,
+      currentEventIndex: -1,
+      speed: 2,
+      mode: 'playback',
+      autoplayToken: 0,
 
-  play: () => set({ isPlaying: true, isPaused: false }),
-  pause: () => set({ isPlaying: false, isPaused: true }),
-  stop: () => set({ isPlaying: false, isPaused: false, currentEventIndex: -1 }),
-  setEventIndex: (index) => set({ currentEventIndex: index }),
-  advanceEvent: () => set((s) => ({ currentEventIndex: s.currentEventIndex + 1 })),
-  setSpeed: (speed) => set({ speed }),
-  setMode: (mode) => set({ mode }),
-  requestAutoplay: () => set((s) => ({ autoplayToken: s.autoplayToken + 1 })),
-}))
+      play: () => set({ isPlaying: true, isPaused: false }),
+      pause: () => set({ isPlaying: false, isPaused: true }),
+      stop: () => set({ isPlaying: false, isPaused: false, currentEventIndex: -1 }),
+      setEventIndex: (index) => set({ currentEventIndex: index }),
+      advanceEvent: () => set((s) => ({ currentEventIndex: s.currentEventIndex + 1 })),
+      setSpeed: (speed) => set({ speed }),
+      setMode: (mode) => set({ mode }),
+      requestAutoplay: () => set((s) => ({ autoplayToken: s.autoplayToken + 1 })),
+    }),
+    {
+      name: 'claude-sim:playback',
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({ speed: state.speed }),
+    },
+  ),
+)
