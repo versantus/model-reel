@@ -9,9 +9,9 @@
     "gptConfig": {
       "modelName": "5",
       "theme": "light",
-      "conversationTitle": "LinkedIn post — AI for SMEs",
+      "conversationTitle": "LinkedIn post — hiring senior staff",
       "sidebarConversations": [
-        { "id": "c1", "title": "LinkedIn post — AI for SMEs", "timestamp": "2026-04-17T10:15:00Z", "isActive": true },
+        { "id": "c1", "title": "LinkedIn post — hiring senior staff", "timestamp": "2026-04-17T10:15:00Z", "isActive": true },
         { "id": "c2", "title": "Q2 planning offsite agenda", "timestamp": "2026-04-16T14:40:00Z", "isActive": false },
         { "id": "c3", "title": "Supplier follow-up email", "timestamp": "2026-04-15T09:05:00Z", "isActive": false },
         { "id": "c4", "title": "Packaging copy rewrite", "timestamp": "2026-04-12T16:20:00Z", "isActive": false }
@@ -23,7 +23,7 @@
       "id": "e1",
       "type": "user-message",
       "delayMs": 0,
-      "content": "Write a LinkedIn post about AI for small businesses.",
+      "content": "Write a LinkedIn post about hiring great people.",
       "typingEffect": true
     },
     {
@@ -37,7 +37,7 @@
       "id": "e3",
       "type": "assistant-message",
       "delayMs": 200,
-      "content": "🚀 **AI is transforming small businesses in 2026 — and the opportunity has never been greater.**\n\nIn today's fast-paced business landscape, small and medium-sized enterprises are at a pivotal crossroads. Artificial Intelligence is no longer a luxury reserved for Fortune 500 companies — it's an essential tool for businesses of every size looking to stay competitive, drive efficiency, and unlock their full potential.\n\nHere's how AI is revolutionising SMEs:\n\n✅ **Streamlining operations** — from automating repetitive tasks to optimising workflows\n✅ **Enhancing customer experience** — chatbots, personalisation, and 24/7 support\n✅ **Data-driven decision making** — turning insights into action\n✅ **Marketing at scale** — content generation, targeted campaigns, SEO optimisation\n✅ **Cost reduction** — doing more with less, game-changing efficiencies\n\nThe businesses that embrace AI today will be the market leaders of tomorrow. Don't get left behind — it's time to harness the power of AI and future-proof your business! 💡\n\nWhat's your experience with AI in your small business? Drop a comment below or DM me to learn more about how we can help you leverage AI for growth. 👇\n\n#AI #SmallBusiness #Innovation #DigitalTransformation #Entrepreneurship #Technology #FutureOfWork #BusinessGrowth #ArtificialIntelligence #SME",
+      "content": "🎯 **Your team is your greatest asset — and hiring is the most important thing you'll ever do.**\n\nIn today's competitive landscape, the companies that win are the ones that attract, develop, and retain world-class talent. Hiring great people isn't just a function of HR — it's the single biggest lever a leader has.\n\nHere's what I've learned about building A-player teams:\n\n✅ **Hire for culture fit** — skills can be taught, values can't\n✅ **A-players hire A-players** — B-players hire C-players\n✅ **Move slow to hire, fast to fire** — protect your culture at all costs\n✅ **Look for grit and growth mindset** — raw talent isn't enough\n✅ **Sell the mission** — great people want meaningful work, not just a paycheck\n\nThe businesses that get hiring right will outperform their competition 10x. Don't compromise. Don't settle. Build the team of your dreams! 💪\n\nWhat's your #1 hiring tip? Drop it in the comments below — would love to learn from this amazing community. 👇\n\n#Leadership #Hiring #Talent #Culture #Entrepreneurship #Recruitment #TeamBuilding #FutureOfWork #People #Growth",
       "streamingSpeed": "fast"
     },
     {
@@ -50,7 +50,7 @@
       "id": "e5",
       "type": "user-message",
       "delayMs": 0,
-      "content": "That's unusable — it reads like every other AI post on LinkedIn. Try again, with proper context:\n\n**Audience:** SME owners, 20–50 staff, mostly not technical. Running on instinct and spreadsheets.\n\n**Who I am:** I run a 30-person outdoor brand. Tried AI last year — wasted £4k on an agency who built us a customer service chatbot that nobody used. Six months later I gave up on them and spent one afternoon with Claude writing two months of content, social posts and supplier emails. That actually worked.\n\n**Voice:** First person. Dry. Slightly self-deprecating. Specific numbers. Short sentences. Full stops. No rhetorical questions.\n\n**Angle:** Start from the £4k mistake, not \"AI is transformative.\" The point is: AI works for SMEs when you use it yourself, not when you pay someone else to build you something around it.\n\n**Never use:** leverage, unlock, harness, game-changer, revolutionary, \"in today's\", \"the future of\", emojis, rocket ships, \"DM me\", hashtag spam. No CTA. No \"what's your experience\" question at the end.\n\n**Length:** 120 words max. One practical takeaway at the end, no fluff.",
+      "content": "That's unusable — it reads like every other AI post on LinkedIn. Try again, with proper context:\n\n**Audience:** SME founders, 10–50 staff. Have done a bit of hiring but mostly from within their network.\n\n**Who I am:** I run a 30-person outdoor brand. Last year I hired a head of marketing on £65k. Fifteen years' experience at brands ten times our size. Let them go after four months. Total cost of the mistake, including severance and recruitment fees: £28k.\n\n**Voice:** First person. Dry. Short sentences. Full stops. Slightly self-deprecating. No rhetorical questions.\n\n**Angle:** Don't write about \"hiring great people\" in the abstract. The specific lesson is: experience at a much bigger company isn't the same as being good at your size. At 30 people the job is doing, not directing — and a lot of senior hires don't actually want to do the work themselves anymore.\n\n**Never use:** A-players, rockstar, ninja, culture fit, \"move slow to hire fast to fire\", synergy, grit, growth mindset, emojis, \"in today's\", \"the future of\", hashtag spam, \"DM me\". No CTA. No \"what's your #1 tip\" question at the end.\n\n**Length:** 120 words max. One concrete takeaway at the end, no fluff.",
       "typingEffect": true
     },
     {
@@ -64,7 +64,7 @@
       "id": "e7",
       "type": "assistant-message",
       "delayMs": 200,
-      "content": "Last year I spent £4,000 on an AI customer service chatbot.\n\nAn agency built it. It sat on our website for six months. Seventeen people used it. Most of those were me, checking it still worked.\n\nThen I gave up, opened Claude myself, and in one afternoon wrote two months of social posts, a supplier chase email, and rewrote our returns policy. Cost: £15 in API credits.\n\nWhat I learned, the expensive way:\n\nAI works for small businesses when *you* use it. Not when you pay someone to build a thing around it. The value is in the boring stuff you already do — drafting, summarising, turning a three-line brief into a full email. Not a chatbot on your homepage that nobody asked for.\n\nStop buying AI. Start using it.",
+      "content": "Last year I hired a head of marketing. £65k salary. Fifteen years at brands ten times our size.\n\nI let them go after four months.\n\nThey were excellent on strategy. Great decks, clear frameworks, sensible quarterly plans. But at 30 people there's nobody to delegate to. The campaign doesn't happen unless you write the first draft yourself — and they hadn't done that in a decade.\n\nTotal cost of that mistake, with severance and recruitment fees: £28,000.\n\nWhat I learned, the expensive way:\n\nExperience at a much bigger company isn't the same as being good at your size. At 30 people the job is doing, not directing. Now I ask senior candidates one question early: *walk me through the last campaign you wrote the first draft of yourself.* The answer tells me which job they actually want.",
       "streamingSpeed": "normal"
     },
     {
@@ -91,7 +91,7 @@
       "id": "e11",
       "type": "assistant-message",
       "delayMs": 200,
-      "content": "The first prompt gave me a topic. The second gave me enough to write *as you*:\n\n1. **A specific story, with numbers.** \"£4k on a chatbot, 17 users, one afternoon with Claude\" is something I couldn't have invented. It's the spine of the whole post.\n2. **A point of view.** \"AI works when you use it, not when you pay someone to build a thing around it.\" I had an angle to argue, not a subject to describe.\n3. **A voice.** \"Dry, slightly self-deprecating, short sentences, no rhetorical questions\" told me how to sound. Without it I default to the LinkedIn house style — which is why generic AI posts all read the same.\n4. **A forbidden list.** \"No leverage, harness, game-changer, emojis, hashtags, DM me\" stripped out the reflexes I'd otherwise reach for. Constraint does more work here than instruction.\n5. **A length cap.** 120 words forced every sentence to carry weight. The first post was 210 words mostly saying nothing.\n\nThe pattern, more generally: the lazy prompt asks for *a thing*. The good prompt hands over context, opinions, and specifics the model couldn't have guessed — and then trusts it to write.",
+      "content": "The first prompt gave me a topic. The second gave me enough to write *as you*:\n\n1. **A specific story, with numbers.** \"£65k head of marketing, 15 years at bigger brands, let go after 4 months, £28k total cost\" is something I couldn't have invented. It's the spine of the whole post.\n2. **A point of view.** \"Experience at a bigger company isn't the same as being good at your size\" is an argument, not a subject. The lazy prompt asked for a topic — this gave me a thesis to defend.\n3. **A voice.** \"Dry, slightly self-deprecating, short sentences, no rhetorical questions\" told me how to sound. Without it I default to the LinkedIn house style — which is why generic AI posts all read the same.\n4. **A forbidden list.** \"No A-players, rockstar, culture fit, grit, growth mindset, emojis, hashtags\" stripped out the reflexes I'd otherwise reach for. Constraint does more work here than instruction.\n5. **A length cap.** 120 words forced every sentence to carry weight. The first post was 210 words mostly saying nothing.\n\nThe pattern, more generally: the lazy prompt asks for *a thing*. The good prompt hands over context, opinions, and specifics the model couldn't have guessed — and then trusts it to write.",
       "streamingSpeed": "normal"
     }
   ]
