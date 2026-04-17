@@ -89,9 +89,20 @@ export function usePlayback() {
     engineRef.current.stop()
   }, [stop, resetPlayback])
 
+  const handleRestart = useCallback(() => {
+    if (!engineRef.current || !simulation) return
+    engineRef.current.stop()
+    stop()
+    resetPlayback()
+    engineRef.current.load(simulation.events)
+    play()
+    engineRef.current.play()
+  }, [simulation, stop, resetPlayback, play])
+
   return {
     play: handlePlay,
     pause: handlePause,
     stop: handleStop,
+    restart: handleRestart,
   }
 }

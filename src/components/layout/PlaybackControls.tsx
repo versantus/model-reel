@@ -1,4 +1,4 @@
-import { Play, Pause, Square, FastForward, Edit3 } from 'lucide-react'
+import { Play, Pause, Square, FastForward, Edit3, RotateCcw } from 'lucide-react'
 import { usePlaybackStore, type PlaybackSpeed } from '../../store/playback-store'
 import { useSimulationStore } from '../../store/simulation-store'
 import { useEditorStore } from '../../store/editor-store'
@@ -11,7 +11,7 @@ export function PlaybackControls() {
   const { isPlaying, currentEventIndex, speed, setSpeed } = usePlaybackStore()
   const simulation = useSimulationStore((s) => s.simulation)
   const setEditorVisible = useEditorStore((s) => s.setEditorVisible)
-  const { play, pause, stop } = usePlayback()
+  const { play, pause, stop, restart } = usePlayback()
 
   const totalEvents = simulation?.events.length ?? 0
   const progress = totalEvents > 0 ? ((currentEventIndex + 1) / totalEvents) * 100 : 0
@@ -30,6 +30,9 @@ export function PlaybackControls() {
         )}
         <button onClick={stop} className="p-1.5 hover:bg-claude-sidebar-hover rounded-lg" title="Stop (Esc)">
           <Square className="w-3.5 h-3.5 text-claude-text-secondary" />
+        </button>
+        <button onClick={restart} className="p-1.5 hover:bg-claude-sidebar-hover rounded-lg" title="Restart from beginning">
+          <RotateCcw className="w-3.5 h-3.5 text-claude-text-secondary" />
         </button>
       </div>
 
