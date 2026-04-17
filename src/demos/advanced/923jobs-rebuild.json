@@ -2,7 +2,7 @@
   "id": "923jobs-rebuild",
   "title": "Rebuild 923jobs.com",
   "description": "Claude Code visits the existing 923jobs.com, identifies weaknesses, and rebuilds the site as a single-file HTML page — with live job listings, modern design and consolidated IA.",
-  "productType": "claude-code",
+  "productType": "claude-code-gui",
   "createdAt": "2026-04-17T00:00:00Z",
   "updatedAt": "2026-04-17T00:00:00Z",
   "metadata": {
@@ -12,6 +12,23 @@
       "workingDirectory": "/Users/helen/923jobs-rebuild",
       "initialCost": "$0.00",
       "initialContext": 4
+    },
+    "guiConfig": {
+      "userName": "Helen",
+      "modelName": "Claude Opus 4.7",
+      "reasoningLevel": "High",
+      "workingFolder": "~/923jobs-rebuild",
+      "stats": {
+        "sessions": 128,
+        "messages": 2413,
+        "totalTokensM": 18.2,
+        "activeDays": 94,
+        "currentStreakDays": 7,
+        "longestStreakDays": 21,
+        "peakHour": "10am",
+        "favoriteModel": "Opus 4.7"
+      },
+      "footnote": "Rebuilding 923jobs.com from scratch."
     }
   },
   "events": [
