@@ -5,6 +5,7 @@ import { useSimulationStore } from '../../store/simulation-store'
 import { usePlaybackStore } from '../../store/playback-store'
 import { useEditorStore } from '../../store/editor-store'
 import { basicDemos, advancedDemos } from '../../demos/demo-loader'
+import { updateDeepLink } from '../../hooks/useDeepLink'
 import { downloadSimulation, loadSimulationFromFile } from '../../engine/serialization'
 import { cn } from '../../utils/cn'
 import type { Simulation, ProductType } from '../../types/simulation'
@@ -26,6 +27,7 @@ export function InlineSimulationPicker() {
     loadSimulation(sim)
     if (view) setActiveView(view)
     setOpen(false)
+    updateDeepLink(sim)
     requestAutoplay()
   }
 
