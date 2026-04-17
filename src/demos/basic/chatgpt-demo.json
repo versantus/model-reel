@@ -1,0 +1,71 @@
+{
+  "id": "chatgpt-basic-demo",
+  "title": "ChatGPT — Quick brainstorm",
+  "description": "A simple ChatGPT conversation showing the ChatGPT UI: user asks for help brainstorming taglines, ChatGPT thinks briefly then streams a response.",
+  "productType": "chatgpt",
+  "createdAt": "2026-04-17T00:00:00Z",
+  "updatedAt": "2026-04-17T00:00:00Z",
+  "metadata": {
+    "gptConfig": {
+      "modelName": "5",
+      "theme": "light",
+      "conversationTitle": "Taglines for indoor plant shop",
+      "sidebarConversations": [
+        { "id": "c1", "title": "Taglines for indoor plant shop", "timestamp": "2026-04-17T09:00:00Z", "isActive": true },
+        { "id": "c2", "title": "Python list comprehension help", "timestamp": "2026-04-16T14:20:00Z", "isActive": false },
+        { "id": "c3", "title": "Meal plan for the week", "timestamp": "2026-04-15T18:45:00Z", "isActive": false },
+        { "id": "c4", "title": "Summarise this PDF", "timestamp": "2026-04-14T11:12:00Z", "isActive": false },
+        { "id": "c5", "title": "Trip itinerary: Porto", "timestamp": "2026-04-10T08:30:00Z", "isActive": false }
+      ]
+    }
+  },
+  "events": [
+    {
+      "id": "e1",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "I'm opening a small indoor plant shop in Bristol. Can you give me 5 tagline ideas? Warm, a bit playful, not too cheesy.",
+      "typingEffect": true
+    },
+    {
+      "id": "e2",
+      "type": "thinking",
+      "delayMs": 600,
+      "durationMs": 1400,
+      "label": "Thinking..."
+    },
+    {
+      "id": "e3",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "Here are five tagline ideas for your Bristol plant shop — warm, a touch playful, no cheese:\n\n1. **Room to grow.** — simple, double-meaning, fits signage beautifully.\n2. **Green company for grey days.** — leans into the Bristol weather with a wink.\n3. **Leaf it with us.** — playful without being painful.\n4. **Plants with personality.** — sets the expectation that these aren't supermarket ferns.\n5. **Bristol's quietest neighbours.** — a bit cheeky; plants as neighbours is a nice frame.\n\nA few things to consider picking between them:\n\n- **Signage vs. social:** \"Room to grow\" reads better above a door; \"Leaf it with us\" works harder on Instagram.\n- **Tone:** if the shop leans interiors/design-led, go with 1 or 4. If you want warmth and local flavour, 2 or 5.\n\nWant me to riff on a favourite, or try a more design-led set?",
+      "streamingSpeed": "normal"
+    },
+    {
+      "id": "e4",
+      "type": "pause",
+      "delayMs": 1500
+    },
+    {
+      "id": "e5",
+      "type": "user-message",
+      "delayMs": 0,
+      "content": "Love #2. Give me 5 more in that spirit — local Bristol warmth, slightly cheeky.",
+      "typingEffect": true
+    },
+    {
+      "id": "e6",
+      "type": "thinking",
+      "delayMs": 400,
+      "durationMs": 900,
+      "label": "Thinking..."
+    },
+    {
+      "id": "e7",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "Nice — that's a lovely seam to mine. Five more in that vein:\n\n1. **A bit of green, a bit of Bristol.**\n2. **We sell the sunshine Bristol forgot.**\n3. **Windowsill company since forever.**\n4. **Rain-resistant. Room-tested.**\n5. **For flats that need a friend.**\n\n#2 and #5 lean hardest into the local-warmth angle. #4 has a nice practical undertone if you want to signal low-maintenance varieties.\n\nHappy to take any of these and work up a tone-of-voice note for your website if that'd be useful.",
+      "streamingSpeed": "normal"
+    }
+  ]
+}

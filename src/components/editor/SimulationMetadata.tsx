@@ -47,6 +47,7 @@ export function SimulationMetadata({ simulation }: SimulationMetadataProps) {
         <option value="claude-code">Claude Code</option>
         <option value="claude-chat">Claude Chat</option>
         <option value="claude-cowork">Cowork</option>
+        <option value="chatgpt">ChatGPT</option>
       </select>
       <span className="text-[12px] text-claude-text-tertiary">{simulation.events.length} events</span>
 

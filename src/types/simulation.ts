@@ -1,4 +1,4 @@
-export type ProductType = 'claude-code' | 'claude-chat' | 'claude-cowork'
+export type ProductType = 'claude-code' | 'claude-chat' | 'claude-cowork' | 'chatgpt'
 
 export interface Simulation {
   id: string
@@ -15,6 +15,7 @@ export interface SimulationMetadata {
   codeConfig?: CodeConfig
   chatConfig?: ChatConfig
   coworkConfig?: CoworkConfig
+  gptConfig?: GptConfig
 }
 
 export interface CodeConfig {
@@ -37,6 +38,13 @@ export interface CoworkConfig {
   taskTitle: string
   folderPath: string
   suggestions: string[]
+}
+
+export interface GptConfig {
+  modelName: string
+  theme: 'light' | 'dark'
+  conversationTitle: string
+  sidebarConversations: SidebarConversation[]
 }
 
 export interface SidebarConversation {

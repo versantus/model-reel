@@ -8,6 +8,7 @@ const tabs: { id: ProductType; label: string }[] = [
   { id: 'claude-chat', label: 'Chat' },
   { id: 'claude-cowork', label: 'Cowork' },
   { id: 'claude-code', label: 'Code' },
+  { id: 'chatgpt', label: 'ChatGPT' },
 ]
 
 export function WindowChrome() {

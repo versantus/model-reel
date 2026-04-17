@@ -46,6 +46,31 @@
   --color-terminal-blue: #58A6FF;
   --color-claude-purple: #7C3AED;
 
+  /* ChatGPT palette — light theme */
+  --color-gpt-bg: #FFFFFF;
+  --color-gpt-sidebar: #F9F9F9;
+  --color-gpt-sidebar-hover: #ECECEC;
+  --color-gpt-sidebar-active: #E3E3E3;
+  --color-gpt-border: #E5E5E5;
+  --color-gpt-border-light: #EFEFEF;
+  --color-gpt-text: #0D0D0D;
+  --color-gpt-text-secondary: #5D5D5D;
+  --color-gpt-text-tertiary: #8E8E8E;
+  --color-gpt-user-bubble: #F4F4F4;
+  --color-gpt-input-bg: #FFFFFF;
+  --color-gpt-input-border: #E5E5E5;
+  --color-gpt-send-bg: #0D0D0D;
+  --color-gpt-send-hover: #2E2E2E;
+  --color-gpt-icon: #8E8E8E;
+  --color-gpt-icon-hover: #0D0D0D;
+  --color-gpt-accent: #10A37F;
+
+  /* ChatGPT palette — dark theme (for future use) */
+  --color-gpt-dark-bg: #212121;
+  --color-gpt-dark-sidebar: #171717;
+  --color-gpt-dark-user-bubble: #323232;
+  --color-gpt-dark-text: #ECECEC;
+
   --font-mono: "SF Mono", "Cascadia Code", "Fira Code", ui-monospace, monospace;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
 }

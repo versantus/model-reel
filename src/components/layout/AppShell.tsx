@@ -4,16 +4,18 @@ import { PlaybackControls } from './PlaybackControls'
 import { CodeView } from '../claude-code/CodeView'
 import { ChatView } from '../claude-chat/ChatView'
 import { CoworkView } from '../claude-cowork/CoworkView'
+import { ChatGptTabView } from '../chatgpt/ChatGptTabView'
 import { SimulationEditor } from '../editor/SimulationEditor'
 import { SimulationPicker } from './SimulationPicker'
 import { cn } from '../../utils/cn'
 import type { ProductType } from '../../types/simulation'
-import { Terminal, MessageSquare, Zap, Edit3, Play } from 'lucide-react'
+import { Terminal, MessageSquare, Zap, Edit3, Play, Sparkles } from 'lucide-react'
 
 const viewTabs: { id: ProductType; label: string; icon: typeof Terminal }[] = [
   { id: 'claude-code', label: 'Claude Code', icon: Terminal },
   { id: 'claude-chat', label: 'Claude Chat', icon: MessageSquare },
   { id: 'claude-cowork', label: 'Cowork', icon: Zap },
+  { id: 'chatgpt', label: 'ChatGPT', icon: Sparkles },
 ]
 
 export function AppShell() {
@@ -90,6 +92,8 @@ export function AppShell() {
           <CodeView />
         ) : activeView === 'claude-chat' ? (
           <ChatView />
+        ) : activeView === 'chatgpt' ? (
+          <ChatGptTabView />
         ) : (
           <CoworkView />
         )}
