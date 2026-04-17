@@ -28,14 +28,14 @@
     {
       "id": "e2",
       "type": "thinking",
-      "delayMs": 400,
-      "durationMs": 1200,
+      "delayMs": 300,
+      "durationMs": 900,
       "label": "Planning approach..."
     },
     {
       "id": "e3",
       "type": "cowork-progress",
-      "delayMs": 300,
+      "delayMs": 200,
       "stepIndex": 0,
       "stepLabel": "Drafting gym cancellation email",
       "status": "running"
@@ -43,7 +43,7 @@
     {
       "id": "e4",
       "type": "cowork-progress",
-      "delayMs": 1400,
+      "delayMs": 700,
       "stepIndex": 0,
       "stepLabel": "Drafting gym cancellation email",
       "status": "complete",
@@ -51,55 +51,69 @@
     },
     {
       "id": "e5",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "**1. Gym cancellation email**\n\nSubject: Membership cancellation — Nik Roberts, CF-44210\n\nDear Cotswold Fitness,\n\nI'm writing to cancel my membership, effective 30th April 2026. My member number is CF-44210.\n\nPlease confirm receipt and that no further payments will be taken after this date.\n\nMany thanks,\nNik Roberts",
+      "streamingSpeed": "fast"
+    },
+    {
+      "id": "e6",
       "type": "cowork-progress",
-      "delayMs": 300,
+      "delayMs": 200,
       "stepIndex": 1,
       "stepLabel": "Drafting school email to Mrs Patterson",
       "status": "running"
     },
     {
-      "id": "e6",
+      "id": "e7",
       "type": "cowork-progress",
-      "delayMs": 1400,
+      "delayMs": 700,
       "stepIndex": 1,
       "stepLabel": "Drafting school email to Mrs Patterson",
       "status": "complete",
       "detail": "Parents evening apology + alternative slot request"
     },
     {
-      "id": "e7",
+      "id": "e8",
+      "type": "assistant-message",
+      "delayMs": 200,
+      "content": "**2. School email**\n\nSubject: Parents evening — Nik Roberts, Year 4\n\nDear Mrs Patterson,\n\nI'm sorry but I won't be able to make parents evening this Thursday due to a work commitment. I'd really like to catch up about how things are going — is there another slot you could offer, or would a phone call at a different time work for you?\n\nApologies for the late notice.\n\nBest wishes,\nNik Roberts",
+      "streamingSpeed": "fast"
+    },
+    {
+      "id": "e9",
       "type": "cowork-progress",
-      "delayMs": 300,
+      "delayMs": 200,
       "stepIndex": 2,
       "stepLabel": "Searching NHS dentists near Witney",
       "status": "running",
       "detail": "Filtering for Tuesday morning availability..."
     },
     {
-      "id": "e8",
+      "id": "e10",
       "type": "cowork-progress",
-      "delayMs": 1800,
+      "delayMs": 900,
       "stepIndex": 2,
       "stepLabel": "Searching NHS dentists near Witney",
       "status": "complete",
       "detail": "3 practices found accepting NHS patients"
     },
     {
-      "id": "e9",
+      "id": "e11",
       "type": "assistant-message",
-      "delayMs": 300,
-      "content": "Here we go:\n\n---\n\n**1. Gym cancellation email**\n\nSubject: Membership cancellation — Nik Roberts, CF-44210\n\nDear Cotswold Fitness,\n\nI'm writing to cancel my membership, effective 30th April 2026. My member number is CF-44210.\n\nPlease confirm receipt and let me know if there's anything else I need to do. I'd also appreciate confirmation that no further payments will be taken after this date.\n\nMany thanks,\nNik Roberts\n\n---\n\n**2. School email**\n\nSubject: Parents evening — Nik Roberts, Year 4\n\nDear Mrs Patterson,\n\nI'm sorry but I won't be able to make parents evening this Thursday due to a work commitment. I'd really like to catch up about how things are going — is there another slot you could offer, or would a phone call at a different time work for you?\n\nApologies for the late notice.\n\nBest wishes,\nNik Roberts\n\n---\n\n**3. Dentist**\n\nFor NHS dentists near Witney with Tuesday morning availability, I'd suggest calling:\n\n- **Witney Dental Practice** (01993 703XXX) — NHS, open Tuesdays from 8:30am\n- **Newlands Dental Care** (01993 705XXX) — accepting NHS patients, Tuesday slots available\n- **Windrush Health Centre** (01993 702XXX) — NHS dental service, Tuesday mornings\n\nAll three are in Witney town centre. I'd ring first thing Monday — NHS dental slots go fast.\n\n---\n\nThree things that would've taken you an hour, done in about 30 seconds of asking. That's the point.",
-      "streamingSpeed": "normal"
+      "delayMs": 200,
+      "content": "**3. Dentist**\n\nFor NHS dentists near Witney with Tuesday morning availability, try:\n\n- **Witney Dental Practice** (01993 703XXX) — NHS, Tuesdays from 8:30am\n- **Newlands Dental Care** (01993 705XXX) — NHS, Tuesday slots available\n- **Windrush Health Centre** (01993 702XXX) — NHS, Tuesday mornings\n\nRing first thing Monday — NHS slots go fast.\n\n---\n\nThree things that would've taken you an hour, done in about 30 seconds of asking. That's the point.",
+      "streamingSpeed": "fast"
     },
     {
-      "id": "e10",
+      "id": "e12",
       "type": "cowork-notification",
-      "delayMs": 600,
+      "delayMs": 400,
       "notificationType": "finished",
       "message": "Life admin sorted — 3 tasks handled. Two emails ready to send, dentist shortlist ready to call."
     },
     {
-      "id": "e11",
+      "id": "e13",
       "type": "status-bar-update",
       "delayMs": 0,
       "updates": {
