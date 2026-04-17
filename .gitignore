@@ -28,3 +28,7 @@ screenshots/capture.mjs
 
 # Local Netlify folder
 .netlify
+
+# Local Claude Code tooling
+.claude/
+.skill-archive/
