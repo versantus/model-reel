@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Model Reel - Interactive Demo Builder for Claude Products</title>
-  <meta name="description" content="An interactive simulator for creating and playing back realistic demos of Anthropic's Claude products. Supports Claude Chat, Claude Code, and Claude Cowork in a simulated macOS desktop." />
+  <title>Model Reel - Interactive Demo Builder for AI Products</title>
+  <meta name="description" content="An interactive simulator for building and playing back realistic demos of AI products. Supports Claude Chat, Claude Code (terminal and GUI), Claude Cowork, and ChatGPT in a simulated macOS desktop, with artifact previews for HTML, Word docs, and PDFs." />
   <link rel="canonical" href="https://model-reel.versantus.ai/" />
   <meta name="author" content="Nik Roberts, Versantus Ltd" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Model Reel - Interactive Demo Builder for Claude Products" />
-  <meta property="og:description" content="Build scripted simulations with streaming text, tool calls, and artifacts for Claude Chat, Claude Code, and Claude Cowork." />
+  <meta property="og:title" content="Model Reel - Interactive Demo Builder for AI Products" />
+  <meta property="og:description" content="Build scripted simulations with streaming text, tool calls, and rich artifacts for Claude Chat, Claude Code, Claude Cowork, and ChatGPT." />
   <meta property="og:image" content="https://model-reel.versantus.ai/screenshots/chat-view.webp" />
   <meta property="og:image:width" content="1440" />
   <meta property="og:image:height" content="900" />
@@ -17,8 +17,8 @@
   <meta property="og:url" content="https://model-reel.versantus.ai/" />
   <meta property="og:site_name" content="Model Reel" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Model Reel - Interactive Demo Builder for Claude Products" />
-  <meta name="twitter:description" content="Build scripted simulations with streaming text, tool calls, and artifacts for Claude Chat, Claude Code, and Claude Cowork." />
+  <meta name="twitter:title" content="Model Reel - Interactive Demo Builder for AI Products" />
+  <meta name="twitter:description" content="Build scripted simulations with streaming text, tool calls, and rich artifacts for Claude Chat, Claude Code, Claude Cowork, and ChatGPT." />
   <meta name="twitter:image" content="https://model-reel.versantus.ai/screenshots/chat-view.webp" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="author" href="humans.txt" />
@@ -27,7 +27,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Model Reel",
-    "description": "An interactive simulator for creating and playing back realistic demos of Anthropic's Claude products. Supports Claude Chat, Claude Code, and Claude Cowork in a simulated macOS desktop.",
+    "description": "An interactive simulator for building and playing back realistic demos of AI products. Supports Claude Chat, Claude Code (terminal and GUI), Claude Cowork, and ChatGPT in a simulated macOS desktop, with artifact previews for HTML, Word docs, and PDFs.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web, macOS, Windows, Linux",
     "url": "https://model-reel.versantus.ai/",
@@ -201,10 +201,10 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center mb-14">
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-claude-text leading-tight">
-          Interactive Demo Builder for Claude Products
+          Interactive Demo Builder for AI Products
         </h1>
         <p class="mt-6 text-lg sm:text-xl text-claude-text-secondary leading-relaxed max-w-2xl mx-auto">
-          Create scripted simulations with realistic streaming text, tool calls, thinking indicators, and artifacts, all running inside a macOS desktop environment.
+          Build scripted simulations of Claude Chat, Claude Code, Claude Cowork, and ChatGPT with streaming text, tool calls, thinking indicators, and rich artifact previews, all running inside a macOS desktop.
         </p>
         <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a href="#get-started"
@@ -231,6 +231,7 @@
             <img src="screenshots/chat-view.webp" alt="Claude Chat simulator" class="active" loading="eager" />
             <img src="screenshots/code-view.webp" alt="Claude Code terminal" loading="lazy" />
             <img src="screenshots/cowork-dashboard.webp" alt="Claude Cowork dashboard" loading="lazy" />
+            <img src="screenshots/chatgpt-view.webp" alt="ChatGPT simulator" loading="lazy" />
             <img src="screenshots/editor.webp" alt="Visual simulation editor" loading="lazy" />
             <img src="screenshots/chrome-preview.webp" alt="Artifact preview in simulated Chrome browser" loading="lazy" />
           </div>
@@ -238,7 +239,7 @@
       </div>
 
       <!-- Clickable thumbnails -->
-      <div class="max-w-4xl mx-auto mt-8 grid grid-cols-3 sm:grid-cols-5 gap-3" id="hero-thumbs">
+      <div class="max-w-4xl mx-auto mt-8 grid grid-cols-3 sm:grid-cols-6 gap-3" id="hero-thumbs">
         <button class="rounded-lg overflow-hidden border-2 border-claude-accent shadow-sm text-left cursor-pointer hover:border-claude-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claude-accent transition-colors" data-slide="0" aria-label="Show Claude Chat view">
           <img src="screenshots/chat-view.webp" alt="" class="w-full block" loading="lazy" />
           <p class="text-xs text-claude-text-secondary text-center py-1.5 font-medium">Chat</p>
@@ -251,11 +252,15 @@
           <img src="screenshots/cowork-dashboard.webp" alt="" class="w-full block" loading="lazy" />
           <p class="text-xs text-claude-text-secondary text-center py-1.5 font-medium">Cowork</p>
         </button>
-        <button class="rounded-lg overflow-hidden border-2 border-claude-border shadow-sm text-left cursor-pointer hover:border-claude-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claude-accent transition-colors" data-slide="3" aria-label="Show simulation editor">
+        <button class="rounded-lg overflow-hidden border-2 border-claude-border shadow-sm text-left cursor-pointer hover:border-claude-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claude-accent transition-colors" data-slide="3" aria-label="Show ChatGPT view">
+          <img src="screenshots/chatgpt-view.webp" alt="" class="w-full block" loading="lazy" />
+          <p class="text-xs text-claude-text-secondary text-center py-1.5 font-medium">ChatGPT</p>
+        </button>
+        <button class="rounded-lg overflow-hidden border-2 border-claude-border shadow-sm text-left cursor-pointer hover:border-claude-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claude-accent transition-colors" data-slide="4" aria-label="Show simulation editor">
           <img src="screenshots/editor.webp" alt="" class="w-full block" loading="lazy" />
           <p class="text-xs text-claude-text-secondary text-center py-1.5 font-medium">Editor</p>
         </button>
-        <button class="rounded-lg overflow-hidden border-2 border-claude-border shadow-sm text-left cursor-pointer hover:border-claude-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claude-accent transition-colors" data-slide="4" aria-label="Show Chrome preview">
+        <button class="rounded-lg overflow-hidden border-2 border-claude-border shadow-sm text-left cursor-pointer hover:border-claude-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-claude-accent transition-colors" data-slide="5" aria-label="Show Chrome preview">
           <img src="screenshots/chrome-preview.webp" alt="" class="w-full block" loading="lazy" />
           <p class="text-xs text-claude-text-secondary text-center py-1.5 font-medium">Chrome</p>
         </button>
@@ -269,13 +274,13 @@
   <section id="screenshots" class="py-20 sm:py-28 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 fade-up">
-        <h2 class="text-3xl sm:text-4xl font-bold text-claude-text">Three Product Views, One Simulator</h2>
+        <h2 class="text-3xl sm:text-4xl font-bold text-claude-text">Four Product Views, One Simulator</h2>
         <p class="mt-4 text-lg text-claude-text-secondary max-w-2xl mx-auto">
-          Switch between Claude Chat, Claude Code, and Claude Cowork to build demos for any product surface.
+          Switch between Claude Chat, Claude Code, Claude Cowork, and ChatGPT to build demos for any AI product surface.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto">
         <!-- Claude Chat -->
         <div class="fade-up">
           <div class="bg-claude-bg rounded-2xl p-6 border border-claude-border h-full">
@@ -309,7 +314,7 @@
             </div>
             <h3 class="text-xl font-semibold mb-2">Claude Code</h3>
             <p class="text-claude-text-secondary text-sm leading-relaxed mb-5">
-              Render a terminal CLI experience with prompt input, streaming output, tool-use blocks, and file diffs. Ideal for developer-focused demos and presentations.
+              Render the terminal CLI or the new Claude Code GUI side-by-side with streaming output, tool-use blocks, and file diffs. Ideal for developer-focused demos and presentations.
             </p>
             <div class="window-frame">
               <div class="window-titlebar">
@@ -341,6 +346,29 @@
                 <span class="window-dot window-dot-green"></span>
               </div>
               <img src="screenshots/cowork-dashboard.webp" alt="Claude Cowork task dashboard" class="w-full block" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ChatGPT -->
+        <div class="fade-up">
+          <div class="bg-claude-bg rounded-2xl p-6 border border-claude-border h-full">
+            <div class="w-12 h-12 rounded-xl bg-[#10A37F]/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-[#10A37F]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9 6.0651 6.0651 0 0 0-4.5694-2.0344 6.0463 6.0463 0 0 0-5.7667 4.1894 5.9847 5.9847 0 0 0-3.9975 2.9001 6.0457 6.0457 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0463 6.0463 0 0 0 5.7718-4.1938 5.9847 5.9847 0 0 0 3.9973-2.9002 6.0456 6.0456 0 0 0-.7475-7.0965zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826c-.0056 2.9905-2.42 5.414-5.4945 5.4944zm-11.6135-3.0028a4.4708 4.4708 0 0 1-.536-3.0128l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502c-2.6031 1.4998-5.9326.6078-7.4332-1.988zM1.3282 6.7205a4.4728 4.4728 0 0 1 2.3408-1.9686V10.4803a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.02 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865c-2.5978-1.5062-3.4898-4.8358-1.9935-7.4423l-.0284-.1302zm16.606 3.8602-5.843-3.3685 2.02-1.1638a.0757.0757 0 0 1 .071 0l4.8303 2.7913c2.6063 1.5059 3.4974 4.854 1.989 7.4465a4.4715 4.4715 0 0 1-2.3408 1.9639v-5.7398a.7806.7806 0 0 0-.4266-.6718zm2.0104-3.0238l-.142-.0852-4.7735-2.7864a.7759.7759 0 0 0-.7854 0L8.5987 8.2085V5.8761a.071.071 0 0 1 .0284-.0615l4.8303-2.7866a5.4898 5.4898 0 0 1 8.2245 5.6934v-.0049zM7.501 9.7358l-2.02-1.1636a.0804.0804 0 0 1-.0379-.0568V2.97a5.4946 5.4946 0 0 1 9.0087-4.2223l-.142.08-4.7784 2.7582a.7948.7948 0 0 0-.3927.6813l.0047 6.7368zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9998l-2.5974 1.5001-2.6067-1.5z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">ChatGPT</h3>
+            <p class="text-claude-text-secondary text-sm leading-relaxed mb-5">
+              A pixel-accurate ChatGPT web app with sidebar conversations, file attachments, Python code-interpreter output, and inline tables. Great for comparing prompts across AI products.
+            </p>
+            <div class="window-frame">
+              <div class="window-titlebar">
+                <span class="window-dot window-dot-red"></span>
+                <span class="window-dot window-dot-yellow"></span>
+                <span class="window-dot window-dot-green"></span>
+              </div>
+              <img src="screenshots/chatgpt-view.webp" alt="ChatGPT interface with sidebar and attachments" class="w-full block" loading="lazy" />
             </div>
           </div>
         </div>
@@ -443,7 +471,7 @@
         </div>
       </div>
 
-      <!-- Feature 3: Simulated Chrome Browser -->
+      <!-- Feature 3: Rich Artifact Previews -->
       <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-24 fade-up">
         <div class="lg:w-1/2 order-2 lg:order-1">
           <div class="max-w-lg">
@@ -452,22 +480,26 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold mb-3">Simulated Chrome Browser</h3>
+            <h3 class="text-2xl font-bold mb-3">Rich Artifact Previews</h3>
             <p class="text-claude-text-secondary leading-relaxed mb-4">
-              HTML artifacts open in a realistic Chrome window, complete with address bar and tab styling. Show full web applications and interactive previews inside the simulation.
+              Artifacts open in the right app for the job: HTML, React, and SVG render in a realistic Chrome window, markdown documents open in a Word-style editor, and generated reports preview in a native-feeling PDF viewer. Attachments like spreadsheets and images appear inline as file cards.
             </p>
             <ul class="space-y-2">
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
                 <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                Accurate Chrome window rendering
+                Chrome window for live HTML, React, and SVG artifacts
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
                 <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                Live HTML artifact rendering
+                Word-style viewer for markdown and generated docs
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
                 <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                Address bar with realistic URL display
+                PDF viewer for exported reports and documents
+              </li>
+              <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
+                <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                File-card attachments for spreadsheets, PDFs, and images
               </li>
             </ul>
           </div>
@@ -492,15 +524,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
                 <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
-                <span class="text-sm">Claude Code Demo</span>
+                <span class="text-sm">Claude Chat basics</span>
               </div>
               <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
                 <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
-                <span class="text-sm">Claude Chat Demo</span>
+                <span class="text-sm">Claude Code basics</span>
               </div>
               <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
                 <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
-                <span class="text-sm">Cowork Demo</span>
+                <span class="text-sm">Claude Cowork basics</span>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
+                <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
+                <span class="text-sm">ChatGPT basics</span>
               </div>
               <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
                 <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
@@ -520,15 +556,43 @@
               </div>
               <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
                 <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
+                <span class="text-sm">923jobs.com Rebuild</span>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
+                <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
                 <span class="text-sm">Cowork: Full-Stack App</span>
               </div>
               <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
                 <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
-                <span class="text-sm">SLT Dashboard</span>
+                <span class="text-sm">Cowork: SLT Dashboard</span>
               </div>
               <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
                 <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
                 <span class="text-sm">Finance Tracker</span>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
+                <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
+                <span class="text-sm">Document Generation</span>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
+                <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
+                <span class="text-sm">Brand Voice Setup</span>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
+                <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
+                <span class="text-sm">Lazy vs. Detailed Prompt</span>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
+                <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
+                <span class="text-sm">ChatGPT: FY26 Budget</span>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
+                <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
+                <span class="text-sm">Fat Squirrel: Marketing</span>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-lg bg-claude-bg">
+                <span class="w-2 h-2 rounded-full bg-claude-accent shrink-0"></span>
+                <span class="text-sm">Fat Squirrel: Life Admin</span>
               </div>
             </div>
           </div>
@@ -540,22 +604,22 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold mb-3">10 Built-in Demos</h3>
+            <h3 class="text-2xl font-bold mb-3">18 Built-in Demos</h3>
             <p class="text-claude-text-secondary leading-relaxed mb-4">
-              Jump in with ten ready-made simulations covering everything from conversational AI to autonomous coding workflows. Use them as-is for presentations or as starting points for your own demos.
+              Jump in with eighteen ready-made simulations covering everything from conversational AI to autonomous coding workflows. Deep-link to any demo via <code class="text-xs bg-claude-bg px-1.5 py-0.5 rounded">?demo=&lt;id&gt;</code>, or use them as starting points for your own.
             </p>
             <ul class="space-y-2">
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
                 <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                Covers Chat, Code, and Cowork product views
+                Covers Chat, Code, Cowork, and ChatGPT product views
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
                 <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                Use as templates for custom simulations
+                Deep-linkable URLs for presentations and demos
               </li>
               <li class="flex items-start gap-2 text-sm text-claude-text-secondary">
                 <svg class="w-5 h-5 text-claude-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                Presentation-ready out of the box
+                Plain JSON, auto-discovered at build time
               </li>
             </ul>
           </div>
@@ -631,7 +695,7 @@
           </div>
           <div>
             <p class="text-terminal-text font-medium text-sm">Open <span class="text-terminal-cyan">http://localhost:5173</span> in your browser</p>
-            <p class="text-terminal-dim text-sm mt-1">The simulator launches with a demo selection screen. Pick any of the 10 built-in simulations or create your own from the editor.</p>
+            <p class="text-terminal-dim text-sm mt-1">The simulator launches with a demo picker. Pick any of the 18 built-in simulations, jump straight to one with <span class="text-terminal-cyan">?demo=&lt;id&gt;</span>, or author your own in the editor.</p>
           </div>
         </div>
       </div>
@@ -779,7 +843,7 @@
       const slides = document.querySelectorAll('#hero-slideshow img');
       const thumbs = document.querySelectorAll('#hero-thumbs button');
       // Thumbnails map 1:1 to slides
-      const thumbToSlide = [0, 1, 2, 3, 4];
+      const thumbToSlide = [0, 1, 2, 3, 4, 5];
       let current = 0;
       let autoTimer = null;
 

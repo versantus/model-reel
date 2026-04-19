@@ -16,19 +16,21 @@ A simulation is a single JSON object with these fields:
 | `id` | string | Yes | Unique identifier (any string, e.g. `"my-demo-1"`) |
 | `title` | string | Yes | Display name shown in the simulation picker |
 | `description` | string | Yes | Short description (can be empty string) |
-| `productType` | string | Yes | One of: `"claude-code"`, `"claude-chat"`, `"claude-cowork"` |
+| `productType` | string | Yes | One of: `"claude-code"`, `"claude-code-gui"`, `"claude-chat"`, `"claude-cowork"`, `"chatgpt"` |
 | `createdAt` | string | Yes | ISO 8601 timestamp (e.g. `"2026-04-12T00:00:00Z"`) |
 | `updatedAt` | string | Yes | ISO 8601 timestamp |
 | `metadata` | object | Yes | Must contain exactly one config matching `productType` |
 | `events` | array | Yes | Ordered list of event objects to play back |
 
-The `metadata` object has three optional fields. Exactly one should be set, matching the `productType`:
+The `metadata` object has one config field per product type. Set the one matching `productType`:
 
 | productType | metadata field |
 |-------------|---------------|
 | `"claude-code"` | `metadata.codeConfig` |
+| `"claude-code-gui"` | `metadata.guiConfig` (plus `metadata.codeConfig` for the embedded terminal) |
 | `"claude-chat"` | `metadata.chatConfig` |
 | `"claude-cowork"` | `metadata.coworkConfig` |
+| `"chatgpt"` | `metadata.gptConfig` |
 
 ---
 
@@ -78,6 +80,42 @@ The `metadata` object has three optional fields. Exactly one should be set, matc
 | `taskTitle` | string | Yes | Title of the task |
 | `folderPath` | string | Yes | `"/Users/dev/project"` |
 | `suggestions` | array | Yes | List of suggestion strings shown in the UI |
+
+### GuiConfig (for productType `"claude-code-gui"`)
+
+The GUI view embeds a terminal, so `claude-code-gui` simulations must also provide a `codeConfig` alongside `guiConfig`.
+
+| Field | Type | Required | Example |
+|-------|------|----------|---------|
+| `userName` | string | Yes | `"Nik"` |
+| `modelName` | string | Yes | `"Claude Opus 4.6"` |
+| `reasoningLevel` | string | No | `"Low"`, `"Medium"`, `"High"`, or `"Extra high"` |
+| `workingFolder` | string | No | `"~/code/myproject"` |
+| `stats` | object | Yes | See below |
+| `activityHeatmap` | number[] | No | Heatmap counts used to render activity dots |
+| `footnote` | string | No | Small footer note under the stats |
+
+**stats object:**
+
+| Field | Type | Required | Example |
+|-------|------|----------|---------|
+| `sessions` | number | Yes | `128` |
+| `messages` | number | Yes | `4210` |
+| `totalTokensM` | number | Yes | `3.4` (millions) |
+| `activeDays` | number | Yes | `42` |
+| `currentStreakDays` | number | Yes | `5` |
+| `longestStreakDays` | number | Yes | `14` |
+| `peakHour` | number | Yes | `14` (24h clock) |
+| `favoriteModel` | string | Yes | `"Claude Opus 4.6"` |
+
+### GptConfig (for productType `"chatgpt"`)
+
+| Field | Type | Required | Example |
+|-------|------|----------|---------|
+| `modelName` | string | Yes | `"ChatGPT 5"` |
+| `theme` | string | Yes | `"light"` or `"dark"` |
+| `conversationTitle` | string | Yes | Title shown in the header and browser tab |
+| `sidebarConversations` | array | Yes | List of `SidebarConversation` objects (same shape as `ChatConfig`) |
 
 ---
 
@@ -566,8 +604,8 @@ Before submitting a simulation JSON, verify:
 
 - [ ] Every event has `id`, `type`, and `delayMs`
 - [ ] All event IDs are unique within the simulation
-- [ ] `productType` is one of: `"claude-code"`, `"claude-chat"`, `"claude-cowork"`
-- [ ] `metadata` contains the matching config (`codeConfig`, `chatConfig`, or `coworkConfig`)
+- [ ] `productType` is one of: `"claude-code"`, `"claude-code-gui"`, `"claude-chat"`, `"claude-cowork"`, `"chatgpt"`
+- [ ] `metadata` contains the matching config (`codeConfig`, `guiConfig`, `chatConfig`, `coworkConfig`, or `gptConfig`; `claude-code-gui` needs both `guiConfig` and `codeConfig`)
 - [ ] `createdAt` and `updatedAt` are ISO 8601 strings
 - [ ] `tool-result.toolCallId` matches an earlier `tool-call` event's `id`
 - [ ] `permission-response.promptId` matches an earlier `permission-prompt` event's `id`
