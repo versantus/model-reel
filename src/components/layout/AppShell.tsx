@@ -82,9 +82,7 @@ export function AppShell() {
 
       {/* Main content */}
       <div className="flex-1 overflow-hidden">
-        {!simulation ? (
-          <SimulationLanding />
-        ) : isEditorVisible ? (
+        {isEditorVisible ? (
           <SimulationEditor />
         ) : activeView === 'claude-code' ? (
           <CodeView />
@@ -97,18 +95,6 @@ export function AppShell() {
 
       {/* Playback controls */}
       {simulation && !isEditorVisible && <PlaybackControls />}
-    </div>
-  )
-}
-
-function SimulationLanding() {
-  return (
-    <div className="h-full flex items-center justify-center">
-      <div className="text-center text-gray-500">
-        <Terminal className="w-12 h-12 mx-auto mb-4 opacity-50" />
-        <p className="text-lg font-medium mb-2">No simulation loaded</p>
-        <p className="text-sm">Select a demo simulation from the top-right menu to get started</p>
-      </div>
     </div>
   )
 }
